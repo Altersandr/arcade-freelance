@@ -1,0 +1,59 @@
+#header {
+    background: url(https://images.unsplash.com/photo-1415795854641-f4a487a0fdc8?ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80) center center / cover no-repeat ;
+  }
+
+.card-img-top{
+    border-radius: 3% !important;
+}
+
+#gallery{
+    margin: 3em;
+}
+
+.card{
+    border: none !important;
+}
+
+.freelancer-name-container{
+    display: flex;
+    gap: 1em;
+    align-items: baseline;
+}
+
+.number-rating{
+    font-weight: 600;
+}
+
+.review-number{
+    color: gray;
+}
+
+.stars{
+    display: flex;
+    gap: 0.325em;
+    align-items: baseline;
+}
+
+.btn-outline-success{
+    border-color: #3D52D5 !important;
+    color:#3D52D5 !important;
+}
+
+.btn-check:active+.btn-outline-success, .btn-check:checked+.btn-outline-success, .btn-outline-success.active, .btn-outline-success.dropdown-toggle.show, .btn-outline-success:active, .btn-outline-success:hover {
+    border-color: #3D52D5 !important;
+    background-color: #3D52D5 !important;
+    color:#ffffff !important;
+}
+
+.filter-container, .breadcrumb-container{
+    display: flex;
+    gap: 2em;
+    margin: 3em;
+
+}
+
+.btn-secondary {
+    color: #fff;
+    background-color: #3C3744 !important;
+    border-color: #3C3744 !important;
+}
