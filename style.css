@@ -59,8 +59,59 @@ label {
     color: #3d52d5;
 }
 
+.terms label {
+    display: inline;
+    color: #B4C5E4;
+    font-size: 14px;
 
-/*3C3744
+}
+
+#privacy{
+    color: #090C9B;
+    text-decoration: underline;
+    cursor: pointer;
+margin-left: 5px;
+font-size: small;
+
+
+}
+
+#condizioni{
+    display: inline-block;
+        margin-right: 10px;
+    background-color: #090C9B;
+    margin-top: 20px;
+padding: 10px;
+}
+
+#acceptTerms{
+display: inline-block;
+     inline-size: 20px;
+     margin-top: 10px;
+     padding: 5px;
+}
+
+#Condizioni input[type="checkbox"] {
+    display: inline-block;
+    margin-right: 10px; }
+
+  
+    .social-div {
+        margin-bottom: 20px; 
+    }
+
+
+
+    #submitBtn{
+        background-color: #71a1e0;
+        color: #3D52D5;
+        border: none;
+        cursor: pointer;
+        padding: 5px;
+
+    }
+
+/*c
 090C9B
 3D52D5
 B4C5E4

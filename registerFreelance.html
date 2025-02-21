@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrazione Freelance</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h2>Registrati come Freelance</h2>
+        <form id="registerForm">
+          
+            <label for="username">Nome Utente</label>
+            <input type="text" id="username" required>
+
+          
+            <label for="email">Email</label>
+            <input type="email" id="email" required>
+
+           
+            <label for="password">Password</label>
+            <input type="password" id="password" required>
+
+          
+            <label for="confirmPassword">Conferma Password</label>
+            <input type="password" id="confirmPassword" required>
+
+            <!-- Partita IVA -->
+            <label for="partitaIVA">Partita IVA</label>
+            <input type="text" id="partitaIVA" required>
+
+            <!-- Tipo di Attività -->
+            <label for="tipoAttivita">Tipo di Attività</label>
+            <select id="tipoAttivita" required>
+                <option value="Consulente">Consulente</option>
+                <option value="Sviluppatore">Sviluppatore</option>
+                <option value="Designer">Designer</option>
+                <option value="Copywriter">Copywriter</option>
+                <option value="Marketing">Marketing</option>
+                <option value="Altro">Altro</option>
+            </select>
+
+            <!-- Settore -->
+            <label for="settore">Settore di Lavoro</label>
+            <input type="text" id="settore" required>
+
+           
+            <label for="telefono">Numero di Telefono</label>
+            <input type="tel" id="telefono" required>
+
+          
+            <label for="indirizzo">Indirizzo</label>
+            <input type="text" id="indirizzo" required>
+
+            
+
+            
+            <button type="submit">Registrati</button>
+        </form>
+
+        <p>Hai già un account? <a href="login.html">Accedi</a></p>
+
+       
+        <div class="social-div">
+            <a href="https://www.instagram.com/tuo_profilo" target="_blank" style="font-size: 24px; margin-right: 20px;">
+                <i id="privacy" class="fa-brands fa-instagram">instagram</i>
+            </a>
+            <a href="https://www.facebook.com/tuo_profilo" target="_blank" style="font-size: 24px; margin-right: 20px;">
+                <i id="privacy" class="fa-brands fa-facebook">facebook</i> 
+            </a>
+            <a href="https://wa.me/tuo_numero" target="_blank" style="font-size: 24px;">
+                <i id="privacy" class="fa-brands fa-whatsapp">whatsapp</i> 
+            </a>
+            </div>
+            <div id="Condizioni">
+                
+                
+                     <a href="URL_TERMINI_CONDIZIONI" target="_blank">Termini e Condizioni</a><br>  
+                    <a href="URL_POLITICA_PRIVACY" target="_blank">Politica sulla Privacy</a>
+                    <input type="checkbox" id="acceptTerms" required>
+                <br>
+                
+                <button id="submitBtn" disabled>Accetta e Continua</button>
+            </div>
+        </div>
+</body>
+</html>
