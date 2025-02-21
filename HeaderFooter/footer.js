@@ -32,8 +32,8 @@ document.write(`
                     <h5>Assistenza</h5>
                     <ul class="list-unstyled">
                         <li><a href="#" class="text-light">Centro Assistenza</a></li>
-                        <li><a href="#" class="text-light">Contattaci</a></li>
-                        <li><a href="#" class="text-light">FAQ</a></li>
+                        <li><a href="../Contatti/contatti.html" class="text-light">Contattaci</a></li>
+                        <li><a href="../Faq/faq.html" class="text-light">FAQ</a></li>
                     </ul>
                 </div>
             </div>

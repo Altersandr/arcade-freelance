@@ -1,0 +1,18 @@
+
+h2 { 
+    padding-top: 20px;
+    text-align: center; 
+    margin-bottom: 20px; 
+}
+.faq-item { 
+    padding: 15px 0; 
+    border-bottom: 1px solid #e0e0e0; 
+    cursor: pointer; 
+}
+.faq-item:last-child { 
+    border-bottom: none; 
+}
+.faq-answer { 
+    display: none; 
+    padding-left: 15px; 
+    color: #555; }
