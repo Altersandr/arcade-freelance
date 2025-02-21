@@ -1,6 +1,6 @@
 body {
 font-family: Arial, sans-serif;
-background-color: #f4f4f4;
+background-color: #B4C5E4;
 padding: 20px;
 text-align: center;
 }
@@ -14,12 +14,15 @@ margin: 20px auto;
 text-align: left;
 }
 h2 {
-color: #333;
+color: white;
+background: #090C9B;
 text-align: center;
+border-radius: 20px;
 }
 .order-summary {
 padding: 15px;
-background: #f9f9f9;
+background: #3D52D5;
+color: white;
 border-radius: 5px;
 margin-bottom: 20px;
 }
@@ -38,7 +41,7 @@ border: 1px solid #ccc;
 border-radius: 5px;
 }
 .pay-btn {
-background: #28a745;
+background: #3D52D5;
 color: white;
 border: none;
 padding: 10px 15px;

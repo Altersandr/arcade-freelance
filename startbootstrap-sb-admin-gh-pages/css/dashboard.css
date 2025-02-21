@@ -44,7 +44,7 @@ th, td {
     text-align: center;
 }
 th {
-    background: #090C9B;
+    background:#090C9B;
     color: white;
 }
 .profile {
@@ -52,4 +52,10 @@ th {
     padding: 10px;
     background: #f8f9fa;
     border-radius: 5px;
+}
+#bg {
+    background: #090C9B;
+    color: white;
+    margin: 20px;
+    border-radius: 20px;
 }

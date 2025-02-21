@@ -43,3 +43,8 @@ th {
 .checkout-btn:hover {
     background: #090C9B;
 }
+h2 {
+    background: #090C9B;
+    color: white;
+    border-radius: 20px;
+}

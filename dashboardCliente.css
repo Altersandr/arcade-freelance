@@ -14,8 +14,10 @@ body {
     text-align: left;
 }
 h2 {
-    color: #333;
+    color: white;
     text-align: center;
+    background: #090C9B;
+    border-radius: 20px;
 }
 .stats {
     display: flex;
