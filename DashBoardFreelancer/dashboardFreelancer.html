@@ -11,6 +11,7 @@
         <link href="css/stylesFreelance.css" rel="stylesheet" />
         <link rel="stylesheet" href="css/dashboard.css">
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     </head>
     <body class="sb-nav-fixed">
     
@@ -20,30 +21,45 @@
                     <div class="container-fluid px-4">
                         <h1 id="bg">Dashboard</h1>
                         <div class="card mb-4">
-                            <div class="orders">
-                                <h3>Ordini Recenti</h3>
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>Cliente</th>
-                                            <th>Servizio</th>
-                                            <th>Stato</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Mario Rossi</td>
-                                            <td>Logo Design</td>
-                                            <td>In corso</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Anna Bianchi</td>
-                                            <td>Web Development</td>
-                                            <td>Completato</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                            <h3 class="mb-3 text-center pt-4">📋 Ordini Recenti</h3>
+    
+    <div class="table-responsive">
+        <table class="table table-striped table-hover text-center align-middle">
+            <thead class="table-primary">
+                <tr>
+                    <th>Cliente</th>
+                    <th>Servizio</th>
+                    <th>Data</th>
+                    <th>Prezzo</th>
+                    <th>Stato</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Mario Rossi</td>
+                    <td>Logo Design</td>
+                    <td>15 Feb 2024</td>
+                    <td>€250</td>
+                    <td><span class="badge bg-warning">In corso</span></td>
+                </tr>
+                <tr>
+                    <td>Anna Bianchi</td>
+                    <td>Web Development</td>
+                    <td>10 Feb 2024</td>
+                    <td>€1,200</td>
+                    <td><span class="badge bg-success">Completato</span></td>
+                </tr>
+                <tr>
+                    <td>Luigi Verdi</td>
+                    <td>Web Development</td>
+                    <td>18 Feb 2024</td>
+                    <td>€400</td>
+                    <td><span class="badge bg-danger">Annullato</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
                         </div>
                         
                         <div class="row">
@@ -79,5 +95,6 @@
         <script src="assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
+        
     </body>
 </html>

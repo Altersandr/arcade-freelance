@@ -13,45 +13,37 @@ body {
     margin: 20px auto;
     text-align: left;
 }
-h2 {
-    color: white;
-    text-align: center;
+h2{
     background: #090C9B;
-    border-radius: 20px;
-}
-.stats {
-    display: flex;
-    justify-content: space-around;
-    padding: 10px 0;
-}
-.stat-box {
-    background: #3D52D5;
     color: white;
-    padding: 15px;
-    border-radius: 5px;
-    width: 30%;
-    text-align: center;
 }
 .orders {
     margin-top: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 10px;
+    border-radius: 20px;
 }
 th, td {
     padding: 10px;
     border-bottom: 1px solid #ddd;
     text-align: center;
+    padding: 10px;
 }
 th {
     background: #090C9B;
     color: white;
 }
-.profile {
-    margin-top: 20px;
+#text{
+    background-color: #090C9B;
+    color: white;
+    border-radius: 20px;
     padding: 10px;
-    background: #f8f9fa;
-    border-radius: 5px;
+    text-align: center;
+}
+#x{
+    background: #090C9B;
 }

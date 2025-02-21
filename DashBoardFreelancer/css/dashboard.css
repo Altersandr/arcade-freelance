@@ -8,7 +8,7 @@ body {
     background: white;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     max-width: 800px;
     margin: 20px auto;
     text-align: left;
@@ -37,6 +37,7 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 th, td {
     padding: 10px;
@@ -47,15 +48,10 @@ th {
     background:#090C9B;
     color: white;
 }
-.profile {
-    margin-top: 20px;
-    padding: 10px;
-    background: #f8f9fa;
-    border-radius: 5px;
-}
 #bg {
     background: #090C9B;
     color: white;
     margin: 20px;
     border-radius: 20px;
+    text-align: center;
 }
