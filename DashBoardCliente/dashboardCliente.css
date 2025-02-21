@@ -1,6 +1,5 @@
 body {
     font-family: Arial, sans-serif;
-    background-color:  #B4C5E4;
     padding: 20px;
     text-align: center;
 }
@@ -46,4 +45,7 @@ th {
 }
 #x{
     background: #090C9B;
+}
+#b{
+    background-color: #B4C5E4;
 }

@@ -1,6 +1,5 @@
 body {
     font-family: Arial, sans-serif;
-    background-color:  #B4C5E4;
     padding: 20px;
     text-align: center;
 }
@@ -54,4 +53,7 @@ th {
     margin: 20px;
     border-radius: 20px;
     text-align: center;
+}
+#b{
+    background-color: #B4C5E4;
 }
