@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento</title>
+    <link rel="stylesheet" href="pagamento.css">
+</head>
+<body>
+    <div class="payment-container">
+        <h2>Pagamento</h2>
+        
+        <div class="order-summary">
+            <h3>Riepilogo Ordine</h3>
+            <p><strong>Servizio:</strong> Logo Design</p>
+            <p><strong>Freelancer:</strong> Marco Bianchi</p>
+            <p><strong>Totale:</strong> €250</p>
+        </div>
+
+        <form class="payment-form">
+            <h3>Modulo di Pagamento</h3>
+            <label for="first-name">Nome*</label>
+            <input type="text" id="first-name" placeholder="Nome" required>
+            
+            <label for="last-name">Cognome</label>
+            <input type="text" id="last-name" placeholder="Cognome">
+            
+            <label for="email">E-mail*</label>
+            <input type="email" id="email" placeholder="esempio@esempio.com" required>
+            
+            <label for="phone">Contatto Telefonico*</label>
+            <input type="tel" id="phone" placeholder="(000) 000-0000" required>
+            
+            <h3>Indirizzo di Fatturazione</h3>
+            <label for="address1">Via Indirizzo 1</label>
+            <input type="text" id="address1">
+            
+            <label for="address2">Via Indirizzo 2</label>
+            <input type="text" id="address2">
+            
+            <label for="city">Città</label>
+            <input type="text" id="city">
+            
+            <label for="region">Regione / Provincia</label>
+            <input type="text" id="region">
+            
+            <label for="zip">CAP</label>
+            <input type="text" id="zip">
+            
+            <label for="country">Paese</label>
+            <select id="country">
+                <option value="">Seleziona il Paese</option>
+                <option value="IT">Italia</option>
+                <option value="FR">Francia</option>
+                <option value="DE">Germania</option>
+            </select>
+            
+            <button type="submit" class="pay-btn">Vai alla Pagina per il Pagamento</button>
+        </form>
+    </div>
+</body>
+</html>
