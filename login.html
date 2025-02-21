@@ -12,11 +12,13 @@
     <div class="container">
         <h2>Accedi</h2>
         <form id="loginForm">
-            <label for="loginUsername">Nome Utente</label> 
-            <input type="text" id="loginUsername" required>
+            <label for="username">Nome Utente</label> 
+            <input type="text" id="username"  name="username" required>
+            <div id="username-error" class="errore"></div>
 
-            <label for="loginPassword">Password</label>
-            <input type="password" id="loginPassword" required>  
+            <label for="password">Password</label>
+            <input type="password" id="password" required>
+            <div id="password-error" class="errore"></div>  
 
             <button type="submit">Accedi</button>
         </form>
@@ -44,6 +46,9 @@
         <button id="submitBtn" disabled>Accetta e Continua</button>
     </div>
 </div>
+
+<script src="login.JS"></script>
+
 </body>
 </html>
 <!--pooitica sulla privacy 
