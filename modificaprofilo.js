@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const fillFormBtn = document.getElementById('fillFormBtn');
     const togglePassword = document.getElementById('togglePassword');
     const passwordField = document.getElementById('password');
+    const confirmPasswordField = document.getElementById('confirmPassword');
     const profileForm = document.getElementById('profileForm');
     const portfolioInput = document.getElementById('portfolio');
     const portfolioForm = document.getElementById('portfolioForm');
@@ -19,6 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         document.getElementById('email').value = savedData.email;
         document.getElementById('password').value = savedData.password;
+        document.getElementById('confirmPassword').value = savedData.password;
         document.getElementById('username').value = savedData.username;
         document.getElementById('vatNumber').value = savedData.vatNumber;
         document.getElementById('taxCode').value = savedData.taxCode;
@@ -28,12 +30,18 @@ document.addEventListener('DOMContentLoaded', function() {
     togglePassword.addEventListener('click', function() {
         const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
         passwordField.setAttribute('type', type);
+        confirmPasswordField.setAttribute('type', type);
         this.classList.toggle('fa-lock');
         this.classList.toggle('fa-lock-open');
     });
 
     profileForm.addEventListener('submit', function(event) {
         event.preventDefault();
+
+        if (passwordField.value !== confirmPasswordField.value) {
+            alert('Errore: Le password non corrispondono.');
+            return;
+        }
 
         const formData = new FormData(profileForm);
         fetch('/save-profile', {
@@ -90,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function() {
             reader.readAsDataURL(files[i]);
         }
         portfolioInput.value = '';
-        portfolioDescriptionInput.value = '';
+        document.getElementById('portfolioDescription').value = '';
     });
 
     servicesForm.addEventListener('submit', function(event) {
@@ -158,9 +166,14 @@ function addPortfolioItem() {
         alert('Errore: Tutti i campi devono essere compilati.');
     }
 }
+document.addEventListener('DOMContentLoaded', function() {
+    const logoutButton = document.getElementById('logoutButton');
+    logoutButton.addEventListener('click', function() {
+        window.location.href = '../arcade-freelance/Homepage/homepage.html';
+    });
+});
 
 function removeItem(button) {
     const li = button.closest('li');
     li.remove();
 }
-/*per salvarlo*/
