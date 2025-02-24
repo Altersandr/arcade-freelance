@@ -1,0 +1,91 @@
+body {
+    background-color: #B4C5E4;
+    color: #3C3744;
+}
+header {
+    background-color: #ced4da ;
+}
+.btn{
+    background-color:#3C3744;
+    border: 1px solid #ced4da;
+    
+}
+
+.btn:hover {
+    background-color: #3C3744; 
+    border-color: #ced4da;
+  }
+
+
+
+.header {
+    background: linear-gradient(rgba(3, 7, 100, 0.7), rgba(60, 55, 68, 0.7)), url('/freelance/background.png') center/cover no-repeat;
+    color: #FBFFF1; 
+}
+
+h2, h3 {
+    color: #090C9B;
+}
+
+.text-muted {
+    color: #3C3744 !important;
+}
+
+.btn-primary {
+    background-color: #3D52D5;
+    border-color: #3D52D5;
+}
+
+.container {
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 10%;
+}
+
+.img-fluid {
+    border: 2px solid #3C3744;
+    margin-bottom: 10%;
+}
+
+ul li {
+    color: #3C3744;
+}
+
+a {
+    color: #090C9B;
+}
+
+a:hover {
+    color: #3D52D5;
+}
+
+.box {
+    background-color: beige;
+    border: 2px solid #3C3744;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.box h3 {
+    color: #090C9B;
+}
+
+.box ul li, .box p {
+    color: #3C3744;
+}
+
+
+.portfolio-item {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.delete-portfolio-btn {
+    display: inline-block;
+    margin-top: 10px;
+}
+footer {
+    margin-top: auto;
+    background-color: #3C3744;
+}
