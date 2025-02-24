@@ -1,3 +1,14 @@
 h2{
     padding-top: 20px;
 }
+.form-check-input{
+    border-color: #3D52D5;
+}
+
+.form-check-input:active{
+    border-color: #3D52D5;
+}
+
+#name{
+    
+}
