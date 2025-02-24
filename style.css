@@ -2,6 +2,7 @@ body {
     font-family: Arial, sans-serif;
     color: #3C3744;
 }
+<<<<<<< HEAD
 header {
     background-color: #ced4da ;
 }
@@ -17,6 +18,8 @@ header {
   }
 
 
+=======
+>>>>>>> 2b3dca95233f9e96a574da90362e7a02785b9e1f
 
 .header {
     background: linear-gradient(rgba(3, 7, 100, 0.7), rgba(60, 55, 68, 0.7)), url('/freelance/background.png') center/cover no-repeat;
@@ -68,6 +71,7 @@ header {
 
 .btn-primary:hover {
     background-color: #090C9B !important;
+<<<<<<< HEAD
 }
 html, body {
     height: 100%;
@@ -81,4 +85,6 @@ body {
 footer {
     margin-top: auto;
     background-color: #3C3744;
+=======
+>>>>>>> 2b3dca95233f9e96a574da90362e7a02785b9e1f
 }
