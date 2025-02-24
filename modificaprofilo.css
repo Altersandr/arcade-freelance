@@ -1,0 +1,86 @@
+body {
+    background-color: #B4C5E4 !important;
+    color: #3C3744;
+}
+header {
+    background-color: #ced4da ;
+}
+.btn{
+    background-color:#3C3744;
+    border: 1px solid #ced4da;
+    
+}
+
+.btn:hover {
+    background-color: #3C3744; 
+    border-color: #ced4da;
+  }
+
+
+h2, h3 {
+    color: #090C9B;
+}
+
+.text-muted {
+    color: #3C3744 !important;
+}
+
+.btn-primary {
+    background-color: #3D52D5;
+    border-color: #3D52D5;
+}
+
+.container {
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 10%;
+}
+
+.img-fluid {
+    border: 2px solid #3C3744;
+    margin-bottom: 10%;
+}
+
+ul li {
+    color: #3C3744;
+}
+
+a {
+    color: #090C9B;
+}
+
+a:hover {
+    color: #3D52D5;
+}
+
+.box {
+    background-color: beige;
+    border: 2px solid #3C3744;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.box h3 {
+    color: #090C9B;
+}
+
+.box ul li, .box p {
+    color: #3C3744;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.input-group .form-control {
+    border-right: 0;
+}
+
+.input-group .btn {
+    border-left: 0;
+}
+footer {
+    margin-top: auto;
+    background-color: #3C3744;
+}

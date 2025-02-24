@@ -1,0 +1,42 @@
+body {
+    background-color: #FBFFF1;
+    color: #3C3744;
+}
+header {
+    background-color: #ced4da ;
+}
+.btn{
+    background-color:#3C3744;
+    border: 1px solid #ced4da;
+    
+}
+
+.btn:hover {
+    background-color: #3C3744; /* Colore di sfondo al passaggio del mouse */
+    border-color: #ced4da;
+  }
+
+
+
+.header {
+    background: linear-gradient(rgba(3, 7, 100, 0.7), rgba(60, 55, 68, 0.7)), url('/freelance/background.png') center/cover no-repeat;
+    color: #FBFFF1; 
+}
+
+.service-card {
+    background-color: #B4C5E4;
+    border: 1px solid #3D52D5;
+}
+
+.service-card h5 {
+    color: #090C9B;
+}
+
+.service-card img {
+    height: 150px;
+    object-fit: cover;
+}
+footer {
+    margin-top: auto;
+    background-color: #3C3744;
+}

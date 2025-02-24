@@ -1,0 +1,65 @@
+body {
+    background-color: #B4C5E4 !important;
+    color: #3C3744 !important ;
+}
+header {
+    background-color: #ced4da ;
+}
+.btn{
+    background-color:#3C3744;
+    border: 1px solid #ced4da;
+    
+}
+
+.btn:hover {
+    background-color: #3C3744; /* Colore di sfondo al passaggio del mouse */
+    border-color: #ced4da;
+  }
+
+
+h2 {
+    color: #090C9B;
+}
+
+.form-label {
+    color: #3C3744;
+}
+
+.btn-primary {
+    background-color: #3D52D5;
+    border-color: #3D52D5;
+}
+
+.btn-secondary {
+    background-color: #090C9B;
+    border-color: #090C9B;
+}
+
+.container {
+    background-color: #FBFFF1;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+#pricesList {
+    list-style-type: none;
+    padding: 0;
+}
+
+#pricesList li {
+    background-color: #3D52D5;
+    color: #FFFFFF;
+    padding: 5px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#pricesList li span {
+    margin-right: 10px;
+}
+footer {
+    margin-top: auto;
+    background-color: #3C3744;
+}
