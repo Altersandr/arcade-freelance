@@ -7,7 +7,7 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
     const usernameValid = /[A-Z]/.test(username);
     const usernameErrorDiv = document.getElementById("username-error");
 
-
+    
     const passwordValid = /[A-Z]/.test(password) && /[!@#$%^&*(),.?":{}|<>]/.test(password); 
     const passwordErrorDiv = document.getElementById("password-error");
    
@@ -17,7 +17,7 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
       alert("Entrambi i campi sono obbligatori!");
       return;
     }
-    if (username === "Admin" && password === "1234Ad<>") {
+    if (username === "Davide" && password === "1234Ad<>") {
       alert("Login riuscito!");
 
     } else {
