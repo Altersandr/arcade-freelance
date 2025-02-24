@@ -2,8 +2,9 @@ body {
     background-color: #B4C5E4 !important;
     color: #3C3744;
 }
+
 header {
-    background-color: #ced4da ;
+    background-color: #ced4da;
 }
 
 .header-btn {
@@ -14,14 +15,16 @@ header {
     border-radius: 5px;
     transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
 }
-.header-btn:hover{
-    background-color:#3C3744; 
-    color: #FBFFF1; 
+
+.header-btn:hover {
+    background-color: #3C3744;
+    color: #FBFFF1;
     border-color: #ced4da;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+
 .btn {
-    background-color: #3C3744 ;
+    background-color: #3C3744;
     border: 1px solid #ced4da;
     color: #FBFFF1;
     padding: 10px 20px;
@@ -30,12 +33,11 @@ header {
 }
 
 .btn:hover {
-    background-color:#3C3744; 
-    color: #FBFFF1; 
+    background-color: #3C3744;
+    color: #FBFFF1;
     border-color: #ced4da;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
-
 
 h2, h3 {
     color: #090C9B;
@@ -100,6 +102,7 @@ a:hover {
 .input-group .btn {
     border-left: 0;
 }
+
 footer {
     margin-top: auto;
     background-color: #3C3744;

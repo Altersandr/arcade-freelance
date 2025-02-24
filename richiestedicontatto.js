@@ -21,7 +21,12 @@ document.addEventListener('DOMContentLoaded', function() {
         button.classList.add('btn-secondary');
         button.disabled = true; 
     }
-
+    document.addEventListener('DOMContentLoaded', function() {
+        const redirectButton = document.getElementById('redirectButton');
+        redirectButton.addEventListener('click', function() {
+            window.location.href = 'http://127.0.0.1:3000/profilofreelance.html'; 
+        });
+    });
     function handleDecline(button) {
         const row = button.closest('tr');
         row.style.backgroundColor = 'red';
