@@ -1,0 +1,14 @@
+header {
+    background-color: #ced4da ;
+}
+.btn{
+    background-color:#3C3744;
+    border: 1px solid #ced4da;
+    
+}
+
+.btn:hover {
+    background-color: #3C3744; /* Colore di sfondo al passaggio del mouse */
+    border-color: #ced4da;
+  }
+ 
