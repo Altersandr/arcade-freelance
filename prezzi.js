@@ -13,6 +13,12 @@ function addPrice() {
         servicePriceInput.value = '';
     }
 }
+document.addEventListener('DOMContentLoaded', function() {
+    const logoutButton = document.getElementById('logoutButton');
+    logoutButton.addEventListener('click', function() {
+        window.location.href = '../Homepage/homepage.html';
+    });
+});
 
 document.getElementById('pricesForm').addEventListener('submit', function(event) {
     event.preventDefault();

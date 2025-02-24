@@ -81,31 +81,29 @@
                 <button type="button" class="btn btn-secondary" onclick="addPortfolioItem()">Aggiungi Immagine</button>
                 <ul id="portfolioList" class="mt-2"></ul>
                 <button type="submit" class="btn btn-primary mt-3">Salva Modifiche</button>
-            </form>
-        </div>
-    
-            <h2 class="mt-5">Aggiungi Servizi</h2>
-            <form id="servicesForm">
-                <div class="mb-3">
-                    <label for="serviceName" class="form-label">Nome Servizio</label>
-                    <input type="text" class="form-control" id="serviceName" placeholder="Inserisci il nome del servizio" style="width: 60%; font-size: 16px;">
-                </div>
-                <div class="mb-3">
-                    <label for="serviceDescription" class="form-label">Descrizione Servizio</label>
-                    <textarea class="form-control" id="serviceDescription" rows="3" placeholder="Descrivi il servizio"style="width: 90%; font-size: 16px;"></textarea>
-                </div>
-                <div class="mb-3">
-                    <label for="serviceImage" class="form-label">Immagine Servizio</label>
-                    <input type="file" class="form-control" id="serviceImage" style="width: 50%; font-size: 16px;">
-                </div>
-                <div class="mb-3">
-                    <label for="servicePrice" class="form-label">Prezzo Servizio</label>
-                    <input type="number" class="form-control" id="servicePrice" placeholder="Inserisci il prezzo del servizio"style="width: 50%; font-size: 16px;">
-                </div>
-                <button type="button" class="btn btn-secondary" onclick="addService()">Aggiungi Servizio</button>
-                <ul id="servicesList" class="mt-2"></ul>
-                <button type="submit" class="btn btn-primary mt-3">Salva Modifiche</button>
-            </form>
+                <h2 class="mt-5">Aggiungi Servizi</h2>
+                <form id="servicesForm" class="container">
+                    <div class="mb-3">
+                        <label for="serviceName" class="form-label">Nome Servizio</label>
+                        <input type="text" class="form-control" id="serviceName" placeholder="Inserisci il nome del servizio" style="width: 60%; font-size: 16px;">
+                    </div>
+                    <div class="mb-3">
+                        <label for="serviceDescription" class="form-label">Descrizione Servizio</label>
+                        <textarea class="form-control" id="serviceDescription" rows="3" placeholder="Descrivi il servizio" style="width: 90%; font-size: 16px;"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="serviceImage" class="form-label">Immagine Servizio</label>
+                        <input type="file" class="form-control" id="serviceImage" style="width: 50%; font-size: 16px;">
+                    </div>
+                    <div class="mb-3">
+                        <label for="servicePrice" class="form-label">Prezzo Servizio</label>
+                        <input type="number" class="form-control" id="servicePrice" placeholder="Inserisci il prezzo del servizio" style="width: 50%; font-size: 16px;">
+                    </div>
+                    <button type="button" class="btn btn-secondary form-btn" onclick="addService()">Aggiungi Servizio</button>
+                    <ul id="servicesList" class="mt-2"></ul>
+                    <button type="submit" class="btn btn-primary form-btn mt-3">Salva Modifiche</button>
+                </form>
+            </div>
         </div>
         <footer class="text-light pt-4">
             <div class="container">
