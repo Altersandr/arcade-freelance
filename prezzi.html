@@ -35,15 +35,14 @@
 <body>
     <div class="container my-5">
         <h2>Modifica Prezzi</h2>
-        <form id="pricesForm">
-            <div class="mb-3">
-                <label for="serviceName" class="form-label">Nome Servizio</label>
-                <input type="text" class="form-control" id="serviceName" placeholder="Inserisci il nome del servizio">
-            </div>
-            <div class="mb-3">
-                <label for="servicePrice" class="form-label">Prezzo</label>
-                <input type="number" class="form-control" id="servicePrice" placeholder="Inserisci il prezzo">
-            </div>
+        <div class="mb-3">
+            <label for="serviceName" class="form-label">Nome Servizio</label>
+            <input type="text" class="form-control" id="serviceName" placeholder="Inserisci il nome del servizio" style="width: 60%; font-size: 8px;">
+        </div>
+        <div class="mb-3">
+            <label for="servicePrice" class="form-label">Prezzo</label>
+            <input type="number" class="form-control" id="servicePrice" placeholder="Inserisci il prezzo" style="width: 40%; font-size: 8px;">
+        </div>
             <button type="button" class="btn btn-secondary" onclick="addPrice()">Aggiungi Prezzo</button>
             <ul id="pricesList" class="mt-3"></ul>
             <button type="submit" class="btn btn-primary mt-3">Salva Modifiche</button>

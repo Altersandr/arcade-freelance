@@ -59,6 +59,10 @@ h2 {
 #pricesList li span {
     margin-right: 10px;
 }
+.small-input {
+    width: 50%; 
+    font-size: 0.9rem; 
+}
 footer {
     margin-top: auto;
     background-color: #3C3744;
