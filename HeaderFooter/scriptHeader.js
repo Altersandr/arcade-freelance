@@ -205,55 +205,59 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-//gestione registrazione(aggiunta utente)
+// Funzione per la registrazione di un nuovo utente
 function addUser(newUser) {
     fetch('http://localhost:8080/utenti/addUser', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+            'Content-Type': 'application/json',
         },
         body: JSON.stringify(newUser)
     })
     .then(response => {
         if (!response.ok) {
-            throw new Error('Non autorizzato o errore durante l\'aggiunta dell\'utente');
+            return response.json().then(err => { throw new Error(err.message || "Errore durante la registrazione"); });
         }
         return response.json();
     })
     .then(data => {
-        console.log('Risposta addUser:', data);
+        console.log('Utente registrato con successo:', data);
         printOutput(data);
+        // Pulisce il form solo se la registrazione ha avuto successo
+        clearForm();
+        closeModal();
     })
     .catch(error => {
-        console.error('Errore nell\'aggiunta dell\'utente:', error);
+        console.error('Errore nella registrazione:', error);
         printOutput({ error: error.message });
+        alert('Registrazione fallita: ' + error.message);
     });
-  }
+}
 
-   // Gestione del form per aggiungere un nuovo utente 
-   document.getElementById('registerForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    const newUser = {
-      name: document.getElementById('register-firstname').value,
-      surname: document.getElementById('register-lastname').value,
-      email: document.getElementById('register-email').value,
-      password: document.getElementById('register-password').value
-    };
-    addUser(newUser);
-    clear();
-    closeModal();
-    function clear(){
-      document.getElementById('register-firstname').value='',
-      document.getElementById('register-lastname').value='',
-      document.getElementById('register-email').value='',
-      document.getElementById('register-password').value=''
-    }
-  });
-  function closeModal() {
+// Funzione per svuotare i campi del modulo di registrazione
+function clearForm() {
+    document.getElementById('registerForm').reset();
+}
+
+// Funzione per chiudere il modal di registrazione
+function closeModal() {
     const modal = document.getElementById('registerModal');
     const modalInstance = bootstrap.Modal.getInstance(modal);
-    
     if (modalInstance) {
-        modalInstance.hide(); // Chiude il modal
+        modalInstance.hide();
     }
 }
+
+// Gestione del form per aggiungere un nuovo utente
+document.getElementById('registerForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    const newUser = {
+        name: document.getElementById('register-firstname').value,
+        surname: document.getElementById('register-lastname').value,
+        email: document.getElementById('register-email').value,
+        password: document.getElementById('register-password').value
+    };
+
+    addUser(newUser);
+});
