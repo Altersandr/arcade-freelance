@@ -23,7 +23,7 @@ document.write(`
         </div>
 
         <!-- Freelancer registrazione Button -->
-         <button class="btn text-white" id="FreelancerBtn" type="button">Sono un Freelancer</button>
+         <button class="btn text-white" id="BtnFreelance" type="button">Sono un Freelancer</button>
 
         <!-- Login Button -->
         <button class="btn text-white" id="loginBtn" type="button">Accedi</button>
@@ -243,7 +243,7 @@ document.getElementById("loginBtn").addEventListener("click", function() {
 });
 
 // Aggiungi evento per aprire il modal quando si clicca su "sono un freelancer"
-document.getElementById("FreelancerBtn").addEventListener("click", function() {
+document.getElementById("BtnFreelance").addEventListener("click", function() {
     const freelancerModal = new bootstrap.Modal(document.getElementById('freelancerModal'));
     freelancerModal.show();
 });
