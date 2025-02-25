@@ -1,0 +1,74 @@
+body {
+    background-color: #B4C5E4 !important;
+    color: #3C3744 !important ;
+}
+header {
+    background-color: #ced4da ;
+}
+.btn {
+    background-color: #3C3744 !important;
+    border: 1px solid #ced4da;
+    color: #FBFFF1;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+.btn:hover {
+    background-color:#3C3744 !important; 
+    color: #FBFFF1; 
+    border-color: #ced4da;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+}
+
+
+h2 {
+    color: #090C9B;
+}
+
+.form-label {
+    color: #3C3744;
+}
+
+.btn-primary {
+    background-color: #3D52D5 !important;
+    border-color: #3D52D5;
+}
+
+.btn-secondary {
+    background-color: #090C9B !important;
+    border-color: #090C9B;
+}
+
+.modificaprezzi{
+    background-color: #FBFFF1;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+#pricesList {
+    list-style-type: none;
+    padding: 0;
+}
+
+#pricesList li {
+    background-color: #3D52D5;
+    color: #FFFFFF;
+    padding: 5px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#pricesList li span {
+    margin-right: 10px;
+}
+.small-input {
+    width: 50%; 
+    font-size: 0.9rem; 
+}
+footer {
+    margin-top: auto;
+    background-color: #3C3744;
+}
