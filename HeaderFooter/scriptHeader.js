@@ -2,7 +2,7 @@ document.write(`
     <header class="d-flex justify-content-between align-items-center p-3">
         <!-- Logo -->
           <a class="header navbar-brand" href="../Homepage/homepage.html">
-            <img src="../img/logo project work.png" alt="arcade Logo" class="me-2" width="50">
+            <img src="../img/arcade-logo.png" alt="arcade Logo" class="me-2" width="50">
             
         </a>
         <div class="dropdown">
