@@ -1,4 +1,4 @@
-document.getElementById("loginForm").addEventListener("submit", function(event) {
+/*document.getElementById("loginForm").addEventListener("submit", function(event) {
   event.preventDefault();
   
     
@@ -31,4 +31,5 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
         passwordErrorDiv.textContent = "La password deve contenere una Maiuscola e un carattere speciale";
         return;}
   });
-  
+  */
+ 
