@@ -227,3 +227,9 @@ ul{
 .person-bottom-row{
     align-items: baseline;
 }
+
+.freelancer-name-container{
+    display: flex;
+    align-items: baseline;
+    gap: 1em;
+}

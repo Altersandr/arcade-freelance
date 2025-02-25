@@ -239,6 +239,77 @@ function getFilters (){
 }
 
 changeActive();
+
+const fetchServices = ()=>{
+    fetch('http://localhost:8080/servizi',{
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+    })
+    .then(res => res.json())
+    .then(service => { 
+        console.log(service)
+        const cards = service.map(s=>{
+            return `
+            <div class="col-lg-4 mb-4">
+              <div class="card">
+                <img src="${s.img ? s.img: "https://placehold.co/350"}" alt="" class="card-img-top">
+                <div class="card-body">
+                    <div class="freelancer-name-container">
+                        <i class="fa-regular fa-user fa-lg" style="color: #3D52D5;"></i>
+                        <h5 class="card-title">${s.utente.nome} ${s.utente.cognome}</h5>
+                    </div>
+                    <div class="description-container">
+                        <p class="card-text">${s.descrizione}</p>
+                    </div>
+                    <div class="rating-container">
+                        <div class="stars">
+                            <i class="fa-solid fa-star"></i>
+                            <p class="number-rating">${getAverageRating(s.recensioni)}</p>
+                            <p class="review-number">(${s.recensioni.length})</p>
+    
+                        </div>
+                    </div>
+                    <div class="price-container">
+                        <p class="before-price">A partire da <span class="price-amount">${s.prezzo}</span> €</p>
+                    </div>
+    
+                 <a href="service.html" class="btn btn-outline-success btn-sm">Dettagli</a>
+                </div>
+               </div>
+              </div>
+    
+            `
+        }
+        ).join("")
+    
+        document.querySelector(".row").innerHTML = cards;
+
+
+    });
+
+}
+
+
+
+
+const getAverageRating = (array)=>{
+    let average = 0;
+    array.forEach((e)=>average+=parseInt(e.voto))
+    return array.length==0 ? 0 : average/array.length;
+}
+
+
+
+
+
+fetchServices();
+
+
+
+
+
 // fetchFiltered();
 // console.log(document.querySelectorAll(".dropdown").forEach((element)=>console.log(element.querySelector(".active"))))
 
