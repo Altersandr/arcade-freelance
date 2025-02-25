@@ -1,0 +1,51 @@
+body {
+font-family: Arial, sans-serif;
+background-color: #B4C5E4;
+padding: 20px;
+text-align: center;
+}
+.payment-container {
+background: white;
+padding: 20px;
+border-radius: 8px;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+max-width: 600px;
+margin: 20px auto;
+text-align: left;
+}
+h2 {
+color: white;
+background: #090C9B;
+text-align: center;
+border-radius: 20px;
+}
+.order-summary {
+padding: 15px;
+background: #3D52D5;
+color: white;
+border-radius: 5px;
+margin-bottom: 20px;
+}
+.order-summary p {
+margin: 5px 0;
+}
+.payment-form label {
+display: block;
+margin: 10px 0 5px;
+}
+.payment-form input, select {
+width: 100%;
+padding: 8px;
+margin-bottom: 10px;
+border: 1px solid #ccc;
+border-radius: 5px;
+}
+.pay-btn {
+background: #3D52D5;
+color: white;
+border: none;
+padding: 10px 15px;
+cursor: pointer;
+border-radius: 5px;
+width: 100%;
+}
