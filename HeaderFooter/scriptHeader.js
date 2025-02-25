@@ -22,9 +22,9 @@ document.write(`
             <button class="btn text-white" id="searchButton">Cerca</button>
         </div>
         
-        <button class="btn text-white">Sono un Freelancer</button>
+        <button class="btn text-white" onclick="window.location.href='../registerFreelance.html'">Sono un Freelancer</button>
         
         <!-- Login Button -->
-        <button class="btn text-white">Accedi</button>
+        <button class="btn text-white" onclick="window.location.href='../login.html'">Accedi</button>
     </header>
     `);
