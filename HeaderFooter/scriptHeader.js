@@ -1,8 +1,8 @@
 document.write(`
     <header class="d-flex justify-content-between align-items-center p-3">
         <!-- Logo -->
-          <a class="header navbar-brand" href="../Homepage/homepage.html">
-            <img src="../img/arcade-logo.png" alt="arcade Logo" class="me-2" width="50">
+          <a class="header navbar-brand me-5" href="../Homepage/homepage.html">
+            <img src="../img/logoArcade.png" alt="arcade Logo" class="me-2" width="50">
             
         </a>
         <div class="dropdown">
@@ -21,13 +21,18 @@ document.write(`
             <input type="text" id="searchInput" class="form-control" placeholder="Cerca servizi o freelancer...">
             <button class="btn text-white" id="searchButton">Cerca</button>
         </div>
-        
-        <button class="btn text-white" onclick="window.location.href='../registerFreelance.html'">Sono un Freelancer</button>
-        
-        <!-- Login Button -->
-        <button class="btn text-white" onclick="window.location.href='../login.html'">Accedi</button>
-    </header>
 
+        <button class="btn text-white" id="btnFreelance" type="button">Sono un Freelancer</button>
+
+        <button class="btn text-white" id="btnProfilo" style="display: none;"  onclick="window.location.href='../profilofreelance'">Profilo</button>
+
+        <!-- Login Button -->
+        <button class="btn text-white" id="loginBtn" type="button">Accedi</button>
+
+        <!-- Logout Button (nascosto di default) -->
+        <button class="btn text-white" id="logoutButton" style="display: none;">Logout</button>
+    </header>
+    
     <!-- Modal di login -->
     <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -118,6 +123,9 @@ const login = (email, password) => {
             // Nasconde il pulsante Accedi e mostra il pulsante Logout
             document.getElementById("logoutButton").style.display = "block";
             document.getElementById("loginBtn").style.display = "none";
+            document.getElementById("btnProfilo").style.display = "block";
+            document.getElementById("btnFreelance").style.display = "none";
+
             // Chiude il modal di login
             const modal = document.getElementById('loginModal');
             const modalInstance = bootstrap.Modal.getInstance(modal);
@@ -131,6 +139,24 @@ const login = (email, password) => {
         printOutput({ error: error.message });
     });
 };
+
+document.addEventListener("DOMContentLoaded", () => {
+    const authToken = localStorage.getItem("authToken");
+    const freelanceButton = document.getElementById("btnFreelance");
+    const profileButton = document.getElementById("btnProfilo");
+
+    if (authToken) {
+        // Se l'utente è autenticato, mostra il pulsante profilo e nasconde freelance
+        if (freelanceButton) freelanceButton.style.display = "none";
+        if (profileButton) profileButton.style.display = "block";
+    } else {
+        // Se non è autenticato, mostra freelance e nasconde profilo
+        if (freelanceButton) freelanceButton.style.display = "block";
+        if (profileButton) profileButton.style.display = "none";
+    }
+});
+
+
 
 // Funzione per il logout
 function logout() {
@@ -168,6 +194,13 @@ function logout() {
         printOutput({ error: error.message });
     });
 }
+
+document.getElementById('logoutButton').addEventListener('click', function() {
+    // Puoi aggiungere qui altre azioni da eseguire al logout, come la rimozione del token di autenticazione, se necessario
+    window.location.reload(); // Ricarica la pagina dopo il logout
+});
+
+
 
 // Gestione del submit del form di login
 document.getElementById('loginForm')?.addEventListener('submit', function(event) {
