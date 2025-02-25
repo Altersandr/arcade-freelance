@@ -38,7 +38,7 @@ document.write(`
                 </div>
             </div>
             <div class="d-flex justify-content-between align-items-center py-3 border-top mt-3">
-                <img src="../img/logo project work.png" alt="Logo Azienda" style="width: 100px;">
+                <img src="../img/arcade-logo.png" alt="Logo Azienda" style="width: 100px;">
                 <p class="mb-0">&copy; 2025 Tutti i diritti riservati. Capitale Sociale: €1.000.000</p>
                 
                 <div class="social-icons">

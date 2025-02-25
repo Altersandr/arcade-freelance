@@ -1,10 +1,10 @@
 document.write(`
     <header class="d-flex justify-content-between align-items-center p-3">
         <!-- Logo -->
-        <a class="header navbar-brand" href="../Homepage/homepage.html">
-            <img src="../img/logo project work.png" alt="arcade Logo" class="me-2" width="50">
+          <a class="header navbar-brand" href="../Homepage/homepage.html">
+            <img src="../img/arcade-logo.png" alt="arcade Logo" class="me-2" width="50">
+            
         </a>
-
         <div class="dropdown">
             <button class="btn text-white dropdown-toggle" type="button" id="menuDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                 Menu
@@ -21,14 +21,11 @@ document.write(`
             <input type="text" id="searchInput" class="form-control" placeholder="Cerca servizi o freelancer...">
             <button class="btn text-white" id="searchButton">Cerca</button>
         </div>
-
-        <button class="btn text-white">Sono un Freelancer</button>
-
+        
+        <button class="btn text-white" onclick="window.location.href='../registerFreelance.html'">Sono un Freelancer</button>
+        
         <!-- Login Button -->
-        <button class="btn text-white" id="loginBtn" type="button">Accedi</button>
-
-        <!-- Logout Button (nascosto di default) -->
-        <button class="btn text-white" id="logoutButton" style="display: none;">Logout</button>
+        <button class="btn text-white" onclick="window.location.href='../login.html'">Accedi</button>
     </header>
 
     <!-- Modal di login -->
