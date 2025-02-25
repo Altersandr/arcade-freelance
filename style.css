@@ -39,7 +39,7 @@ input, select, button {
 
 button {
     background-color: #1b7af6;
-    color: #3C3744;
+    color: #fbfffb;
     border: none;
     cursor: pointer;
 }
@@ -59,8 +59,76 @@ label {
     color: #3d52d5;
 }
 
+.terms label {
+    display: inline;
+    color: #B4C5E4;
+    font-size: 14px;
 
-/*3C3744
+}
+
+#privacy{
+    color: #090C9B;
+    text-decoration: underline;
+    cursor: pointer;
+margin-left: 5px;
+font-size: small;
+
+
+}
+
+#condizioni{
+    display: inline-block;
+        margin-right: 10px;
+    background-color: #090C9B;
+    margin-top: 20px;
+padding: 10px;
+}
+
+#acceptTerms{
+display: inline-block;
+     inline-size: 20px;
+     margin-top: 10px;
+     padding: 5px;
+}
+
+#Condizioni input[type="checkbox"] {
+    display: inline-block;
+    margin-right: 10px; }
+
+  
+    .social-div {
+        margin-bottom: 20px; 
+    }
+
+
+
+    #submitBtn{
+        background-color: #71a1e0;
+        color: #3D52D5;
+        border: none;
+        cursor: pointer;
+        padding: 5px;
+
+    }
+  .errore {
+    color: red;
+    font-size: medium;
+    margin-top: 5px;
+}
+
+.success {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    margin-top: 20px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+
+
+
+/*c
 090C9B
 3D52D5
 B4C5E4
