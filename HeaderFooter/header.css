@@ -1,5 +1,6 @@
 header {
     background-color: #ced4da ;
+    height: 100px;
 }
 .btn{
     background-color:#3C3744;
@@ -11,4 +12,14 @@ header {
     background-color: #3C3744; /* Colore di sfondo al passaggio del mouse */
     border-color: #ced4da;
   }
- 
+
+  header .navbar-brand {
+    display: flex;
+    align-items: center; 
+    height: 250%; 
+}
+
+header .navbar-brand img {
+    height: 100%;  
+    width: auto;   
+}

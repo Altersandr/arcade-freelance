@@ -21,17 +21,23 @@
         <h2 class="text-center">Contattaci</h2>
         <p class="text-center">Hai domande o bisogno di supporto? Compila il modulo qui sotto o contattaci direttamente.</p>
         <form id="contactForm">
-            <div class="mb-3">
+            <div class="col-md-6">
                 <label for="name" class="form-label">Nome e Cognome</label>
                 <input type="text" class="form-control" id="name" name="name" required>
             </div>
-            <div class="mb-3">
+            <div class="col-md-6">
                 <label for="email" class="form-label">Email</label>
                 <input type="email" class="form-control" id="email" name="email" required>
             </div>
             <div class="mb-3">
                 <label for="message" class="form-label">Messaggio</label>
                 <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+            </div>
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="privacy" name="privacy" required>
+                <label class="form-check-label" for="privacy">
+                    Accetto l'informativa sulla privacy</a>.
+                </label>
             </div>
             <button type="submit" class="btn text-white w-100">Invia Messaggio</button>
         </form>
@@ -47,5 +53,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
 integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
 crossorigin="anonymous"></script>
+<script src="contatti.js"></script>
 </body>
 </html>
