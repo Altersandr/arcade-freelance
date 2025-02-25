@@ -1,25 +1,32 @@
-document.getElementById("creaOrdineForm").addEventListener("submit", function(event) {
-  event.preventDefault();
 
-  let servizioId = document.getElementById("servizioId").value;
-  let utenteId = document.getElementById("utenteId").value;
+//Se il carrello è vuoto, mostra "Nessun servizio selezionato".
+const updateOrderSummary = () => {
+  let orderSummary = document.querySelector("#order-summary");
+  let total = 0;
+  let summaryHTML = "";
 
-  fetch("/ordini/crea", {
-      method: "POST",
-      headers: {
-          "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-          servizio: { id: servizioId },
-          utente: { id: utenteId },
-          stato: "in attesa"
-      })
-  })
-  .then(response => response.json())
-  .then(data => alert("Ordine creato con successo!"))
-  .catch(error => console.error(error));
-});
+  for (let key in localStorage) {
+      if (!isNaN(parseInt(key))) {
+          let item = JSON.parse(localStorage.getItem(key));
+          if (item) {
+              summaryHTML += `<p><strong>${item.name}:</strong> $${item.price}</p>`;
+              total += item.price;
+          }
+      }
+  }
 
+  if (summaryHTML === "") {
+      orderSummary.innerHTML = "<p>Nessun servizio selezionato.</p>";
+  } else {
+      orderSummary.innerHTML = summaryHTML;
+  }
+
+  document.querySelector(".total-summary").textContent = `$${total.toFixed(2)}`;
+}
+
+updateOrderSummary();
+
+//da testare 
 document.getElementById("pagaOrdineForm").addEventListener("submit", function(event) {
   event.preventDefault();
 
@@ -43,6 +50,7 @@ document.getElementById("pagaOrdineForm").addEventListener("submit", function(ev
   .catch(error => console.error(error));
 });
 
+//prova con Stripe
 /*const stripe = Stripe("pk_test_51QuwxGCz4neh1ydflvFDAM7yBEFpaioKS46LQede3oiYeuzsxdrJtOzySt5j9Ibelup9oNq8D25otlj02wmuA2Rt00xkU9O9cw"); // Sostituisci con la tua chiave pubblica Stripe
 
 document.getElementById("pagaBtn").addEventListener("click", async () => {
@@ -69,3 +77,25 @@ document.getElementById("pagaBtn").addEventListener("click", async () => {
       console.error("Errore:", error);
   }
 });*/
+
+//funzione per creare un nuovo ordine test
+/*document.getElementById("creaOrdineForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+  
+    fetch('http://localhost:8080/ordini/crea', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newOrder)
+    });
+  
+  // Gestione del form per aggiungere un nuovo ordine 
+  document.getElementById('creaOrdineForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const newOrder = {
+      servizioId: document.getElementById('servizioId').value,
+      utenteId: document.getElementById('utenteId').value
+    };
+    addOrder(newOrder);
+  });*/

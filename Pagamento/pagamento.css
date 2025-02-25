@@ -4,6 +4,14 @@ background-color: #B4C5E4;
 padding: 20px;
 text-align: center;
 }
+.summary-container {
+    background-color:#3D52D5; 
+    color: white;
+    max-width: 400px;
+    margin: auto;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
 .payment-container {
 background: white;
 padding: 20px;
@@ -18,16 +26,6 @@ color: white;
 background: #090C9B;
 text-align: center;
 border-radius: 20px;
-}
-.order-summary {
-padding: 15px;
-background: #3D52D5;
-color: white;
-border-radius: 5px;
-margin-bottom: 20px;
-}
-.order-summary p {
-margin: 5px 0;
 }
 .payment-form label {
 display: block;
