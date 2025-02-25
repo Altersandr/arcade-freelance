@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Richieste di Contatto</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="richiestedicontatto.css">
+    <link rel="stylesheet" href="../arcade-freelance/HeaderFooter/header.css">
+    <link rel="stylesheet" href="../arcade-freelance/HeaderFooter/footer.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <header class="d-flex justify-content-between align-items-center p-3">
+    <a class="header navbar-brand" href="../Homepage/homepage.html">
+        <img src="../freelance/logo.png" alt="arcade Logo" class="me-2" width="50">
+    </a>
+    
+    <div class="input-group w-25">
+        <input type="text" id="searchInput" class="form-control" placeholder="Cerca servizi o freelancer...">   
+        <button class="header-btn" id="searchButton">Cerca</button>
+    </div>
+    
+    <button class="header-btn" type="button">Profilo</button>
+    <button class="header-btn" type="button">Log Out</button>
+</header>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../arcade-freelance/HeaderFooter/scriptHeader.js"></script>
+</body>
+<body>
+    <header class="header text-white text-center py-5">
+        <div class="confoto">
+            <h1>Richieste di Contatto</h1>
+            <p>Visualizza tutte le richieste ricevute.</p>
+        </div>
+    </header>
+    
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Servizio</th>
+            <th scope="col">Username</th>
+            <th scope="col">Prezzo</th>
+            <th scope="col">Azione</th>
+            <th scope="col">Messaggio</th>
+            <th scope="col">Tempo di attesa</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Mario</td>
+            <td>Disegno grafico</td>
+            <td>mario.verdi</td>
+            <td>15,99 euro</td>
+            
+            <td>
+              <button class="btn btn-success">Accetta</button>
+              <button class="btn btn-danger">Declina</button>
+            </td>
+            <td>Ecco di cosa ho bisogno...</td>
+            <td>2 giorni</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Francesco</td>
+            <td>Web Design</td>
+            <td>francesco.bianchi</td>
+            <td>199,99 euro</td>
+            <td>
+              <button class="btn btn-success">Accetta</button>
+              <button class="btn btn-danger">Declina</button>
+            </td>
+            <td>Ecco di cosa ho bisogno...</td>
+            <td>3 settimane </td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Alessandro</td>
+            <td>Logo</td>
+            <td>alessandro.rossi</td>
+            <td>35,00 euro</td>
+            <td>
+              <button class="btn btn-success">Accetta</button>
+              <button class="btn btn-danger">Declina</button>
+            </td>
+            <td>Ecco di cosa ho bisogno...</td>
+            <td>5 giorni</td>
+          </tr>
+          <tr>
+            <th scope="row">4</th>
+            <td>Daniele</td>
+            <td>Grafica</td>
+            <td>daniele.digiacomo</td>
+            <td>19,99 euro</td>
+            <td>
+              <button class="btn btn-success">Accetta</button>
+              <button class="btn btn-danger">Declina</button>
+            </td>
+            <td>Ecco di cosa ho bisogno...</td>
+             <td>2 giorni</td>
+          </tr>
+        </tbody>
+      </table>
+      <footer class="text-light pt-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <h5>Per i Freelance</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-light">Trova Lavoro</a></li>
+                        <li><a href="#" class="text-light">Registrati</a></li>
+                        <li><a href="#" class="text-light">Consigli utili</a></li>
+                        
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>Per i Clienti</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-light">Assumi un Professionista</a></li>
+                        <li><a href="#" class="text-light">Come Funziona</a></li>
+                        <li><a href="#" class="text-light">Tutti i servizi</a></li>
+                        <li><a href="#" class="text-light">Recensioni clienti</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>Categorie</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-light">Sviluppo Web</a></li>
+                        <li><a href="#" class="text-light">Grafica e Design</a></li>
+                        <li><a href="#" class="text-light">Marketing</a></li>
+                        <li><a href="#" class="text-light">Scrittura e traduzione</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>Assistenza</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-light">Centro Assistenza</a></li>
+                        <li><a href="../Contatti/contatti.html" class="text-light">Contattaci</a></li>
+                        <li><a href="../Faq/faq.html" class="text-light">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between align-items-center py-3 border-top mt-3">
+                <img src="../freelance/logo.png" alt="Logo Azienda" style="width: 100px;">
+                <p class="mb-0">&copy; 2025 Tutti i diritti riservati. Capitale Sociale: €1.000.000</p>
+                
+                <div class="social-icons">
+                    <img
+                      src="../img/x.png"
+                      alt="x"
+                      width="36px"
+                      height="36px"
+                    /><img
+                      src="../img/fb.webp"
+                      alt="fb"
+                      width="36px"
+                      height="36px"
+                    /><img
+                      src="../img/yt.webp"
+                      alt="yt"
+                      width="36px"
+                      height="36px"
+                    />
+                  </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../arcade-freelance/HeaderFooter/scriptHeader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="footer.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="richiestedicontatto.js"></script>
+</body>
+</html>
