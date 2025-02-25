@@ -21,13 +21,16 @@ document.write(`
             <input type="text" id="searchInput" class="form-control" placeholder="Cerca servizi o freelancer...">
             <button class="btn text-white" id="searchButton">Cerca</button>
         </div>
-        
-        <button class="btn text-white" onclick="window.location.href='../registerFreelance.html'">Sono un Freelancer</button>
-        
-        <!-- Login Button -->
-        <button class="btn text-white" onclick="window.location.href='../login.html'">Accedi</button>
-    </header>
 
+        <button class="btn text-white">Sono un Freelancer</button>
+
+        <!-- Login Button -->
+        <button class="btn text-white" id="loginBtn" type="button">Accedi</button>
+
+        <!-- Logout Button (nascosto di default) -->
+        <button class="btn text-white" id="logoutButton" style="display: none;">Logout</button>
+    </header>
+    
     <!-- Modal di login -->
     <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -204,6 +207,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Funzione per la registrazione di un nuovo utente
 function addUser(newUser) {
+    console.log(newUser)
     fetch('http://localhost:8080/utenti/addUser', {
         method: 'POST',
         headers: {
@@ -250,10 +254,11 @@ document.getElementById('registerForm').addEventListener('submit', function(even
     event.preventDefault();
     
     const newUser = {
-        name: document.getElementById('register-firstname').value,
-        surname: document.getElementById('register-lastname').value,
+        nome: document.getElementById('register-firstname').value,
+        cognome: document.getElementById('register-lastname').value,
         email: document.getElementById('register-email').value,
-        password: document.getElementById('register-password').value
+        password: document.getElementById('register-password').value,
+        ruolo: "cliente"
     };
 
     addUser(newUser);
