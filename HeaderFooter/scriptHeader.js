@@ -10,7 +10,7 @@ document.write(`
                 Menu
             </button>
             <ul class="dropdown-menu" aria-labelledby="menuDropdown">
-                <li><a class="dropdown-item" href="../Servizi/tuttiServizi.html">Tutti i servizi</a></li>
+                <li><a class="dropdown-item" href="../TuttiServizi/allservices.html">Tutti i servizi</a></li>
                 <li><a class="dropdown-item" href="../Contatti/contatti.html">Contatti</a></li>
                 <li><a class="dropdown-item" href="../FAQ/faq.html">FAQ</a></li>
             </ul>
