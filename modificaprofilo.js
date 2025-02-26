@@ -1,3 +1,44 @@
+//funzione modifica email e pass db
+document.addEventListener('DOMContentLoaded', function () {
+    const profileForm = document.getElementById('profileForm');
+
+    profileForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value
+
+        // Creazione dell'oggetto con i dati aggiornati
+        const updateData = {
+            email: email,
+            password: password
+        };
+
+        fetch('utenti/updateUser', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(updateData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.message) {
+                alert(data.message);
+            } else {
+                alert('Errore durante l’aggiornamento del profilo.');
+            }
+        })
+        .catch(error => {
+            console.error('Errore:', error);
+            alert('Errore nel salvataggio delle modifiche.');
+        });
+    });
+});
+//fine funzione
+
+
+
 document.addEventListener('DOMContentLoaded', function() {
     const fillFormBtn = document.getElementById('fillFormBtn');
     const togglePassword = document.getElementById('togglePassword');
