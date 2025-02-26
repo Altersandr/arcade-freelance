@@ -4,6 +4,64 @@ document.addEventListener('DOMContentLoaded', function() {
     const addServiceButton = document.getElementById('add-service-btn');
     const servicesContainer = document.getElementById('services-container');
 
+    document.addEventListener("DOMContentLoaded", caricaServizi);
+    
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const servizi = [
+            {
+                titolo: "Design Grafico",
+                descrizione: "Creazione di loghi, brochure, biglietti da visita e altro materiale grafico.",
+                immagine: "/freelance/web.jpg"
+            },
+            {
+                titolo: "Illustrazioni",
+                descrizione: "Realizzazione di illustrazioni personalizzate per libri, riviste e progetti digitali.",
+                immagine: "/freelance/illustrazione.png"
+            },
+            {
+                titolo: "Web Design",
+                descrizione: "Progettazione e sviluppo di siti web moderni e responsive.",
+                immagine: "/freelance/Web Development Promotion Instagram Post.png"
+            }
+        ];
+        console.log("Caricamento servizi...");
+        console.log(servizi); // Controlliamo se i servizi vengono letti correttamente
+        
+        const serviziContainer = document.querySelector(".row");
+    
+        function renderServizi() {
+            serviziContainer.innerHTML = ""; // Svuota il contenitore prima di aggiornare
+            servizi.forEach((servizio, index) => {
+                const card = `
+                    <div class="col-md-4">
+                        <div class="card service-card mb-4">
+                            <img src="${servizio.immagine}" class="card-img-top" alt="${servizio.titolo}">
+                            <div class="card-body">
+                                <h5 class="card-title">${servizio.titolo}</h5>
+                                <p class="card-text">${servizio.descrizione}</p>
+                                <button class="btn btn-primary" onclick="modificaServizio(${index})">Modifica</button>
+                                <button class="btn btn-danger" onclick="rimuoviServizio(${index})">Cancella</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                serviziContainer.innerHTML += card;
+            });
+        }
+    
+        window.rimuoviServizio = function (index) {
+            servizi.splice(index, 1);
+            renderServizi();
+        };
+    
+        window.modificaServizio = function (index) {
+            window.location.href = 'modificaservizi.html';
+        };
+    
+        renderServizi();
+    });
+    
     editButtons.forEach(button => {
         button.addEventListener('click', function() {
             const card = this.closest('.card');
