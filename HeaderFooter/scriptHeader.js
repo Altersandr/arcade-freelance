@@ -5,16 +5,17 @@ document.write(`
             <img src="../img/logoArcade.png" alt="arcade Logo" class="me-2" width="50">
             
         </a>
-        <div class="dropdown">
-            <button class="btn text-white dropdown-toggle" type="button" id="menuDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                Menu
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="menuDropdown">
-                <li><a class="dropdown-item" href="../TuttiServizi/allservices.html">Tutti i servizi</a></li>
-                <li><a class="dropdown-item" href="../Contatti/contatti.html">Contatti</a></li>
-                <li><a class="dropdown-item" href="../FAQ/faq.html">FAQ</a></li>
-            </ul>
-        </div>
+      <div class="dropdown">
+    <button class="btn text-white dropdown-toggle" type="button" id="menuDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="fas fa-bars"></i>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="menuDropdown">
+        <li><a class="dropdown-item" href="../TuttiServizi/allservices.html">Tutti i servizi</a></li>
+        <li><a class="dropdown-item" href="../Contatti/contatti.html">Contatti</a></li>
+        <li><a class="dropdown-item" href="../FAQ/faq.html">FAQ</a></li>
+    </ul>
+</div>
+
 
         <!-- Search Bar -->
         <div class="input-group mx-auto w-25 text-center">
@@ -22,8 +23,9 @@ document.write(`
             <button class="btn text-white" id="searchButton">Cerca</button>
         </div>
 
-        <!-- Freelancer registrazione Button -->
-         <button class="btn text-white" id="BtnFreelance" type="button">Sono un Freelancer</button>
+         <button class="btn text-white" id="btnFreelance" type="button">Sono un Freelancer</button>
+
+        <button class="btn text-white" id="btnProfilo" style="display: none;"  onclick="window.location.href='../profilofreelance.html'">Profilo</button>
 
         <!-- Login Button -->
         <button class="btn text-white" id="loginBtn" type="button">Accedi</button>
@@ -31,7 +33,10 @@ document.write(`
         <!-- Logout Button (nascosto di default) -->
         <button class="btn text-white" id="logoutButton" style="display: none;">Logout</button>
 
-    </header>
+        </header>
+
+   
+        
     
     <!-- Modal di registrazione Freelancer -->
     <div class="modal fade" id="freelancerModal" tabindex="-1" aria-labelledby="freelancerModalLabel" aria-hidden="true">
@@ -87,16 +92,7 @@ document.write(`
     </div>
 
 
-        <button class="btn text-white" id="btnFreelance" type="button">Sono un Freelancer</button>
-
-        <button class="btn text-white" id="btnProfilo" style="display: none;"  onclick="window.location.href='../profilofreelance'">Profilo</button>
-
-        <!-- Login Button -->
-        <button class="btn text-white" id="loginBtn" type="button">Accedi</button>
-
-        <!-- Logout Button (nascosto di default) -->
-        <button class="btn text-white" id="logoutButton" style="display: none;">Logout</button>
-    </header>
+    
     
     <!-- Modal di login -->
     <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
@@ -197,6 +193,9 @@ const login = (email, password) => {
             if (modalInstance) {
                 modalInstance.hide();
             }
+
+            // Reindirizza automaticamente alla pagina freelance.html dopo il login
+            window.location.href = "../freelance.html";  // Aggiungi questo codice
         }
     })
     .catch(error => {
@@ -204,6 +203,7 @@ const login = (email, password) => {
         printOutput({ error: error.message });
     });
 };
+
 
 document.addEventListener("DOMContentLoaded", () => {
     const authToken = localStorage.getItem("authToken");
@@ -253,6 +253,8 @@ function logout() {
         // Nasconde il pulsante Logout e mostra il pulsante Accedi
         document.getElementById("logoutButton").style.display = "none";
         document.getElementById("loginBtn").style.display = "block";
+        document.getElementById("btnProfilo").style.display = "none";
+        document.getElementById("btnFreelance").style.display = "block";
     })
     .catch(error => {
         console.error('Errore durante il logout:', error);
@@ -260,8 +262,15 @@ function logout() {
     });
 }
 
+// Aggiungi l'ascoltatore dell'evento di clic sul pulsante di logout
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById('logoutButton')?.addEventListener('click', logout);
+});
+
+
 document.getElementById('logoutButton').addEventListener('click', function() {
     // Puoi aggiungere qui altre azioni da eseguire al logout, come la rimozione del token di autenticazione, se necessario
+    localStorage.removeItem("authToken");
     window.location.reload(); // Ricarica la pagina dopo il logout
 });
 
@@ -282,7 +291,7 @@ document.getElementById("loginBtn").addEventListener("click", function() {
 });
 
 // Aggiungi evento per aprire il modal quando si clicca su "sono un freelancer"
-document.getElementById("BtnFreelance").addEventListener("click", function() {
+document.getElementById("btnFreelance").addEventListener("click", function() {
     const freelancerModal = new bootstrap.Modal(document.getElementById('freelancerModal'));
     freelancerModal.show();
 });
