@@ -5,16 +5,17 @@ document.write(`
             <img src="../img/logoArcade.png" alt="arcade Logo" class="me-2" width="50">
             
         </a>
-        <div class="dropdown">
-            <button class="btn text-white dropdown-toggle" type="button" id="menuDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                Menu
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="menuDropdown">
-                <li><a class="dropdown-item" href="../Servizi/tuttiServizi.html">Tutti i servizi</a></li>
-                <li><a class="dropdown-item" href="../Contatti/contatti.html">Contatti</a></li>
-                <li><a class="dropdown-item" href="../FAQ/faq.html">FAQ</a></li>
-            </ul>
-        </div>
+      <div class="dropdown">
+    <button class="btn text-white dropdown-toggle" type="button" id="menuDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="fas fa-bars"></i>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="menuDropdown">
+        <li><a class="dropdown-item" href="../TuttiServizi/allservices.html">Tutti i servizi</a></li>
+        <li><a class="dropdown-item" href="../Contatti/contatti.html">Contatti</a></li>
+        <li><a class="dropdown-item" href="../FAQ/faq.html">FAQ</a></li>
+    </ul>
+</div>
+
 
         <!-- Search Bar -->
         <div class="input-group mx-auto w-25 text-center">
@@ -22,8 +23,9 @@ document.write(`
             <button class="btn text-white" id="searchButton">Cerca</button>
         </div>
 
-        <!-- Freelancer registrazione Button -->
-         <button class="btn text-white" id="BtnFreelance" type="button">Sono un Freelancer</button>
+         <button class="btn text-white" id="btnFreelance" type="button">Sono un Freelancer</button>
+
+        <button class="btn text-white" id="btnProfilo" style="display: none;"  onclick="window.location.href='../profilofreelance.html'">Profilo</button>
 
         <!-- Login Button -->
         <button class="btn text-white" id="loginBtn" type="button">Accedi</button>
@@ -31,7 +33,10 @@ document.write(`
         <!-- Logout Button (nascosto di default) -->
         <button class="btn text-white" id="logoutButton" style="display: none;">Logout</button>
 
-    </header>
+        </header>
+
+   
+        
     
     <!-- Modal di registrazione Freelancer -->
     <div class="modal fade" id="freelancerModal" tabindex="-1" aria-labelledby="freelancerModalLabel" aria-hidden="true">
@@ -87,16 +92,7 @@ document.write(`
     </div>
 
 
-        <button class="btn text-white" id="btnFreelance" type="button">Sono un Freelancer</button>
-
-        <button class="btn text-white" id="btnProfilo" style="display: none;"  onclick="window.location.href='../profilofreelance'">Profilo</button>
-
-        <!-- Login Button -->
-        <button class="btn text-white" id="loginBtn" type="button">Accedi</button>
-
-        <!-- Logout Button (nascosto di default) -->
-        <button class="btn text-white" id="logoutButton" style="display: none;">Logout</button>
-    </header>
+    
     
     <!-- Modal di login -->
     <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
