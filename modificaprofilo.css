@@ -107,3 +107,11 @@ footer {
     margin-top: auto;
     background-color: #3C3744;
 }
+.profile-container {
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    max-width: 600px;
+    margin: auto;
+}

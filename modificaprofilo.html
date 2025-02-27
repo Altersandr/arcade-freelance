@@ -16,45 +16,45 @@
         <script src="../HeaderFooter/scriptHeader.js"></script>
 
         <div class="container my-5">
-            <h2>Modifica Profilo</h2>
-            <button class="btn btn-info mb-3" id="fillFormBtn"><i class="fas fa-sync-alt"></i> Carica Informazioni Salvate</button>
-            <form id="profileForm">
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" placeholder="Inserisci la tua email" style="width: 60%; font-size: 16px;">
-                </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label">Password</label>
-                    <div class="input-group">
-                        <input type="password" class="form-control" id="password" placeholder="Inserisci la tua password" style="width: 60%; font-size: 16px;">
-                        <button class="btn btn-outline-secondary" type="button" id="togglePassword">
-                            <i class="fas fa-lock"></i>
-                        </button>
+            <div class="profile-container">
+                <h2>Modifica Profilo</h2>
+                <button class="btn btn-info mb-3 text-white" id="fillFormBtn"><i class="fas fa-sync-alt"></i> Carica Informazioni Salvate</button>
+                <form id="profileForm">
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="Inserisci la tua email" style="width: 60%; font-size: 16px;">
                     </div>
-                </div>
-                <div class="mb-3">
-                    <label for="confirmPassword" class="form-label">Conferma Password</label>
-                    <input type="password" class="form-control" id="confirmPassword" placeholder="Conferma la tua password" style="width: 70%; font-size: 16px;">
-                </div>
-                <div class="mb-3">
-                    <label for="username" class="form-label">Nome Utente</label>
-                    <input type="text" class="form-control" id="username" placeholder="Inserisci il tuo nome utente" style="width: 50%; font-size: 16px;">
-                </div>
-                <div class="mb-3">
-                    <label for="vatNumber" class="form-label">Partita IVA</label>
-                    <input type="text" class="form-control" id="vatNumber" placeholder="Inserisci la tua Partita IVA" style="width: 90%; font-size: 16px;">
-                </div>
-                <div class="mb-3">
-                    <label for="taxCode" class="form-label">Codice Fiscale</label>
-                    <input type="text" class="form-control" id="taxCode" placeholder="Inserisci il tuo Codice Fiscale" style="width: 90%; font-size: 16px;">
-                </div>
-                <div class="mb-3">
-                    <label for="iban" class="form-label">IBAN</label>
-                    <input type="text" class="form-control" id="iban" placeholder="Inserisci il tuo IBAN" style="width: 90%; font-size: 16px;">
-                </div>
-                <button type="submit" class="btn btn-primary">Salva Modifiche</button>
-            </form>
-        
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="password" placeholder="Inserisci la tua password" style="width: 60%; font-size: 16px;">
+                            <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                                <i class="fas fa-lock"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="confirmPassword" class="form-label">Conferma Password</label>
+                        <input type="password" class="form-control" id="confirmPassword" placeholder="Conferma la tua password" style="width: 70%; font-size: 16px;">
+                    </div>
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Nome Utente</label>
+                        <input type="text" class="form-control" id="username" placeholder="Inserisci il tuo nome utente" style="width: 50%; font-size: 16px;">
+                    </div>
+                    <div class="mb-3">
+                        <label for="vatNumber" class="form-label">Partita IVA</label>
+                        <input type="text" class="form-control" id="vatNumber" placeholder="Inserisci la tua Partita IVA" style="width: 90%; font-size: 16px;">
+                    </div>
+                    <div class="mb-3">
+                        <label for="taxCode" class="form-label">Codice Fiscale</label>
+                        <input type="text" class="form-control" id="taxCode" placeholder="Inserisci il tuo Codice Fiscale" style="width: 90%; font-size: 16px;">
+                    </div>
+                    <div class="mb-3">
+                        <label for="iban" class="form-label">IBAN</label>
+                        <input type="text" class="form-control" id="iban" placeholder="Inserisci il tuo IBAN" style="width: 90%; font-size: 16px;">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Salva Modifiche</button>
+                </form>
             <h2 class="mt-5">Modifica Portfolio</h2>
             <form id="portfolioForm">
                 <div class="mb-3">
@@ -90,6 +90,7 @@
                     <ul id="servicesList" class="mt-2"></ul>
                     <button type="submit" class="btn btn-primary form-btn mt-3">Salva Modifiche</button>
                 </form>
+            </div>
             </div>
         </div>
         <footer class="text-light pt-4">
