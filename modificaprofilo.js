@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
         this.classList.toggle('fa-lock-open');
     });
 
-    profileForm.addEventListener('submit', function(event) {
+    /*profileForm.addEventListener('submit', function(event) {
         event.preventDefault();
 
         if (passwordField.value !== confirmPasswordField.value) {
@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Errore:', error);
             alert('Errore nel salvataggio delle modifiche.');
         });
-    });
+    });*/
 
     portfolioForm.addEventListener('submit', function(event) {
         const allowedExtensions = ['image/jpeg', 'image/png', 'image/gif'];
