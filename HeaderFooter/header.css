@@ -20,6 +20,7 @@ header {
 }
 
 header .navbar-brand img {
-    height: 100%;  
-    width: auto;   
+    height: 50%;  
+    width: auto;  
+     
 }

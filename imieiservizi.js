@@ -135,3 +135,31 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+(document).ready(function () {
+    loadServices(); // Carica i servizi al caricamento della pagina
+
+    function loadServices() {
+        $.ajax({
+            url: "/api/servizi", // Endpoint backend
+            method: "GET",
+            success: function (data) {
+                let tableBody = $("#servicesTable tbody");
+                tableBody.empty(); // Svuota la tabella
+                data.forEach(service => {
+                    let row = `
+                        <tr>
+                            <td>${service.nome}</td>
+                            <td>${service.descrizione}</td>
+                            <td>${service.prezzo.toFixed(2)} €</td>
+                            <td>${service.categoria}</td>
+                            <td>
+                                <button class="edit-btn" data-id="${service.id}">✏️</button>
+                                <button class="delete-btn" data-id="${service.id}">🗑️</button>
+                            </td>
+                        </tr>`;
+                    tableBody.append(row);
+                });
+            }
+        });
+    }
+});

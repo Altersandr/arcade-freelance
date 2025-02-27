@@ -1,59 +1,13 @@
-const fetchAllServices = ()=>{
-const xhr = new XMLHttpRequest();
+const fetchFiltered = ()=>{
 
-xhr.open("GET", "https://reqres.in/api/users", true);
-xhr.onload = function(){
-    const parsedData = JSON.parse(xhr.response).data;
-
-    const cards = parsedData.map(service=>{
-        return `
-        <div class="col-lg-4 mb-4">
-          <div class="card">
-            <img src="${service.img}" alt="" class="card-img-top">
-            <div class="card-body">
-                <div class="freelancer-name-container">
-                    <i class="fa-regular fa-user fa-lg" style="color: #3D52D5;"></i>
-                    <h5 class="card-title">${service.first_name} ${service.last_name}</h5>
-                </div>
-                <div class="description-container">
-                    <p class="card-text">${service.description}</p>
-                </div>
-                <div class="rating-container">
-                    <div class="stars">
-                        <i class="fa-solid fa-star"></i>
-                        <p class="number-rating">${service.rating}</p>
-                        <p class="review-number">(${service.reviews})</p>
-
-                    </div>
-                </div>
-
-
-             <a href="service.html" class="btn btn-outline-success btn-sm">Dettagli</a>
-            </div>
-           </div>
-          </div>
-
-        `
-    }
-    ).join("")
-
-    document.querySelector(".row").innerHTML = cards;
-};
-xhr.send();
-
-}
-
-const fetchFiltered = (category)=>{
-
-
-    // when i press the filter button i call this function that makes a fetch request to our backend
-    // 
     const filters = getFilters();
     const budgetId = filters.budget ? filters.budget : 0;
     const minReviewScore = filters.recensione ? filters.recensione : 0;
-    const deliveryTime = filters.tempo ? filters.tempo : 0;
+    const categoria = filters.categoria ? filters.categoria : 0;
     let priceMin = 0, priceMax = 0;
     let score;
+    let category;
+
 
     switch (parseFloat(budgetId)) {
             case 0:
@@ -78,7 +32,7 @@ const fetchFiltered = (category)=>{
 
     switch (parseFloat(minReviewScore)) {
         case 0:
-            score = 1;
+            score = 0;
             break;
         case 1:
             score = 4.5;
@@ -93,35 +47,80 @@ const fetchFiltered = (category)=>{
             break;
     }
 
-        fetch('https://fakestoreapi.com/products/') //change with our endpoint
-            .then(res => res.json())
-            .then(service => { 
-                const filteredByPrice = service.filter((data)=> parseFloat(data.price)>=priceMin && parseFloat(data.price)<=priceMax);
-                const filteredByScore = filteredByPrice.filter((data)=>parseFloat(data.rating.rate)>=score)
-                // console.log(filteredByPrice)
-                // console.log(filteredByScore)
-                const cards = filteredByScore.map(service=>{
+
+    switch (parseFloat(categoria)) {
+        case 1:
+            category = "Sviluppo Web";
+            break;
+        case 2:
+            category = "Grafica & Design";
+            break;
+        case 3:
+            category = "Marketing Digitale";
+            break;
+        case 4:
+            category = "Scrittura & Traduzione";
+            break
+        case 0:
+            category = null;
+            break;
+        default:
+            break;
+    }
+
+
+        let serviceArray = [];
+        fetch('http://localhost:8080/utenti',{
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json'
+            }
+        })
+        .then(res => res.json())
+        .then(service => { 
+
+
+
+
+            service.map(u=>{
+                if(u.servizi.length==0) return
+                else u.servizi.map(s=>{
+                    s.freelancer_nome = u.nome;
+                    s.freelancer_cognome = u.cognome;
+                    serviceArray.push(s);
+
+                }
+            )
+            })
+                    const filteredByPrice = serviceArray.filter((data)=> parseFloat(data.prezzo)>=priceMin && parseFloat(data.prezzo)<=priceMax);
+                    const filteredByScore = filteredByPrice.filter((data)=>getAverageRating(data.recensioni)>=score);
+                    const filteredByCategory = filteredByScore.filter((data)=> category==null || data.categoria == category);
+                    
+                    const cards = filteredByCategory.map(service=>{
+
                     return `
                     <div class="col-lg-4 mb-4">
                       <div class="card">
-                        <img src="${service.img}" alt="" class="card-img-top">
+                        <img src="${service.img ? service.img: "https://placehold.co/350"}" alt="" class="card-img-top">
                         <div class="card-body">
                             <div class="freelancer-name-container">
                                 <i class="fa-regular fa-user fa-lg" style="color: #3D52D5;"></i>
-                                <h5 class="card-title">${service.first_name} ${service.last_name}</h5>
+                                <h5 class="card-title">${service.freelancer_nome} ${service.freelancer_cognome}</h5>
                             </div>
                             <div class="description-container">
-                                <p class="card-text">${service.description}</p>
+                                <p class="card-text">${service.descrizione}</p>
                             </div>
                             <div class="rating-container">
                                 <div class="stars">
                                     <i class="fa-solid fa-star"></i>
-                                    <p class="number-rating">${service.rating}</p>
-                                    <p class="review-number">(${service.reviews})</p>
+                                    <p class="number-rating">${getAverageRating(service.recensioni)}</p>
+                                    <p class="review-number">(${service.recensioni.length})</p>
             
                                 </div>
                             </div>
-            
+                            <div class="price-container">
+                                <p class="before-price">A partire da <span class="price-amount">${service.prezzo}</span> €</p>
+                            </div>
             
                          <a href="service.html" class="btn btn-outline-success btn-sm">Dettagli</a>
                         </div>
@@ -129,85 +128,15 @@ const fetchFiltered = (category)=>{
                       </div>
             
                     `
-                }
-                ).join("")
-            
-                document.querySelector(".row").innerHTML = cards;
-        
-        });
-};
-
+                }).join("")
+                    
+                        document.querySelector(".row").innerHTML = cards;
+                
+                });
     
-
-
-// const getFiltered = (category)=>{
-
-
-//     // when i press the filter button i call this function that makes a fetch request to our backend
-//     // 
-//     const filters = getFilters();
-//     const xhr = new XMLHttpRequest();
-//     const budgetId = filters.budget ? filters.budget : 0;
-//     const minReviewScore = filters.recensione ? filters.recensione : 0;
     
-//     const deliveryTime = filters.tempo ? filters.tempo : 0;
-//     let priceMin = 0, priceMax = 0;
-//     let score;
-
-//     switch (parseFloat(budgetId)) {
-//             case 0:
-//                 priceMin = 0;
-//                 priceMax = Infinity;
-//                 break;
-//             case 1:
-//                 priceMin = 0;
-//                 priceMax = 50;
-//                 break;
-//             case 2:
-//                 priceMin = 50;
-//                 priceMax = 100;
-//                 break;
-//             case 3:
-//                 priceMin = 100
-//                 priceMax = Infinity;
-//                 break
-//         default:
-//             break;
-//     }
-
-//     switch (parseFloat(minReviewScore)) {
-//         case 0:
-//             score = 1;
-//             break;
-//         case 1:
-//             score = 4.5;
-//             break;
-//         case 2:
-//             score = 3.5;
-//             break;
-//         case 3:
-//             score = 2.5;
-//             break
-//     default:
-//         break;
-// }
-
+        };
     
-//     // xhr.open("GET", "localhost/" + category, true); // change to our api    
-//     fetch('https://fakestoreapi.com/products/')
-//     .then(res => res.json())
-//     .then(service => { 
-//         const filteredByPrice = service.filter((data)=> parseFloat(data.price)>=priceMin && parseFloat(data.price)<=priceMax);
-//         const filteredByScore = filteredByPrice.filter((data)=>parseFloat(data.rating.rate)>=score)
-//         console.log(filteredByPrice)
-//         console.log(filteredByScore)
-
-//     });
-
-// }
-
-
-
 
 // CHANGES THE ACTIVE FIELD OF THE FILTER
 const changeActive = ()=>{
@@ -225,23 +154,26 @@ function getFilters (){
     const filters = {
         budget: null,
         recensione: null,
-        tempo: null
+        categoria: null
     };
     document.querySelectorAll(".dropdown-item").forEach((e=>arr.push(e.classList.contains("active")? e.getAttribute("data-value"):null)))
 
     for (let index = 0; index < arr.length; index++) {
         if(index <=2 && arr[index]!=null) filters.budget = arr[index] 
         if(index <=5 && index>=3 && arr[index]!=null) filters.recensione = arr[index]
-        if(index <=8 && index>=6 && arr[index]!=null) filters.tempo = arr[index]  
+        if(index <=9 && index>=6 && arr[index]!=null) filters.categoria = arr[index]  
     }
+    console.log(filters)
     return filters;
 
 }
 
+
 changeActive();
 
-const fetchServices = ()=>{
-    fetch('http://localhost:8080/servizi',{
+const fetchAllServices = ()=>{
+    let cards = "";
+    fetch('http://localhost:8080/utenti',{
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
@@ -249,49 +181,49 @@ const fetchServices = ()=>{
     })
     .then(res => res.json())
     .then(service => { 
-        console.log(service)
-        const cards = service.map(s=>{
-            return `
-            <div class="col-lg-4 mb-4">
-              <div class="card">
-                <img src="${s.img ? s.img: "https://placehold.co/350"}" alt="" class="card-img-top">
-                <div class="card-body">
-                    <div class="freelancer-name-container">
-                        <i class="fa-regular fa-user fa-lg" style="color: #3D52D5;"></i>
-                        <h5 class="card-title">${s.utente.nome} ${s.utente.cognome}</h5>
-                    </div>
-                    <div class="description-container">
-                        <p class="card-text">${s.descrizione}</p>
-                    </div>
-                    <div class="rating-container">
-                        <div class="stars">
-                            <i class="fa-solid fa-star"></i>
-                            <p class="number-rating">${getAverageRating(s.recensioni)}</p>
-                            <p class="review-number">(${s.recensioni.length})</p>
-    
+        service.map(u=>{
+            if(u.servizi.length==0) return
+            else cards += u.servizi.map(s=>{
+                return `
+                <div class="col-lg-4 mb-4">
+                  <div class="card">
+                    <img src="${s.img ? s.img: "https://placehold.co/350"}" alt="" class="card-img-top">
+                    <div class="card-body">
+                        <div class="freelancer-name-container">
+                            <i class="fa-regular fa-user fa-lg" style="color: #3D52D5;"></i>
+                            <h5 class="card-title">${u.nome} ${u.cognome}</h5>
                         </div>
+                        <div class="description-container">
+                            <p class="card-text">${s.descrizione}</p>
+                        </div>
+                        <div class="rating-container">
+                            <div class="stars">
+                                <i class="fa-solid fa-star"></i>
+                                <p class="number-rating">${getAverageRating(s.recensioni)}</p>
+                                <p class="review-number">(${s.recensioni.length})</p>
+        
+                            </div>
+                        </div>
+                        <div class="price-container">
+                            <p class="before-price">A partire da <span class="price-amount">${s.prezzo}</span> €</p>
+                        </div>
+        
+                     <a href="service.html" class="btn btn-outline-success btn-sm">Dettagli</a>
                     </div>
-                    <div class="price-container">
-                        <p class="before-price">A partire da <span class="price-amount">${s.prezzo}</span> €</p>
-                    </div>
-    
-                 <a href="service.html" class="btn btn-outline-success btn-sm">Dettagli</a>
-                </div>
-               </div>
-              </div>
-    
-            `
-        }
-        ).join("")
-    
+                   </div>
+                  </div>
+        
+                `
+            }
+            ).join("")
+            })
+            
         document.querySelector(".row").innerHTML = cards;
 
 
     });
 
 }
-
-
 
 
 const getAverageRating = (array)=>{
@@ -302,19 +234,10 @@ const getAverageRating = (array)=>{
 
 
 
-
-
-fetchServices();
-
+fetchAllServices();
 
 
 
-
-// fetchFiltered();
-// console.log(document.querySelectorAll(".dropdown").forEach((element)=>console.log(element.querySelector(".active"))))
-
-// console.log(document.querySelector(".active").getAttribute("data-value"))
-
-
-
-// fetchAllServices();
+document.querySelector(".btn-filter").addEventListener("click", (e)=>{
+    e.preventDefault();
+    fetchFiltered()})
