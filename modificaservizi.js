@@ -1,3 +1,9 @@
+function getQueryParam(param) {
+    const params = new URLSearchParams(window.location.search); 
+    return params.get(param);
+}
+
+
 document.getElementById('editServiceForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Evita il refresh della pagina
 
@@ -14,9 +20,14 @@ document.getElementById('editServiceForm').addEventListener('submit', function(e
         return;
     }
 
+
+
+
+    const id = getQueryParam("id");
+
     // Chiamata al backend per inviare i dati tramite POST
-    fetch('http://localhost:8080/servizi', {
-        method: 'POST',
+    fetch(`http://localhost:8080/servizi/${id}`, {
+        method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
         },
@@ -29,6 +40,7 @@ document.getElementById('editServiceForm').addEventListener('submit', function(e
         return response.json(); // Converte la risposta in formato JSON
     })
     .then(data => {
+        console.log(serviceData)
         alert('Servizio salvato con successo!');
         window.location.href = 'profilofreelance.html'; // Reindirizza l'utente alla pagina di profilo
     })
@@ -38,88 +50,32 @@ document.getElementById('editServiceForm').addEventListener('submit', function(e
     });
 });
 
-// Funzione per ottenere tutti i servizi tramite GET
-const getAllServizi = async () => {
-    try {
-        const response = await fetch('http://localhost:8080/servizi');
-        if (!response.ok) {
-            throw new Error("Errore nel recupero dei servizi");
+const loadInfo = ()=>{
+
+    const id = getQueryParam("id");
+    fetch(`http://localhost:8080/servizi/${id}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
         }
-        const data = await response.json();
-        console.log(data); // Stampa i dati recuperati
-    } catch (error) {
-        console.error("Errore nel recupero dei servizi!", error);
-    }
-};
+    })
+    .then(response => {
 
-// Usa useEffect in React per recuperare i dati al primo render del componente
-useEffect(() => {
-    getAllServizi();
-}, []);
+        return response.json(); // Converte la risposta in formato JSON
+    })
+    .then(data => {
+        document.querySelector("#serviceTitle").value = data.nome;
+        document.querySelector("#serviceDescription").value = data.descrizione;
+        document.querySelector("#servicePrice").value = data.prezzo;
+        console.log(data)
+      
+    })
+    .catch(error => {
+        console.error('Errore:', error);
+        alert('Errore nel salvataggio del servizio');
+    });
 
-// Funzione per creare un nuovo servizio con POST
-const createServizio = async () => {
-    const newServizio = {
-        nome: "Servizio A",
-        descrizione: "Descrizione servizio",
-        prezzo: 100
-    };
+}
 
-    try {
-        const response = await fetch('http://localhost:8080/servizi', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(newServizio)
-        });
-        if (!response.ok) {
-            throw new Error('Errore nella creazione del servizio');
-        }
-        const data = await response.json();
-        console.log('Servizio creato:', data); // Stampa i dati del servizio creato
-    } catch (error) {
-        console.error('Errore nella creazione del servizio', error);
-    }
-};
+document.querySelector(".btn-success").addEventListener("click", loadInfo);
 
-// Funzione per aggiornare un servizio con PUT
-const updateServizio = async (id) => {
-    const updatedServizio = {
-        nome: "Servizio A aggiornato",
-        descrizione: "Nuova descrizione",
-        prezzo: 150
-    };
-
-    try {
-        const response = await fetch(`http://localhost:8080/servizi/${id}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(updatedServizio)
-        });
-        if (!response.ok) {
-            throw new Error('Errore nell\'aggiornamento del servizio');
-        }
-        const data = await response.json();
-        console.log('Servizio aggiornato:', data); // Stampa i dati del servizio aggiornato
-    } catch (error) {
-        console.error('Errore nell\'aggiornamento del servizio', error);
-    }
-};
-
-// Funzione per eliminare un servizio con DELETE
-const deleteServizio = async (id) => {
-    try {
-        const response = await fetch(`http://localhost:8080/servizi/${id}`, {
-            method: 'DELETE',
-        });
-        if (!response.ok) {
-            throw new Error('Errore nell\'eliminazione del servizio');
-        }
-        console.log("Servizio eliminato");
-    } catch (error) {
-        console.error('Errore nell\'eliminazione del servizio', error);
-    }
-};

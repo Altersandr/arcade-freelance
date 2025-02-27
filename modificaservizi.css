@@ -4,30 +4,38 @@ body {
 }
 
 h1 {
-    color: #090C9B;
+    color: #090C9B !important;
 }
 
 .btn-primary {
-    background-color: #3D52D5;
-    border-color: #3D52D5;
+    background-color: #3D52D5 !important;
+    border-color: #3D52D5 !important;
 }
 
 .btn-secondary {
-    background-color: #B4C5E4;
-    border-color: #B4C5E4;
-    color: #3C3744;
+    background-color: #B4C5E4 !important;
+    border-color: #B4C5E4 !important;
+    color: #3C3744 !important;
 }
 
 .form-group label {
-    color: #3C3744;
+    color: #3C3744 !important;
 }
 
 .form-control-file {
-    border: 1px solid #3C3744;
+    border: 1px solid #3C3744 !important;
 }
 
 .container {
-    background-color: #B4C5E4;
-    padding: 20px;
-    border-radius: 10px;
+    background-color: #B4C5E4 !important;
+    padding: 20px !important;
+    border-radius: 10px !important;
 }
+
+.buttons{
+    /* display: flex; */
+    position: relative;
+}
+.btn-success{
+    position: absolute;
+    right: 0;}
