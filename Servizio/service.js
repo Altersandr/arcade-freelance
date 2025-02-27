@@ -265,7 +265,6 @@ const fetchSimilar = (category, serviceId)=>{
   .then(res => res.json())
   .then(service => { 
       service.map(u=>{
-        // console.log(u)
           if(u.servizi.length==0) return
           else cards += u.servizi.map(s=>{
             if(s.categoria!=category || serviceId ==s.id ||similar==3)return
