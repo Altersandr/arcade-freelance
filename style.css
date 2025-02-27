@@ -2,7 +2,13 @@ body {
     font-family: Arial, sans-serif;
     color: #3C3744;
 }
+.containter{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh
 
+}
 
 .confoto {
     background: linear-gradient(rgba(3, 7, 100, 0.7), rgba(60, 55, 68, 0.7)), url('/freelance/background.png') center/cover no-repeat;
