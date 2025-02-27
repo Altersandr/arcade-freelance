@@ -86,7 +86,9 @@ const fetchFiltered = ()=>{
                 if(u.servizi.length==0) return
                 else u.servizi.map(s=>{
                     s.freelancer_nome = u.nome;
+                    s.freelancer_id = u.id;
                     s.freelancer_cognome = u.cognome;
+                    s.u_id = u.id;
                     serviceArray.push(s);
 
                 }
@@ -101,7 +103,7 @@ const fetchFiltered = ()=>{
                     return `
                     <div class="col-lg-4 mb-4">
                       <div class="card">
-                        <img src="${service.img ? service.img: "https://placehold.co/350"}" alt="" class="card-img-top">
+                        <img src="${service.img ? service.img: "https://placehold.co/600x450"}" alt="" class="card-img-top">
                         <div class="card-body">
                             <div class="freelancer-name-container">
                                 <i class="fa-regular fa-user fa-lg" style="color: #3D52D5;"></i>
@@ -122,7 +124,7 @@ const fetchFiltered = ()=>{
                                 <p class="before-price">A partire da <span class="price-amount">${service.prezzo}</span> €</p>
                             </div>
             
-                         <a href="service.html" class="btn btn-outline-success btn-sm">Dettagli</a>
+                         <a href="../Servizio/service.html?s_id=${service.id}&u_id=${service.freelancer_id}" class="btn btn-outline-success btn-sm">Dettagli</a>
                         </div>
                        </div>
                       </div>
@@ -187,7 +189,7 @@ const fetchAllServices = ()=>{
                 return `
                 <div class="col-lg-4 mb-4">
                   <div class="card">
-                    <img src="${s.img ? s.img: "https://placehold.co/350"}" alt="" class="card-img-top">
+                    <img src="${s.img ? s.img: "https://placehold.co/600x450"}" alt="" class="card-img-top">
                     <div class="card-body">
                         <div class="freelancer-name-container">
                             <i class="fa-regular fa-user fa-lg" style="color: #3D52D5;"></i>
@@ -208,7 +210,7 @@ const fetchAllServices = ()=>{
                             <p class="before-price">A partire da <span class="price-amount">${s.prezzo}</span> €</p>
                         </div>
         
-                     <a href="service.html" class="btn btn-outline-success btn-sm">Dettagli</a>
+                     <a href="../Servizio/service.html?s_id=${s.id}&u_id=${u.id}" class="btn btn-outline-success btn-sm">Dettagli</a>
                     </div>
                    </div>
                   </div>

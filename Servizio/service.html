@@ -12,26 +12,7 @@
 </head>
 <body>
 
-    <div class="header-wrapper">
-        <header class="d-flex justify-content-between align-items-center p-3">
-            <!-- Logo -->
-            <a class="header navbar-brand" href="../Homepage/homepage.html">
-                <img src="../img/arcade-logo.png" alt="arcade Logo" class="me-2" width="70">
-                
-            </a>
-            
-            <!-- Search Bar -->
-            <div class="input-group w-25">
-                <input type="text" id="searchInput" class="form-control" placeholder="Cerca servizi o freelancer...">   
-                <button class="btn text-white" id="searchButton">Cerca</button>
-            </div>
-            
-            <button class="btn text-white">Sono un Freelancer</button>
-            
-            <!-- Login Button -->
-            <button class="btn text-white" type="button">Accedi</button>
-        </header>
-    </div>
+  <script src="../HeaderFooter/scriptHeader.js"></script>
 
 
     <div class="container">
@@ -41,7 +22,7 @@
                     <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                         <ol class="breadcrumb">
                           <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
-                          <li class="breadcrumb-item" aria-current="page"><a href="allservices.html">Tutti i servizi</a></li>
+                          <li class="breadcrumb-item" aria-current="page"><a href="../TuttiServizi/allservices.html">Tutti i servizi</a></li>
                           <li class="breadcrumb-item active" aria-current="page"><a href="service.html">Servizio</a></li>
                         </ol>
                       </nav>
@@ -67,16 +48,12 @@
                             <div class="person-bottom-row">
                                 <div class="stars">
                                     <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
                                 </div>
                                 <div class="overall-score">
                                     4.6
                                 </div>
                                 <div class="review-amount">
-                                    (<span class="number-of-reviews"></span> ricensioni)
+                                    (<span class="number-of-reviews"></span> recensioni)
                                 </div>
                             </div>
                         </div>
@@ -245,7 +222,7 @@
     
                 <div class="reviews">
                     <div class="mb-3">
-                        <h3 class="mb-4">Le ricensioni dei clienti</h3>
+                        <h3 class="mb-4">Le recensioni dei clienti</h3>
                         <div class="row align-items-center">
                           <div class="col-auto text-center">
                             <h3 class="display-2 fw-bold average-review-score">4.5</h3>
@@ -276,28 +253,28 @@
                                   d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
                               </svg>
                             </span>
-                            <p class="mb-0 fs-6">(Basato su <span class="total-review-quantity">27</span> ricensioni)</p>
+                            <p class="mb-0 fs-6">(Basato su <span class="total-review-quantity">27</span> recensioni)</p>
                           </div>
                           <!-- Progress Bar -->
                           <div class="col order-3 order-md-2">
                             <div class="progress mb-3" style="height: 6px;">
-                              <div class="progress-bar bg-warning five-star-percentage" role="progressbar" style="width: 50%;"
+                              <div class="progress-bar bg-warning five-star-percentage" role="progressbar" style="width: 0%;"
                                 aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                             <div class="progress mb-3" style="height: 6px;">
-                              <div class="progress-bar bg-warning four-star-percentage" role="progressbar" style="width: 36%;"
+                              <div class="progress-bar bg-warning four-star-percentage" role="progressbar" style="width: 0%;"
                                 aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                             <div class="progress mb-3" style="height: 6px;">
-                              <div class="progress-bar bg-warning three-star-percentage" role="progressbar" style="width: 9%;"
+                              <div class="progress-bar bg-warning three-star-percentage" role="progressbar" style="width: 0%;"
                                 aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                             <div class="progress mb-3" style="height: 6px;">
-                              <div class="progress-bar bg-warning two-star-percentage" role="progressbar" style="width: 3%;"
+                              <div class="progress-bar bg-warning two-star-percentage" role="progressbar" style="width: 0%;"
                                 aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                             <div class="progress mb-0" style="height: 6px;">
-                              <div class="progress-bar bg-warning one-star-percentage" role="progressbar" style="width: 2%;"
+                              <div class="progress-bar bg-warning one-star-percentage" role="progressbar" style="width: 0%;"
                                 aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                           </div>
@@ -331,7 +308,7 @@
                                     d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
                                 </svg>
                               </span>
-                              <span class="ms-1 first-percentage-value">50%</span>
+                              <span class="ms-1 first-percentage-value">0%</span>
                         
                             </div>
                             <div>
@@ -362,7 +339,7 @@
                                     d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
                                 </svg>
                               </span>
-                              <span class="ms-1 second-percentage-value">36%</span>
+                              <span class="ms-1 second-percentage-value">0%</span>
                             </div>
                             <div>
                               <span class="fs-6">
@@ -392,7 +369,7 @@
                                     d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
                                 </svg>
                               </span>
-                              <span class="ms-1 third-percentage-value">9%</span>
+                              <span class="ms-1 third-percentage-value">0%</span>
                             </div>
                             <div>
                               <span class="fs-6">
@@ -422,7 +399,7 @@
                                     d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
                                 </svg>
                               </span>
-                              <span class="ms-1 fourth-percentage-value">3%</span>
+                              <span class="ms-1 fourth-percentage-value">0%</span>
                             </div>
                             <div>
                               <span class="fs-6">
@@ -452,7 +429,7 @@
                                     d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
                                 </svg>
                               </span>
-                              <span class="ms-1 fifth-percentage-value">2%</span>
+                              <span class="ms-1 fifth-percentage-value">0%</span>
                             </div>
                           </div>
                         </div>
@@ -462,7 +439,7 @@
                           <div class="d-lg-flex align-items-center justify-content-between mb-5">
                             <!-- Reviews -->
                             <div class="mb-3 mb-lg-0">
-                              <h3 class="mb-0">Ricensioni</h3>
+                              <h3 class="mb-0">Recensioni</h3>
                             </div>
                             <div>
                               <form class="form-inline">
@@ -470,7 +447,7 @@
                                   <span class="position-absolute ps-3">
                                     <i class="fe fe-search"></i>
                                   </span>
-                                  <input type="search" class="form-control ps-6" placeholder="Cerca Ricensione">
+                                  <input type="search" class="form-control ps-6" placeholder="Cerca Recensione">
                                 </div>
                               </form>
                             </div>

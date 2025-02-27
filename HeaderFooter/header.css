@@ -2,7 +2,7 @@ header {
     background-color: #ced4da ;
     height: 100px;
 }
-.btn{
+header .btn{
     background-color:#3C3744;
     border: 1px solid #ced4da;
     

@@ -23,6 +23,20 @@ document.write(`
             <button class="btn text-white" id="searchButton">Cerca</button>
         </div>
 
+          <!-- Profilo Dropdown (visibile solo dopo login) -->
+    <div class="dropdown" id="profileDropdown" style="display: none;">
+        <button class="btn text-white dropdown-toggle" type="button" id="profileMenu" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-user-circle fa-lg"></i> <!-- Icona profilo -->
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileMenu">
+            <li><a class="dropdown-item" href="../freelance.html">Dashboard</a></li>
+            <li><a class="dropdown-item" href="../imieiServizi.html">I miei servizi</a></li>
+            <li><a class="dropdown-item" href="../modificaProfilo.html">Modifica profilo</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item text-danger" href="#" id="logoutLink">Logout</a></li>
+        </ul>
+    </div>
+
          <button class="btn text-white" id="btnFreelance" type="button">Sono un Freelancer</button>
 
         <button class="btn text-white" id="btnProfilo" style="display: none;"  onclick="window.location.href='../profilofreelance.html'">Profilo</button>
@@ -186,6 +200,8 @@ const login = (email, password) => {
             document.getElementById("loginBtn").style.display = "none";
             document.getElementById("btnProfilo").style.display = "block";
             document.getElementById("btnFreelance").style.display = "none";
+            document.getElementById("profileDropdown").style.display = "block";
+            
 
             // Chiude il modal di login
             const modal = document.getElementById('loginModal');
@@ -209,15 +225,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const authToken = localStorage.getItem("authToken");
     const freelanceButton = document.getElementById("btnFreelance");
     const profileButton = document.getElementById("btnProfilo");
+    const profileDropdown = document.getElementById("profileDropdown");
 
     if (authToken) {
         // Se l'utente è autenticato, mostra il pulsante profilo e nasconde freelance
         if (freelanceButton) freelanceButton.style.display = "none";
         if (profileButton) profileButton.style.display = "block";
+        if (profileDropdown) profileDropdown.style.display = "block";
     } else {
         // Se non è autenticato, mostra freelance e nasconde profilo
         if (freelanceButton) freelanceButton.style.display = "block";
         if (profileButton) profileButton.style.display = "none";
+        if (profileDropdown) profileDropdown.style.display = "none";
     }
 });
 
@@ -255,6 +274,7 @@ function logout() {
         document.getElementById("loginBtn").style.display = "block";
         document.getElementById("btnProfilo").style.display = "none";
         document.getElementById("btnFreelance").style.display = "block";
+        
     })
     .catch(error => {
         console.error('Errore durante il logout:', error);

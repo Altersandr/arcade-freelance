@@ -1,3 +1,67 @@
+//funzione modifica email e pass database
+document.addEventListener('DOMContentLoaded', function () {
+    const profileForm = document.getElementById('profileForm');
+
+    profileForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+
+        console.log('Email:', email);
+        console.log('Password:', password);
+
+        // Controlla se le password corrispondono
+        if (password !== confirmPassword) {
+            alert('Le password non corrispondono');
+            return;
+        }
+
+        // Oggetto con i dati da aggiornare
+        const updateData = {
+            email: email,
+            password: password  // Puoi anche aggiungere altri campi come il nome utente, se necessario
+        };
+
+        // Recupera il token dal localStorage
+        const token = localStorage.getItem('authToken');  // Assicurati che la chiave sia corretta
+
+        // Controlla se il token esiste
+        if (!token) {
+            alert('Token non trovato. Devi essere autenticato.');
+            return;
+        }
+
+        // Invia la richiesta PUT per aggiornare i dati
+        fetch('http://localhost:8080/utenti/updateUser', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`  
+            },
+            body: JSON.stringify(updateData)  // Invia i dati da aggiornare
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Errore nella risposta del server');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Risposta del server:', data);  //per vedere i dati ricevuti
+            if (data.message) {
+                alert(data.message);  // Mostra il messaggio di successo o errore ricevuto dal server
+            } else {
+                alert('Errore durante l’aggiornamento del profilo.');
+            }
+        })
+    });
+});
+//fine funzione
+
+
+
 document.addEventListener('DOMContentLoaded', function() {
     const fillFormBtn = document.getElementById('fillFormBtn');
     const togglePassword = document.getElementById('togglePassword');
@@ -35,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
         this.classList.toggle('fa-lock-open');
     });
 
-    profileForm.addEventListener('submit', function(event) {
+    /*profileForm.addEventListener('submit', function(event) {
         event.preventDefault();
 
         if (passwordField.value !== confirmPasswordField.value) {
@@ -61,7 +125,7 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Errore:', error);
             alert('Errore nel salvataggio delle modifiche.');
         });
-    });
+    });*/
 
     portfolioForm.addEventListener('submit', function(event) {
         const allowedExtensions = ['image/jpeg', 'image/png', 'image/gif'];
@@ -166,41 +230,6 @@ function addPortfolioItem() {
         alert('Errore: Tutti i campi devono essere compilati.');
     }
 }
-
-document.addEventListener('DOMContentLoaded', function() {
-    const servicesForm = document.getElementById('servicesForm');
-
-    servicesForm.addEventListener('submit', function(event) {
-        event.preventDefault();
-
-        const serviceName = document.getElementById('serviceName').value;
-        const serviceDescription = document.getElementById('serviceDescription').value;
-        const servicePrice = document.getElementById('servicePrice').value;
-
-        const servizio = {
-            nome: serviceName,
-            descrizione: serviceDescription,
-            prezzo: servicePrice
-        };
-
-        fetch('http://localhost:8080/servizio', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(servizio)
-        })
-        .then(response => response.json())
-        .then(data => {
-            alert('Servizio creato con successo!');
-            // Aggiorna la lista dei servizi o esegui altre azioni necessarie
-        })
-        .catch(error => {
-            console.error('Errore:', error);
-            alert('Errore nella creazione del servizio.');
-        });
-    });
-});
 document.addEventListener('DOMContentLoaded', function() {
     const logoutButton = document.getElementById('logoutButton');
     logoutButton.addEventListener('click', function() {

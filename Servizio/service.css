@@ -143,7 +143,7 @@ ul{
     flex-wrap: wrap;
 }
 
-.seller-stats, .seller-about,.reviews{
+.seller-stats, .seller-about{
     border-bottom: 1px solid #3d51d53b;
 }
 
