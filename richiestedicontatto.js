@@ -127,6 +127,50 @@ const updateServizio = async (id) => {
     }
 });
 
+  // Funzione per ottenere i dati dal backend
+  function getDataForChart() {
+    fetch('http://localhost:8080/api/data/grafico')  // Cambia con il tuo endpoint API
+      .then(response => response.json())
+      .then(data => {
+        // Chiamata alla funzione per creare il grafico con i dati ricevuti
+        updateChart(data);
+      })
+      .catch(error => {
+        console.error('Errore nel recupero dei dati:', error);
+      });
+  }
+
+  // Funzione per aggiornare il grafico con i dati ricevuti
+  function updateChart(data) {
+    var ctx = document.getElementById('myBarChart').getContext('2d');
+    var myBarChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Giorno 1', 'Giorno 2', 'Giorno 3', 'Giorno 4'], // Puoi farli dinamici se il backend li restituisce
+        datasets: [{
+          label: 'Numero di richieste',
+          data: data, // I dati ricevuti dal backend
+          backgroundColor: 'rgba(54, 162, 235, 0.2)',
+          borderColor: 'rgba(54, 162, 235, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  }
+
+  // Chiamata alla funzione per caricare i dati appena la pagina viene caricata
+  window.onload = function() {
+    getDataForChart();
+  };
+
+
 var ctx = document.getElementById('myChart').getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'bar', // Cambia il tipo di grafico a seconda delle tue necessità
