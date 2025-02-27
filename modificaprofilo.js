@@ -166,6 +166,41 @@ function addPortfolioItem() {
         alert('Errore: Tutti i campi devono essere compilati.');
     }
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    const servicesForm = document.getElementById('servicesForm');
+
+    servicesForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const serviceName = document.getElementById('serviceName').value;
+        const serviceDescription = document.getElementById('serviceDescription').value;
+        const servicePrice = document.getElementById('servicePrice').value;
+
+        const servizio = {
+            nome: serviceName,
+            descrizione: serviceDescription,
+            prezzo: servicePrice
+        };
+
+        fetch('http://localhost:8080/servizio', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(servizio)
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert('Servizio creato con successo!');
+            // Aggiorna la lista dei servizi o esegui altre azioni necessarie
+        })
+        .catch(error => {
+            console.error('Errore:', error);
+            alert('Errore nella creazione del servizio.');
+        });
+    });
+});
 document.addEventListener('DOMContentLoaded', function() {
     const logoutButton = document.getElementById('logoutButton');
     logoutButton.addEventListener('click', function() {
