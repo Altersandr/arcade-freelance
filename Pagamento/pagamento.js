@@ -1,53 +1,104 @@
 
-//Se il carrello è vuoto, mostra "Nessun servizio selezionato".
 const updateOrderSummary = () => {
-  let orderSummary = document.querySelector("#order-summary");
-  let total = 0;
-  let summaryHTML = "";
+  const orderSummary = document.querySelector("#order-summary");
+  const totalSummary = document.querySelector(".total-summary");
+  const token = localStorage.getItem("token");
 
-  for (let key in localStorage) {
-      if (!isNaN(parseInt(key))) {
-          let item = JSON.parse(localStorage.getItem(key));
-          if (item) {
-              summaryHTML += `<p><strong>${item.name}:</strong> $${item.price}</p>`;
-              total += item.price;
-          }
+//recupera gli ordini (su postman funziona)
+  fetch('http://localhost:8080/ordini/dettagliOrdini', {
+      method: "GET",
+      headers: { "Authorization": `Bearer ${token}` }
+  })
+  .then(response => response.json()) 
+  .then(data => {
+      if (!data.length) {
+          orderSummary.innerHTML = "<p>Nessun ordine trovato.</p>";
+          totalSummary.textContent = "$0.00";
+          return;
       }
-  }
 
-  if (summaryHTML === "") {
-      orderSummary.innerHTML = "<p>Nessun servizio selezionato.</p>";
-  } else {
+      let total = 0;
+      let summaryHTML = data.map(order => {
+          total += order.prezzo;
+          return `<p><strong>Ordine #${order.id}:</strong> ${order.descrizione} - $${order.prezzo}</p>`;
+      }).join("");
+
       orderSummary.innerHTML = summaryHTML;
-  }
-
-  document.querySelector(".total-summary").textContent = `$${total.toFixed(2)}`;
-}
+      totalSummary.textContent = `$${total.toFixed(2)}`;
+  })
+  .catch(error => {
+      console.error("Errore:", error);
+      orderSummary.innerHTML = "<p>Errore nel caricamento ordini.</p>";
+      totalSummary.textContent = "$0.00";
+  });
+};
 
 updateOrderSummary();
 
-//da testare 
-document.getElementById("pagaOrdineForm").addEventListener("submit", function(event) {
-  event.preventDefault();
+//DA TESTARE
+document.getElementById('payment-form').addEventListener('submit', function(event) {
+  event.preventDefault(); 
 
-  let ordineId = document.getElementById("ordineId").value;
-  let metodo = document.getElementById("metodo").value;
-  let importo = document.getElementById("importo").value;
+  // Raccoglie i dati dal modulo
+  const firstName = document.getElementById('first-name').value;
+  const lastName = document.getElementById('last-name').value;
+  const email = document.getElementById('email').value;
+  const phone = document.getElementById('phone').value;
+  const address1 = document.getElementById('address1').value;
+  const address2 = document.getElementById('address2').value;
+  const city = document.getElementById('city').value;
+  const region = document.getElementById('region').value;
+  const zip = document.getElementById('zip').value;
+  const paymentMethod = document.getElementById('payment-method').value;
+  
+  //servirebbe un campo nascosto con 'order-id'
+  const ordineId = document.getElementById('order-id').value; 
 
-  fetch("/pagamenti/crea/" + ordineId, {
-      method: "POST",
-      headers: {
-          "Content-Type": "application/json"
+  // Crea l'oggetto Pagamento
+  const pagamento = {
+      metodo: paymentMethod,       
+      importo: 100.00,             // dovrebbe essere dinamico
+      stato: 'Pagato',              // Stato predefinito
+      nome: firstName,
+      cognome: lastName,
+      email: email,
+      telefono: phone,
+      indirizzo: {
+          indirizzo1: address1,
+          indirizzo2: address2,
+          città: city,
+          regione: region,
+          cap: zip
       },
-      body: JSON.stringify({
-          metodo: metodo,
-          importo: importo,
-          stato: "completato"
-      })
+      ordine: {
+          id: ordineId   // ID dell'ordine che deve essere passato dinamicamente :l
+      }
+  };
+
+//fetch testata su postman, funziona se si ha un ordine effettuato 
+  fetch('http://localhost:8080/pagamenti/add', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + localStorage.getItem('authToken') 
+      },
+      body: JSON.stringify(pagamento)  
   })
-  .then(response => response.json())
-  .then(data => alert("Pagamento completato!"))
-  .catch(error => console.error(error));
+  .then(response => {
+      if (response.ok) {
+          return response.json(); 
+      } else {
+          throw new Error('Errore nel pagamento');
+      }
+  })
+  .then(data => {
+      console.log('Pagamento aggiunto con successo:', data);
+      window.location.href = '/success';  // 
+  })
+  .catch(error => {
+      console.error('Errore durante la richiesta:', error);
+      alert('Si è verificato un errore durante il pagamento');
+  });
 });
 
 //prova con Stripe
