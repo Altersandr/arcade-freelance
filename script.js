@@ -35,7 +35,7 @@ const fetchProfile = ()=>{
             }
         ).then(response=> response.json())
         .then(profile=>{
-            console.log(profile)
+            document.querySelector(".modifica-profilo").href = `modificaprofilo.html?id=${profile.id}`;
             document.querySelector(".personal-email").textContent = profile.email;
             document.querySelector(".h2-freelance-name").textContent = profile.nome + " " +profile.cognome;
             document.querySelector(".freelance-overall-rating").textContent = getRecensioni(profile.servizi);
@@ -63,5 +63,6 @@ const getRecensioni = (servizi)=>{
     })
     return averageScore >0?averageScore/quant :0;
 }
+fetchProfile()
 
-fetchProfile();
+// document.addEventListener("DOMContentLoaded", () => fetchProfile)

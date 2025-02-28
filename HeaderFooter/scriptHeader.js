@@ -250,11 +250,13 @@ function logout() {
         printOutput(data);
         // Rimuove il token dal localStorage
         localStorage.removeItem("authToken");
+        localStorage.removeItem("service");
         // Nasconde il pulsante Logout e mostra il pulsante Accedi
         document.getElementById("logoutButton").style.display = "none";
         document.getElementById("loginBtn").style.display = "block";
         document.getElementById("btnProfilo").style.display = "none";
         document.getElementById("btnFreelance").style.display = "block";
+        // window.location.href = 'Homepage/homepage.html';
     })
     .catch(error => {
         console.error('Errore durante il logout:', error);

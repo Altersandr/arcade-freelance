@@ -207,7 +207,8 @@ const getService = ()=>{
       .then(response => response.json())
       .then(utente => {
 
-        // console.log(utente)
+        console.log(utente)
+        console.log(service)
         
         const serviceTitle = document.querySelector(".service-title");
         const personPicture = document.querySelectorAll(".about-img"); // 2 ELEMENTS
@@ -232,11 +233,19 @@ const getService = ()=>{
         serviceDescription.textContent = service.descrizione;
         priceNumber.textContent = service.prezzo;
 
+        console.log(utente);
         // console.log(serviceId)
         getReviews(serviceId);
         getReviewAuthors(serviceId);
 
-        console.log(service.categoria)
+        // console.log()
+        goToPayment.addEventListener("click", (e)=>{
+          e.preventDefault();
+          localStorage.setItem("service", JSON.stringify(service))
+          window.location.href = "../Carrello/carrello.html"
+        })
+
+        // console.log(service.categoria)
         fetchSimilar(service.categoria, serviceId);
       
       })

@@ -141,3 +141,23 @@ footer a:hover {
         font-size: 1.1rem;
     }
 }
+
+#myChart{
+    max-height: 450px !important;
+    width: auto !important;
+    height: 400px !important;
+
+}
+
+#myOtherChart{
+    height: 400px;
+    width: auto;
+    max-width: 800px !important;
+}
+
+.charts{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 2em 0;
+}
