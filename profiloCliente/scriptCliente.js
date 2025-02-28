@@ -38,6 +38,5 @@ document.addEventListener('DOMContentLoaded', async function () {
     } catch (error) {
         console.log(localStorage.getItem('authToken'));
         console.error('Errore:', error);
-        alert('Impossibile recuperare i dati dell’utente.');
     }
 });
