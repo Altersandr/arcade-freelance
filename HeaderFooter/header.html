@@ -5,38 +5,114 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FreelanceMarket</title>
     <link rel="stylesheet" href="header.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
 </head>
 <body>
     <header class="d-flex justify-content-between align-items-center p-3">
         <!-- Logo -->
-        <a class="header navbar-brand" href="../Homepage/homepage.html">
-            <img src="../img/logoArcade.png" alt="arcade Logo" class="me-2" >
+          <a class="header navbar-brand me-5" href="../Homepage/homepage.html">
+            <img src="../img/logoArcade.png" alt="arcade Logo" class="me-2" width="50">
             
         </a>
-        <div class="dropdown">
-            <button class="btn text-white dropdown-toggle" type="button" id="menuDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                Menu
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="menuDropdown">
-                <li><a class="dropdown-item" href="../Servizi/tuttiServizi.html">Tutti i servizi</a></li>
-                <li><a class="dropdown-item" href="../Contatti/contatti.html">Contatti</a></li>
-                <li><a class="dropdown-item" href="../FAQ/faq.html">FAQ</a></li>
-            </ul>
-        </div>
-        
+      <div class="dropdown">
+    <button class="btn text-white dropdown-toggle" type="button" id="menuDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="fas fa-bars"></i>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="menuDropdown">
+        <li><a class="dropdown-item" href="../TuttiServizi/allservices.html">Tutti i servizi</a></li>
+        <li><a class="dropdown-item" href="../Contatti/contatti.html">Contatti</a></li>
+        <li><a class="dropdown-item" href="../FAQ/faq.html">FAQ</a></li>
+    </ul>
+</div>
+
+
         <!-- Search Bar -->
         <div class="input-group mx-auto w-25 text-center">
-            <input type="text" id="searchInput" class="form-control" placeholder="Cerca servizi o freelancer...">   
+            <input type="text" id="searchInput" class="form-control" placeholder="Cerca servizi o freelancer...">
             <button class="btn text-white" id="searchButton">Cerca</button>
         </div>
+
+         <button class="btn text-white" id="btnFreelance" type="button">Sono un Freelancer</button>
+
         
-        <button class="btn text-white" onclick="window.location.href='../registerFreelance.html'">Sono un Freelancer</button>
-        
+
         <!-- Login Button -->
-        <button class="btn text-white" onclick="window.location.href='../login.html'">Accedi</button>
-    </header>
+        <button class="btn text-white" id="loginBtn" type="button">Accedi</button>
+
+        <!-- Logout Button (nascosto di default) -->
+       <!-- <button class="btn text-white" id="logoutButton" style="display: none;">Logout</button>-->
+
+        <div class="dropdown" id="profileDropdown" style="display: none;">
+            <button class="btn text-white dropdown-toggle" type="button" id="profileMenu" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fas fa-user-circle fa-lg"></i> <!-- Icona profilo -->
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileMenu">
+                <li><a class="dropdown-item" href="../freelance.html">Dashboard</a></li>
+                <li><a class="dropdown-item" href="../imieiServizi.html">I miei servizi</a></li>
+                <li><a class="dropdown-item" href="../profilofreelance.html">Modifica profilo</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item text-danger" href="#" id="logoutLink">Logout</a></li>
+            </ul>
+        </div>
+
+        </header>
+
+   
+        
     
+    <!-- Modal di registrazione Freelancer -->
+    <div class="modal fade" id="freelancerModal" tabindex="-1" aria-labelledby="freelancerModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="freelancerModalLabel">Registrati come Freelancer</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="freelancerForm">
+                        <div class="mb-3">
+                            <label for="freelancer-firstname" class="form-label">Nome</label>
+                            <input type="text" class="form-control" id="freelancer-firstname" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="freelancer-lastname" class="form-label">Cognome</label>
+                            <input type="text" class="form-control" id="freelancer-lastname" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="freelancer-email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="freelancer-email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="freelancer-password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="freelancer-password" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="freelancer-phone" class="form-label">Numero di Telefono</label>
+                            <input type="tel" class="form-control" id="freelancer-phone" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="freelancer-iva" class="form-label">Partita IVA</label>
+                            <input type="text" class="form-control" id="freelancer-iva" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="tipoAttivita" class="form-label">Tipo di Attività</label>
+                            <select id="tipoAttivita" class="form-select" required>
+                                <option value="Consulente">Consulente</option>
+                                <option value="Sviluppatore">Sviluppatore</option>
+                                <option value="Designer">Designer</option>
+                                <option value="Copywriter">Copywriter</option>
+                                <option value="Marketing">Marketing</option>
+                                <option value="Altro">Altro</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Registrati come Freelancer</button>
+                    </form>
+                    <p class="mt-3 text-center">Oppure, se sei già registrato, <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-dismiss="modal">Accedi</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="scriptHeader.js"></script>
 </body>

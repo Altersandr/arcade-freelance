@@ -1,0 +1,87 @@
+#header {
+    background: url(https://images.unsplash.com/photo-1415795854641-f4a487a0fdc8?ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80) center center / cover no-repeat ;
+  }
+
+.card-img-top{
+    border-radius: 3% !important;
+}
+
+#gallery{
+    margin: 3em;
+}
+
+.card{
+    border: none !important;
+}
+
+.freelancer-name-container{
+    display: flex;
+    gap: 1em;
+    align-items: baseline;
+}
+
+.number-rating{
+    font-weight: 600;
+}
+
+.review-number{
+    color: gray;
+}
+
+.stars{
+    display: flex;
+    gap: 0.325em;
+    align-items: baseline;
+}
+
+.btn-outline-success{
+    border-color: #3D52D5 !important;
+    color:#3D52D5 !important;
+}
+
+.btn-check:active+.btn-outline-success, .btn-check:checked+.btn-outline-success, .btn-outline-success.active, .btn-outline-success.dropdown-toggle.show, .btn-outline-success:active, .btn-outline-success:hover {
+    border-color: #3D52D5 !important;
+    background-color: #3D52D5 !important;
+    color:#ffffff !important;
+}
+
+.filter-container, .breadcrumb-container{
+    display: flex;
+    gap: 2em;
+    margin: 3em;
+
+}
+
+.btn-secondary {
+    color: #fff;
+    background-color: #3C3744 !important;
+    border-color: #3C3744 !important;
+}
+
+.btn-success{
+    background-color: #3D52D5 !important;
+    border-color: #2d45e6 !important;
+    color:#ffffff !important;
+    padding: .375rem .75rem !important;
+    font-weight: 400 !important;
+    font-size: 16px !important;
+    line-height: 1.5 !important;
+    width: 100% !important;
+}
+
+.btn-check:active+.btn-success, .btn-check:checked+.btn-success, .btn-success.active, .btn-success.dropdown-toggle.show, .btn-success:active, .btn-success:hover {
+    border-color: #0c27d6 !important;
+    background-color: #0c27d6 !important;
+}
+
+
+.text-white{
+    background-color:#3C3744 !important;
+    border: 1px solid #ced4da !important;
+    
+}
+
+.text-white:hover {
+    background-color: #3C3744 !important; /* Colore di sfondo al passaggio del mouse */
+    border-color: #ced4da !important;
+  }

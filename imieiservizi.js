@@ -1,79 +1,76 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const editButtons = document.querySelectorAll('.edit-btn');
-    const deleteButtons = document.querySelectorAll('.delete-btn');
-    const addServiceButton = document.getElementById('add-service-btn');
-    const servicesContainer = document.getElementById('services-container');
+const container = document.querySelector(".row");
 
-    editButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const card = this.closest('.card');
-            const title = card.querySelector('.card-title').innerText;
-            const description = card.querySelector('.card-text').innerText;
-
-            const newTitle = prompt('Modifica il titolo del servizio:', title);
-            const newDescription = prompt('Modifica la descrizione del servizio:', description);
-
-            if (newTitle) {
-                card.querySelector('.card-title').innerText = newTitle;
+const fetchProfile = ()=>{
+    const token = localStorage.getItem("authToken");
+    let servizi = "";
+    fetch("http://localhost:8080/api/profile",
+        {   method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+              },
+            body: JSON.stringify(token)
+            
+        }
+    )
+    .then(response=> response.json())
+    .then(authProfile=>{
+        fetch("http://localhost:8080/utenti/getlogged",
+            {   method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                  },
+                body: JSON.stringify(authProfile.email)
+                
             }
-            if (newDescription) {
-                card.querySelector('.card-text').innerText = newDescription;
-            }
-        });
-    });
-
-    deleteButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const card = this.closest('.col-md-4');
-            card.remove();
-        });
-    });
-
-    addServiceButton.addEventListener('click', function() {
-        const newTitle = prompt('Inserisci il titolo del nuovo servizio:');
-        const newDescription = prompt('Inserisci la descrizione del nuovo servizio:');
-        const newImage = prompt('Inserisci l\'URL dell\'immagine del nuovo servizio:');
-
-        if (newTitle && newDescription && newImage) {
-            const newServiceHTML = `
-                <div class="col-md-4">
-                    <div class="card service-card mb-4">
-                        <img src="${newImage}" class="card-img-top" alt="${newTitle}">
-                        <div class="card-body">
-                            <h5 class="card-title">${newTitle}</h5>
-                            <p class="card-text">${newDescription}</p>
-                            <button class="btn btn-primary edit-btn">Modifica</button>
-                            <button class="btn btn-danger delete-btn">Cancella</button>
-                        </div>
+        ).then(response=> response.json())
+        .then(profile=>{
+            document.querySelector(".add-service-btn").innerHTML = `<a href="aggiungiservizi.html?id=${profile.id}" class="btn btn-success" id="add-service-btn"><i class="fas fa-plus"></i> Aggiungi Servizio</a>`;
+            const serviziArr = profile.servizi;
+            servizi =  serviziArr.map(ser=>{
+                return `
+                 <div class="col-md-4">
+                <div class="card service-card mb-4">
+                    <img src="/freelance/web.jpg" class="card-img-top" alt="Design Grafico">
+                    <div class="card-body">
+                        <h5 class="card-title">${ser.nome} <span style="font-weight: 700">${ser.prezzo}€</span></h5>
+                        <p class="card-text">${ser.descrizione}</p>
+                        <button class="btn btn-primary" onclick="window.location.href='modificaservizi.html?id=${ser.id}'">Modifica</button>
+                        <button class="btn btn-danger" onclick ="deleteServizio(${ser.id})">Cancella</button>
                     </div>
                 </div>
-            `;
-            servicesContainer.insertAdjacentHTML('beforeend', newServiceHTML);
+            </div>
+                `
+            }
+            ).join("")
+            document.querySelector(".row").innerHTML = servizi;
+        })
+            console.log(servizi)
+        
+            
+        })
 
-            // Aggiungi gli event listener ai nuovi pulsanti
-            const newEditButton = servicesContainer.lastElementChild.querySelector('.edit-btn');
-            const newDeleteButton = servicesContainer.lastElementChild.querySelector('.delete-btn');
+    }
 
-            newEditButton.addEventListener('click', function() {
-                const card = this.closest('.card');
-                const title = card.querySelector('.card-title').innerText;
-                const description = card.querySelector('.card-text').innerText;
 
-                const newTitle = prompt('Modifica il titolo del servizio:', title);
-                const newDescription = prompt('Modifica la descrizione del servizio:', description);
-
-                if (newTitle) {
-                    card.querySelector('.card-title').innerText = newTitle;
-                }
-                if (newDescription) {
-                    card.querySelector('.card-text').innerText = newDescription;
-                }
-            });
-
-            newDeleteButton.addEventListener('click', function() {
-                const card = this.closest('.col-md-4');
-                card.remove();
-            });
+const deleteServizio = (s_id)=>{
+    fetch(`http://localhost:8080/servizi/${s_id}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
         }
-    });
-});
+    })
+    .then(response => {
+        console.log(response)
+        return response.json(); // Converte la risposta in formato JSON
+    })
+    .then(data => {
+        console.log(data)
+        alert('Servizio eliminato con successo!');
+        
+    })
+    alert('Servizio eliminato con successo!');
+    location.reload();
+}
+
+
+fetchProfile();

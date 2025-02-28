@@ -1,135 +1,75 @@
 body {
     font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #3778f0;
+    color: #3C3744;
 }
 
-.container {
-    width: 300px;
-    margin: 100px auto;
-    padding: 20px;
-    background-color: #B4C5E4;
+
+.confoto {
+    background: linear-gradient(rgba(3, 7, 100, 0.7), rgba(60, 55, 68, 0.7)), url('/freelance/background.png') center/cover no-repeat;
+    color: #FBFFF1; 
+}
+
+
+header {
+    background-color: #ced4da ;
+}
+.btn {
+    background-color: #3C3744 !important;
+    border: 1px solid #ced4da;
+    color: #FBFFF1;
+    padding: 10px 20px;
     border-radius: 5px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
 }
 
-h2 {
-    text-align: center;
-    
+.btn:hover {
+    background-color:#3C3744; 
+    color: #FBFFF1; 
+    border-color: #ced4da;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
 }
 
-form {
+.btn:active {
+    background-color: #3D52D5; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+}
+
+
+
+.card {
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    margin-top: auto;
+    margin: auto;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card h3 {
+    color: #3C3744;
+}
+
+.btn-primary {
+    background-color: #3D52D5 !important;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #090C9B !important;
+}
+html, body {
+    height: 100%;
+}
+
+body {
     display: flex;
     flex-direction: column;
 }
 
-label {
-    background-color: #B4C5E4;
-    margin-bottom: 5px;
-    font-weight: bold;
+footer {
+    margin-top: auto;
+    background-color: #3C3744;
 }
-
-input, select, button {
-    margin-bottom: 15px;
-    padding: 10px;
-    border: 1px solid #3d52d5;
-    border-radius: 5px;
-}
-
-button {
-    background-color: #1b7af6;
-    color: #fbfffb;
-    border: none;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #3D52D5;
-}
-
-p {
-    text-align: center;
-}
-
-label {
-    display: block;
-    margin-bottom: auto;
-    font-weight: bold;
-    color: #3d52d5;
-}
-
-.terms label {
-    display: inline;
-    color: #B4C5E4;
-    font-size: 14px;
-
-}
-
-#privacy{
-    color: #090C9B;
-    text-decoration: underline;
-    cursor: pointer;
-margin-left: 5px;
-font-size: small;
-
-
-}
-
-#condizioni{
-    display: inline-block;
-        margin-right: 10px;
-    background-color: #090C9B;
-    margin-top: 20px;
-padding: 10px;
-}
-
-#acceptTerms{
-display: inline-block;
-     inline-size: 20px;
-     margin-top: 10px;
-     padding: 5px;
-}
-
-#Condizioni input[type="checkbox"] {
-    display: inline-block;
-    margin-right: 10px; }
-
-  
-    .social-div {
-        margin-bottom: 20px; 
-    }
-
-
-
-    #submitBtn{
-        background-color: #71a1e0;
-        color: #3D52D5;
-        border: none;
-        cursor: pointer;
-        padding: 5px;
-
-    }
-  .errore {
-    color: red;
-    font-size: medium;
-    margin-top: 5px;
-}
-
-.success {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px;
-    margin-top: 20px;
-    text-align: center;
-    border-radius: 5px;
-}
-
-
-
-
-/*c
-090C9B
-3D52D5
-B4C5E4
-FBFFF1*/

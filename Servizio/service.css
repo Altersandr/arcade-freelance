@@ -1,0 +1,246 @@
+/* .left-container, .breadcrumb-container{
+    margin: 3em;
+} */
+
+.left-container{
+    gap: 2em;
+}
+
+*,*::after,*::before {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+  main {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 50vh;
+  }
+
+    .carousel-btn {
+      width: 40px;
+      height: 40px;
+      margin: 5px;
+      cursor: pointer;
+    }
+    
+    button {
+      background: none;
+      border: none;
+    }
+
+    button img {
+      width: 100%;
+      object-fit: contain;
+      padding:0;
+    }
+
+    .carousel-box {
+      width: 400px;
+      height: 400px;
+    }
+
+    .carousel-wrapper {
+      display: flex;
+      flex-direction: column-reverse;
+      align-items: center;
+    }
+
+    .carousel {
+      display: flex;
+    }
+
+    .carousel-box img {
+      width: 100%;
+      object-fit: contain;
+    }
+
+    @media screen and (max-width: 499px) {
+      .carousel-box {
+        width: 180px;
+        height: 180px;
+        margin: 5px;
+    }
+    }
+
+.buttons{
+    display: flex;
+}
+
+.left-container{
+    flex-grow:2;
+}
+
+.right-container{
+    flex-grow: 1;
+}
+
+.btn-outline-success{
+    border-color: #3D52D5 !important;
+    color:#3D52D5 !important;
+    padding: 10px !important;
+    font-size: 18px !important;
+    border-radius: 15px !important;
+}
+
+.btn-check:active+.btn-outline-success, .btn-check:checked+.btn-outline-success, .btn-outline-success.active, .btn-outline-success.dropdown-toggle.show, .btn-outline-success:active, .btn-outline-success:hover {
+    border-color: #3D52D5 !important;
+    background-color: #3D52D5 !important;
+    color:#ffffff !important;
+}
+
+.about-img{
+    border-radius: 50% !important;
+}
+
+.seller-details{
+    padding: 25px;
+    border: 1px solid #3d51d53b;
+    border-radius: 3px;
+
+}
+
+.client-list{
+    list-style-type: none;
+    padding-left: 0 !important;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+
+ul{
+    list-style-type: none;
+}
+
+.seller-details>.seller-stats{
+    padding-left: 0;
+} 
+
+.client-list li{
+    display: list-item;
+    padding-right: 44px;
+    width: 50%;
+    margin-top: 16px;
+    box-sizing: border-box;
+    color: #404145;
+}
+
+.industry{
+    color: #4041459d;
+}
+
+
+.seller-about{
+    padding-top: 5px;
+
+}
+
+.client-list{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.seller-stats, .seller-about{
+    border-bottom: 1px solid #3d51d53b;
+}
+
+.service-person{
+    display: flex;
+}
+
+.service-person, .btn-sm, .seller-details, .reviews{
+    gap: 1.5em;
+    margin: 1.5em 0;
+}
+
+
+.person-container{
+    display: flex;
+}
+
+.left-right-container{
+    display: flex;
+    flex-direction: row;
+    gap: 5em;
+    margin-top: 2em;
+}
+
+.service-person>div{
+    display: flex;
+    flex-direction: column;
+}
+
+.person-upper-row, .person-bottom-row{
+    display: flex;
+}
+
+.person-bottom-row >div, .person-upper-row *{
+    margin-left: 1em;
+}
+
+.line-gap{
+    margin: 0 1em;
+    opacity: 0.5;
+}
+
+.sticky-container{
+    border: 1px solid rgba(128, 128, 128, 0.432);
+    padding: 2.5em;
+}
+
+.sticky-top{
+    top: 20% !important;
+}
+
+.btn-success{
+    background-color: #3D52D5 !important;
+    border-color: #2d45e6 !important;
+    color:#ffffff !important;
+    padding: 1em !important;
+    font-size: 16px !important;
+    line-height: 24px !important;
+    border-radius: 20px !important;
+    width: 100% !important;
+}
+
+.btn-check:active+.btn-success, .btn-check:checked+.btn-success, .btn-success.active, .btn-success.dropdown-toggle.show, .btn-success:active, .btn-success:hover {
+    border-color: #0c27d6 !important;
+    background-color: #0c27d6 !important;
+    color:#ffffff !important;
+}
+
+.delivery, .revisions{
+    display: flex;
+    gap: 1em;
+    align-items: baseline;
+}
+
+.stars{
+    display: flex;
+    gap: 0.325em;
+    align-items: baseline;
+}
+
+.person-bottom-row{
+    align-items: baseline;
+}
+
+.freelancer-name-container{
+    display: flex;
+    align-items: baseline;
+    gap: 1em;
+}
+
+.text-white{
+    background-color:#3C3744 !important;
+    border: 1px solid #ced4da !important;
+    
+}
+
+.text-white:hover {
+    background-color: #3C3744 !important; /* Colore di sfondo al passaggio del mouse */
+    border-color: #ced4da !important;
+  }
