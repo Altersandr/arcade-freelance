@@ -166,6 +166,13 @@ const getReviews = (serviceId)=>{
 
 }
 
+const getCategoryImg = (category)=>{
+  if(category == "Sviluppo Web") return "../img/web-dev.jpg"
+  if(category == "Grafica & Design") return "../img/graphic_design.jpg"
+  if(category == "Marketing Digitale") return "../img/digital-marketing.jpg"
+  if(category == "Scrittura & Traduzione") return "../img/traduzione.jpg"
+}
+
 const getReviewAuthors = (serviceId)=>{
   
   fetch(`http://localhost:8080/recensioni/getAuthor/${serviceId}`)
@@ -282,7 +289,7 @@ const fetchSimilar = (category, serviceId)=>{
               return `
               <div class="col-lg-4 mb-4">
                 <div class="card">
-                  <img src="${s.img ? s.img: "https://placehold.co/600x450"}" alt="" class="card-img-top">
+                  <img src="${getCategoryImg(s.categoria)}" alt="" class="card-img-top">
                   <div class="card-body">
                       <div class="freelancer-name-container">
                           <i class="fa-regular fa-user fa-lg" style="color: #3D52D5;"></i>
