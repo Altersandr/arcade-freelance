@@ -1,0 +1,9 @@
+      /* Stile per rendere cliccabile la dicitura e sottolineata al passaggio del mouse */
+      #total-orders {
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    #total-orders:hover {
+        text-decoration: underline;
+    }

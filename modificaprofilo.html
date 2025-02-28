@@ -22,12 +22,12 @@
                 <form id="profileForm">
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" placeholder="Inserisci la tua email" style="width: 60%; font-size: 16px;">
+                        <input type="email" class="form-control" id="email" placeholder="Inserisci la tua email" style="font-size: 16px;">
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
                         <div class="input-group">
-                            <input type="password" class="form-control" id="password" placeholder="Inserisci la tua password" style="width: 60%; font-size: 16px;">
+                            <input type="password" class="form-control" id="password" placeholder="Inserisci la tua password" style="font-size: 16px;">
                             <button class="btn btn-outline-secondary" type="button" id="togglePassword">
                                 <i class="fas fa-lock"></i>
                             </button>
@@ -35,23 +35,23 @@
                     </div>
                     <div class="mb-3">
                         <label for="confirmPassword" class="form-label">Conferma Password</label>
-                        <input type="password" class="form-control" id="confirmPassword" placeholder="Conferma la tua password" style="width: 70%; font-size: 16px;">
+                        <input type="password" class="form-control" id="confirmPassword" placeholder="Conferma la tua password" style="font-size: 16px;">
                     </div>
                     <div class="mb-3">
-                        <label for="username" class="form-label">Nome Utente</label>
-                        <input type="text" class="form-control" id="username" placeholder="Inserisci il tuo nome utente" style="width: 50%; font-size: 16px;">
+                        <label for="firstname" class="form-label">Nome Utente</label>
+                        <input type="text" class="form-control" id="firstname" placeholder="Inserisci il tuo Nome" style="font-size: 16px;">
                     </div>
                     <div class="mb-3">
-                        <label for="vatNumber" class="form-label">Partita IVA</label>
-                        <input type="text" class="form-control" id="vatNumber" placeholder="Inserisci la tua Partita IVA" style="width: 90%; font-size: 16px;">
+                        <label for="lastname" class="form-label">Cognome Utente</label>
+                        <input type="text" class="form-control" id="lastname" placeholder="Inserisci il tuo Cognome" style="font-size: 16px;">
                     </div>
                     <div class="mb-3">
                         <label for="taxCode" class="form-label">Codice Fiscale</label>
-                        <input type="text" class="form-control" id="taxCode" placeholder="Inserisci il tuo Codice Fiscale" style="width: 90%; font-size: 16px;">
+                        <input type="text" class="form-control" id="taxCode" placeholder="Inserisci il tuo Codice Fiscale" style="font-size: 16px;">
                     </div>
                     <div class="mb-3">
                         <label for="iban" class="form-label">IBAN</label>
-                        <input type="text" class="form-control" id="iban" placeholder="Inserisci il tuo IBAN" style="width: 90%; font-size: 16px;">
+                        <input type="text" class="form-control" id="iban" placeholder="Inserisci il tuo IBAN" style="font-size: 16px;">
                     </div>
                     <button type="submit" class="btn btn-primary">Salva Modifiche</button>
                 </form>
@@ -68,28 +68,6 @@
                 <button type="button" class="btn btn-secondary" onclick="addPortfolioItem()">Aggiungi Immagine</button>
                 <ul id="portfolioList" class="mt-2"></ul>
                 <button type="submit" class="btn btn-primary mt-3">Salva Modifiche</button>
-                <h2 class="mt-5">Aggiungi Servizi</h2>
-                <form id="servicesForm" class="container">
-                    <div class="mb-3">
-                        <label for="serviceName" class="form-label">Nome Servizio</label>
-                        <input type="text" class="form-control" id="serviceName" placeholder="Inserisci il nome del servizio" style="width: 60%; font-size: 16px;">
-                    </div>
-                    <div class="mb-3">
-                        <label for="serviceDescription" class="form-label">Descrizione Servizio</label>
-                        <textarea class="form-control" id="serviceDescription" rows="3" placeholder="Descrivi il servizio" style="width: 90%; font-size: 16px;"></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label for="serviceImage" class="form-label">Immagine Servizio</label>
-                        <input type="file" class="form-control" id="serviceImage" style="width: 50%; font-size: 16px;">
-                    </div>
-                    <div class="mb-3">
-                        <label for="servicePrice" class="form-label">Prezzo Servizio</label>
-                        <input type="number" class="form-control" id="servicePrice" placeholder="Inserisci il prezzo del servizio" style="width: 50%; font-size: 16px;">
-                    </div>
-                    <button type="button" class="btn btn-secondary form-btn" onclick="addService()">Aggiungi Servizio</button>
-                    <ul id="servicesList" class="mt-2"></ul>
-                    <button type="submit" class="btn btn-primary form-btn mt-3">Salva Modifiche</button>
-                </form>
             </div>
             </div>
         </div>

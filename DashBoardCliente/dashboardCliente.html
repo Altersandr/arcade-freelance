@@ -16,7 +16,7 @@
 <body id="b">
     <script src="../HeaderFooter/scriptHeader.js"></script>
 
-    <div id="d">
+    <div class="container mt-4">
         <div class="card p-4 shadow-sm">
             <!-- Header con info cliente centrato -->
             <div class="d-flex align-items-center mb-3 justify-content-center">
@@ -25,8 +25,7 @@
                     <p class="text-muted">Registrato dal: <span id="register-date">2023-05-14</span></p>
                 </div>
             </div>
-        </div>
-    </div>
+    
     <div class="dashboard-container">
             <h2 id="text">Dashboard</h2>
             
@@ -66,8 +65,7 @@
                     </tbody>
                 </table>
             </div>
-    </div>
-    <div id="recensioni">
+        </div>
             <!-- Storico delle recensioni fatte -->
             <h5>Recensioni fatte</h5>
             <ul class="list-group" id="reviews-list">
@@ -75,14 +73,15 @@
             </ul>
             <div class="mt-4 d-flex gap-2">
                 <a href="../TuttiServizi/allservices.html" class="btn btn-primary">Trova nuovi freelance</a>
+                
+                
             </div>
-    </div>
     
-    
-    <script src="dashboardCliente.js"></script>
     <script src="../HeaderFooter/footer.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="dashboardCliente.js"></script>
 </body>
 </html>

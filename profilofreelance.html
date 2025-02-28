@@ -7,40 +7,30 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="../arcade-freelance/HeaderFooter/header.css">
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/40206e0025.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../HeaderFooter/header.css" />
+    <link href="../HeaderFooter/footer.css" rel="stylesheet" />
 </head>
 <body>
-    <header class="d-flex justify-content-between align-items-center p-3">
-        <a class="header navbar-brand" href="../Homepage/homepage.html">
-            <img src="../freelance/logo.png" alt="arcade Logo" class="me-2" width="50">
-        </a>
-        
-        <div class="input-group w-25">
-            <input type="text" id="searchInput" class="form-control" placeholder="Cerca servizi o freelancer...">   
-            <button class="header-btn" id="searchButton">Cerca</button>
-        </div>
-        
-        <button class="header-btn" type="button">Profilo</button>
-        <button class="header-btn" type="button">Log Out</button>
-    </header>
-    
-  
-</body>
-<body>
+    <script src="HeaderFooter/scriptHeader.js"></script>
+
     <div class="container my-5">
         <div class="row">
             <div class="col-md-4 text-center">
                 <img src="/freelance/nome.jpeg" class="img-fluid rounded-circle mb-3" alt="Foto Profilo">
-                <h2>Claudia Alves</h2>
-                <p class="text-muted">Design & Illustration</p>
+                <h2 class="h2-freelance-name">Claudia Alves</h2>
+                <p class="text-muted services-category">Design & Illustration</p>
                 <div class="ratings mb-3">
                     <i class="fa-solid fa-star"></i>
-                    <span class="rating-text">(4.0 su 5)</span>
+                    <span class="rating-text">(<span class="freelance-overall-rating">0</span> su 5)</span>
                 </div>
                 <div class="reviews mb-3">
-                    <p>"Claudia è fantastica! Ha creato un logo perfetto per il mio brand."</p>
-                    <p>"Servizio eccellente e tempi di consegna rapidi."</p>
+                    <p class="review-para-1">"Claudia è fantastica! Ha creato un logo perfetto per il mio brand."</p>
+                    <p class="review-para-2">"Servizio eccellente e tempi di consegna rapidi."</p>
+                    <p class="review-para-3">"Servizio eccellente e tempi di consegna rapidi."</p>
+                    
                 </div>
                 <a href="modificaprofilo.html" class="btn btn-primary">Modifica Profilo</a>
             </div>
@@ -67,88 +57,21 @@
                 <div class="box">
                     <h3>Dati Personali</h3>
                     <ul>
-                        <li>Email: claudiaalves@email.com</li>
-                        <li>Telefono: +39 123 456 7890</li>
-                        <li>Località: Berlino, Germania</li>
+                        <li>Email: <span class="personal-email"></span></li>
+                        <li>Telefono: <span class="personal-phone">+39 123 456 7890</span></li>
+                        <li>Località: <span class="personal-location">Berlino, Germania</span> </li>
                     </ul>
                 </div>
                 
                 <div class="box">
-                    <h3>Prezzi</h3>
-                    <p>Tariffe per i diversi servizi offerti.</p>
-                    <a href="prezzi.html" class="btn btn-primary">Modifica Prezzi</a>
+                    <h3>Opzioni</h3>
+                    <a href="richieste.html" class="btn btn-primary">Dashboard</a>
+                    <a href="freelance.html" class="btn btn-primary">Ritorna alla pagina principale</a>
                 </div>
             </div>
         </div>
     </div>
-    <footer class="text-light pt-4">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3">
-                    <h5>Per i Freelance</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="text-light">Trova Lavoro</a></li>
-                        <li><a href="#" class="text-light">Registrati</a></li>
-                        <li><a href="#" class="text-light">Consigli utili</a></li>
-                        
-                    </ul>
-                </div>
-                <div class="col-md-3">
-                    <h5>Per i Clienti</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="text-light">Assumi un Professionista</a></li>
-                        <li><a href="#" class="text-light">Come Funziona</a></li>
-                        <li><a href="#" class="text-light">Tutti i servizi</a></li>
-                        <li><a href="#" class="text-light">Recensioni clienti</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-3">
-                    <h5>Categorie</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="text-light">Sviluppo Web</a></li>
-                        <li><a href="#" class="text-light">Grafica e Design</a></li>
-                        <li><a href="#" class="text-light">Marketing</a></li>
-                        <li><a href="#" class="text-light">Scrittura e traduzione</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-3">
-                    <h5>Assistenza</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="text-light">Centro Assistenza</a></li>
-                        <li><a href="../Contatti/contatti.html" class="text-light">Contattaci</a></li>
-                        <li><a href="../Faq/faq.html" class="text-light">FAQ</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="d-flex justify-content-between align-items-center py-3 border-top mt-3">
-                <img src="../freelance/logo.png" alt="Logo Azienda" style="width: 100px;">
-                <p class="mb-0">&copy; 2025 Tutti i diritti riservati. Capitale Sociale: €1.000.000</p>
-                
-                <div class="social-icons">
-                    <img
-                      src="../img/x.png"
-                      alt="x"
-                      width="36px"
-                      height="36px"
-                    /><img
-                      src="../img/fb.webp"
-                      alt="fb"
-                      width="36px"
-                      height="36px"
-                    /><img
-                      src="../img/yt.webp"
-                      alt="yt"
-                      width="36px"
-                      height="36px"
-                    />
-                  </div>
-            </div>
-        </div>
-    </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../arcade-freelance/HeaderFooter/scriptHeader.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="footer.js"></script>
+    <script src="HeaderFooter/footer.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
 </body>
