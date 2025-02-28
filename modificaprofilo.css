@@ -7,7 +7,7 @@ header {
     background-color: #ced4da;
 }
 
-.header-btn {
+/*.header-btn {
     background-color: #3C3744 !important;
     border: 1px solid #ced4da;
     color: #FBFFF1 !important;
@@ -21,7 +21,7 @@ header {
     color: #FBFFF1;
     border-color: #ced4da;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
+}*/
 
 .btn {
     background-color: #3C3744;
@@ -106,4 +106,12 @@ a:hover {
 footer {
     margin-top: auto;
     background-color: #3C3744;
+}
+.profile-container {
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    max-width: 600px;
+    margin: auto;
 }
