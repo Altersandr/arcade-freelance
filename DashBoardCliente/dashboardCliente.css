@@ -48,3 +48,28 @@ th {
 #b{
     background-color: #B4C5E4;
 }
+  /* Stile per rendere cliccabile la dicitura e sottolineata al passaggio del mouse */
+  #total-orders {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+#total-orders:hover {
+    text-decoration: underline;
+}
+#d{
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin:20px ;
+    margin-right: 20%;
+    margin-left: 20%;
+    text-align: left;
+}
+#recensioni{
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin:20px ;
+    text-align: left;
+}
