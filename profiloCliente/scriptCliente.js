@@ -11,9 +11,9 @@ document.addEventListener('DOMContentLoaded', async function () {
         const response = await fetch('http://localhost:8080/utenti/getAuthenticatedUser', {
             method: 'GET',
             headers: {
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json'
-            }
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`  
+            },
         });
 
         if (!response.ok) {
