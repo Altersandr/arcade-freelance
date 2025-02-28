@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Cliente</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="imieiservizi.css">
+    <link rel="stylesheet" href="../HeaderFooter/header.css" />
+    <link href="../HeaderFooter/footer.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/40206e0025.js" crossorigin="anonymous"></script>
+   
+</head>
+<body>
+    <script src="../HeaderFooter/scriptHeader.js"></script>
+    
+    <div class="container mt-4">
+        <div class="card p-4 shadow-sm">
+            <!-- Header con info cliente centrato -->
+            <div class="d-flex align-items-center mb-3 justify-content-center">
+                <div class="text-center">
+                    <h4 id="customer-name">Mario Rossi</h4>
+                    <p class="text-muted">Registrato dal: <span id="register-date">2023-05-14</span></p>
+                </div>
+            </div>
+            
+            <!-- Storico delle recensioni fatte -->
+            <h5>Recensioni fatte</h5>
+            <ul class="list-group" id="reviews-list">
+                <!-- Le recensioni fatte saranno caricate qui -->
+            </ul>
+            
+            <!-- Riepilogo attività -->
+            <div class="mt-4">
+                <h5>Riepilogo Attività</h5>
+                <p><a href="../DashBoardCliente/dashboardCliente.html" id="total-orders">Ordini effettuati:</a> 12</p>
+                <p>Totale speso: €<span id="total-spent">245.50</span></p>
+            </div>
+            
+            <!-- Azioni rapide -->
+            <div class="mt-4 d-flex gap-2">
+                <a href="../TuttiServizi/allservices.html" class="btn btn-primary">Trova nuovi freelance</a>
+                
+                
+            </div>
+        </div>
+    </div>
+    
+    <script src="../HeaderFooter/footer.js"></script>
+    <script src="scriptCliente.js"></script>
+</body>
+</html>
