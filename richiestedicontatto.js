@@ -1,236 +1,181 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const table = document.querySelector('.table tbody');
 
-    table.addEventListener('click', function(event) {
-        if (event.target.classList.contains('btn-success')) {
-            handleAccept(event.target);
-        } else if (event.target.classList.contains('btn-danger')) {
-            handleDecline(event.target);
-        }
-    });
-    $(document).ready(function() {
-        function updateChart() {
-            $.ajax({
-                url: '/api/requests/accepted',
-                method: 'GET',
-                success: function(acceptedData) {
-                    $.ajax({
-                        url: '/api/requests/pending',
-                        method: 'GET',
-                        success: function(pendingData) {
-                            var labels = acceptedData.map(function(request) {
-                                return request.nome;
-                            }).concat(pendingData.map(function(request) {
-                                return request.nome;
-                            }));
-    
-                            var acceptedValues = acceptedData.map(function(request) {
-                                return request.prezzo;
-                            });
-    
-                            var pendingValues = pendingData.map(function(request) {
-                                return request.prezzo;
-                            });
-    
-                            var ctx = document.getElementById('myChart').getContext('2d');
-                            var myChart = new Chart(ctx, {
-                                type: 'bar',
-                                data: {
-                                    labels: labels,
-                                    datasets: [{
-                                        label: 'Richieste Accettate',
-                                        data: acceptedValues,
-                                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                                        borderColor: 'rgba(75, 192, 192, 1)',
-                                        borderWidth: 1
-                                    }, {
-                                        label: 'Richieste in Sospeso',
-                                        data: pendingValues,
-                                        backgroundColor: 'rgba(255, 159, 64, 0.2)',
-                                        borderColor: 'rgba(255, 159, 64, 1)',
-                                        borderWidth: 1
-                                    }]
-                                },
-                                options: {
-                                    scales: {
-                                        y: {
-                                            beginAtZero: true
-                                        }
-                                    }
-                                }
-                            });
-                        },
-                        error: function(error) {
-                            console.error('Errore nel recupero dei dati delle richieste in sospeso:', error);
-                        }
-                    });
-                },
-                error: function(error) {
-                    console.error('Errore nel recupero dei dati delle richieste accettate:', error);
-                }
-            });
-        }
-    
-        updateChart();
-    });
-// Funzione per aggiornare un servizio con PUT
-const updateServizio = async (id) => {
-    const updatedServizio = {
-        nome: "Servizio A aggiornato",
-        descrizione: "Nuova descrizione",
-        prezzo: 150
-    };
 
-    try {
-        const response = await fetch(`http://localhost:8080/servizi/${id}`, {
-            method: 'PUT',
+const fetchRichieste = async ()=>{
+    const res =  fetch("http://localhost:8080/ordini/richieste",
+        {   method: "GET",
+            headers: getAuthHeaders()
+        }
+    )
+    const userRichieste = (await res).json()
+    console.log(await userRichieste)
+    return await userRichieste;
+}
+
+
+
+function getAuthHeaders() {
+    const token = localStorage.getItem("authToken");
+    return token ? { 'Authorization': 'Bearer ' + token } : {};
+  }
+
+  const changeStatus = async (id, action)=>{
+
+    const res =  fetch("http://localhost:8080/ordini/status",
+        {   method: "PUT",
             headers: {
                 'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(updatedServizio)
-        });
-        if (!response.ok) {
-            throw new Error('Errore nell\'aggiornamento del servizio');
+              },
+            body: JSON.stringify({
+                id: id,
+                stato: action
+
+            })
         }
-        const data = await response.json();
-        console.log('Servizio aggiornato:', data); // Stampa i dati del servizio aggiornato
-    } catch (error) {
-        console.error('Errore nell\'aggiornamento del servizio', error);
-    }
-};
-    function handleAccept(button) {
-        const row = button.closest('tr');
-        row.style.backgroundColor = 'green';
-        const name = row.querySelector('td:nth-child(2)').textContent;
-        alert(`Richiesta di ${name} accettata! Buon lavoro, torna nella dashboard ordini per caricare il progetto.`);
-        
-        
-        button.textContent = 'In Corso';
-        button.classList.remove('btn-success');
-        button.classList.add('btn-secondary');
-        button.disabled = true; 
-    }
-    document.addEventListener('DOMContentLoaded', function() {
-        const redirectButton = document.getElementById('redirectButton');
-        redirectButton.addEventListener('click', function() {
-            window.location.href = 'http://127.0.0.1:3000/profilofreelance.html'; 
-        });
-    });
-    function handleDecline(button) {
-        const row = button.closest('tr');
-        row.style.backgroundColor = 'red';
-        const name = row.querySelector('td:nth-child(2)').textContent;
-        alert(`Richiesta di ${name} declinata!`);
-        setTimeout(() => {
-            row.remove();
-        }, 1000); 
-    }
-});
+    )
+    return location.reload();
+    // const userRichieste = (await res).json()
+    // console.log(await userRichieste)
+    // return await userRichieste;
+}
 
-var ctx = document.getElementById('myChart').getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'bar', // Cambia il tipo di grafico a seconda delle tue necessità
-    data: {
-        labels: ['Mario', 'Francesco', 'Alessandro', 'Daniele'], // Sostituisci con i dati reali
-        datasets: [{
-            label: 'Richieste di Contatto',
-            data: [5, 3, 8, 6], // Sostituisci con i dati reali
-            backgroundColor: [
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(54, 162, 235, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
+
+const displayRichieste = async ()=>{
+    const richieste = await fetchRichieste();
+    console.log(await richieste)
+    const table = document.querySelector(".table-body");
+    table.innerHTML = "";
+
+    const ctx = document.getElementById('myChart');
+    const ctx2 = document.getElementById('myOtherChart');
+
+    let totalRichieste = 0;
+    let rifiutate = 0;
+    let accettate = 0;
+
+    let settembre = 0;
+    let ottobre = 0;
+    let novembre = 0;
+    let dicembre = 0;
+    let gennaio = 0;
+    let febbraio = 0;
+    let marzo = 0;
+
+
+
+
+    const ric = await richieste.map((r)=>{
+
+        const parsedPrice = parseFloat(r.prezzo)
+        totalRichieste++;
+
+        if(r.stato =="accettato") accettate++;
+        if(r.stato =="rifiutato") rifiutate++;
+
+
+        // console.log(r.data.charAt(0))
+        if(r.stato == "accettato"){
+            switch(parseInt(r.data.charAt(0))){
+                case 9:
+                    settembre+=parsedPrice;
+                    break;
+                case 10:
+                    ottobre+=parsedPrice;
+                    break;
+                case 11: 
+                    novembre += parsedPrice;
+                    break;
+                case 12:
+                    dicembre +=parsedPrice;
+                    break;
+                case 1:
+                    gennaio+=parsedPrice;
+                    break;
+                case 2:
+                    febbraio+=parsedPrice;
+                    break;
+                case 3:
+                    marzo+=parsedPrice;
+                    break;
             }
+
         }
-    }
-});
-$(document).ready(function() {
-    function updateChart() {
-        $.ajax({
-            url: '/api/requests/accepted',
-            method: 'GET',
-            success: function(acceptedData) {
-                $.ajax({
-                    url: '/api/requests/pending',
-                    method: 'GET',
-                    success: function(pendingData) {
-                        
-                        var labels = acceptedData.map(function(request) {
-                            return request.nome;
-                        }).concat(pendingData.map(function(request) {
-                            return request.nome;
-                        }));
+        
 
-                        var acceptedValues = acceptedData.map(function(request) {
-                            return request.prezzo;
-                        });
+        const actionAccept = {
+            id: r.id,
+            stato: "accettato"
+        }
 
-                        var pendingValues = pendingData.map(function(request) {
-                            return request.prezzo;
-                        });
+        const actionDeclined = {
+            id: r.id,
+            stato: "rifiutato"
+        }
 
-                       
-                        var ctx = document.getElementById('myChart').getContext('2d');
+        return `
+            <tr>
+                    <th scope="row">1</th>
+                    <td>${r.nome_utente}</td>
+                    <td>${r.titolo_servizio}</td>
+                    <td>${r.email_utente}</td>
+                    <td>${r.prezzo} euro</td>
+                    <td>${r.stato}</td>
+                    <td>${r.data}</td>
+                     <td>
+                     ${r.stato!="in corso"? r.stato: `<button class="btn btn-success" onclick="changeStatus(${actionAccept.id}, '${actionAccept.stato}')">Accetta</button>
+                      <button class="btn btn-danger" onclick="changeStatus(${actionDeclined.id}, '${actionDeclined.stato}')">Declina</button>`}
+                      
+                    </td>
+                  </tr> 
+        `
+    }).join(" ")
 
-                        
-                        var myChart = new Chart(ctx, {
-                            type: 'bar',
-                            data: {
-                                labels: labels,
-                                datasets: [{
-                                    label: 'Richieste Accettate',
-                                    data: acceptedValues,
-                                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                                    borderColor: 'rgba(75, 192, 192, 1)',
-                                    borderWidth: 1
-                                }, {
-                                    label: 'Richieste in Sospeso',
-                                    data: pendingValues,
-                                    backgroundColor: 'rgba(255, 159, 64, 0.2)',
-                                    borderColor: 'rgba(255, 159, 64, 1)',
-                                    borderWidth: 1
-                                }]
-                            },
-                            options: {
-                                scales: {
-                                    y: {
-                                        beginAtZero: true
-                                    }
-                                }
-                            }
-                        });
+    new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: [
+                  'Richieste Rifiutate',
+                  'Richieste Accettate',
+                  'Totale Richieste'
+                  ],
+                  datasets: [{
+                  label: 'Richieste',
+                  data: [rifiutate, accettate, totalRichieste],
+                  backgroundColor: [
+                  'rgb(255, 99, 132)',
+                  'rgb(54, 162, 235)',
+                  'rgb(255, 205, 86)'
+                  ],
+                  hoverOffset: 4
+                  }]
+                  }
+      });
 
-                     
-                        if (myChart) {
-                            myChart.update();  
-                        }
+      new Chart(ctx2, {
+        type: 'line', 
+        data: {
+            labels:   [
+                'Settembre',
+                'Ottobre',
+                'Novembre',
+                'Dicembre',
+                'Gennaio',
+                'Febbraio',
+                'Marzo',
+              ],
+            datasets: [{
+                label: 'Guadagno Mensile',
+                data: [settembre, ottobre, novembre, dicembre, gennaio, febbraio, marzo],
+                fill: false,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1
+              }]
+        }
+      })
+      
 
-                    },
-                    error: function(error) {
-                        console.error('Errore nel recupero dei dati delle richieste in sospeso:', error);
-                    }
-                });
-            },
-            error: function(error) {
-                console.error('Errore nel recupero dei dati delle richieste accettate:', error);
-            }
-        });
-    }
+    table.innerHTML = ric;
 
-    // Esegui il primo aggiornamento del grafico
-    updateChart();
-});
+}
+
+
+displayRichieste();

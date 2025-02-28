@@ -16,14 +16,14 @@ const fetchFiltered = ()=>{
                 break;
             case 1:
                 priceMin = 0;
-                priceMax = 50;
+                priceMax = 150;
                 break;
             case 2:
-                priceMin = 50;
-                priceMax = 100;
+                priceMin = 151;
+                priceMax = 300;
                 break;
             case 3:
-                priceMin = 100
+                priceMin = 301
                 priceMax = Infinity;
                 break
         default:
@@ -94,16 +94,23 @@ const fetchFiltered = ()=>{
                 }
             )
             })
+
+                    console.log(priceMin)
+                    console.log(priceMax)
                     const filteredByPrice = serviceArray.filter((data)=> parseFloat(data.prezzo)>=priceMin && parseFloat(data.prezzo)<=priceMax);
                     const filteredByScore = filteredByPrice.filter((data)=>getAverageRating(data.recensioni)>=score);
                     const filteredByCategory = filteredByScore.filter((data)=> category==null || data.categoria == category);
+
+                    console.log(filteredByPrice)
+                    console.log(filteredByScore)
+                    console.log(filteredByCategory)
                     
                     const cards = filteredByCategory.map(service=>{
 
                     return `
                     <div class="col-lg-4 mb-4">
                       <div class="card">
-                        <img src="${service.img ? service.img: "https://placehold.co/600x450"}" alt="" class="card-img-top">
+                        <img src="${getCategoryImg(service.categoria)}" alt="" class="card-img-top">
                         <div class="card-body">
                             <div class="freelancer-name-container">
                                 <i class="fa-regular fa-user fa-lg" style="color: #3D52D5;"></i>
@@ -158,7 +165,7 @@ function getFilters (){
         recensione: null,
         categoria: null
     };
-    document.querySelectorAll(".dropdown-item").forEach((e=>arr.push(e.classList.contains("active")? e.getAttribute("data-value"):null)))
+    document.querySelectorAll(".filter-parameter").forEach((e=>arr.push(e.classList.contains("active")? e.getAttribute("data-value"):null)))
 
     for (let index = 0; index < arr.length; index++) {
         if(index <=2 && arr[index]!=null) filters.budget = arr[index] 
@@ -189,7 +196,7 @@ const fetchAllServices = ()=>{
                 return `
                 <div class="col-lg-4 mb-4">
                   <div class="card">
-                    <img src="${s.img ? s.img: "https://placehold.co/600x450"}" alt="" class="card-img-top">
+                    <img src="${getCategoryImg(s.categoria)}" alt="" class="card-img-top">
                     <div class="card-body">
                         <div class="freelancer-name-container">
                             <i class="fa-regular fa-user fa-lg" style="color: #3D52D5;"></i>
@@ -232,6 +239,13 @@ const getAverageRating = (array)=>{
     let average = 0;
     array.forEach((e)=>average+=parseInt(e.voto))
     return array.length==0 ? 0 : average/array.length;
+}
+
+const getCategoryImg = (category)=>{
+    if(category == "Sviluppo Web") return "../img/web-dev.jpg"
+    if(category == "Grafica & Design") return "../img/graphic_design.jpg"
+    if(category == "Marketing Digitale") return "../img/digital-marketing.jpg"
+    if(category == "Scrittura & Traduzione") return "../img/traduzione.jpg"
 }
 
 
