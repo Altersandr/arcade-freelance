@@ -31,21 +31,32 @@ document.write(`
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileMenu">
             <li><a class="dropdown-item" href="../freelance.html">Dashboard</a></li>
             <li><a class="dropdown-item" href="../imieiServizi.html">I miei servizi</a></li>
-            <li><a class="dropdown-item" href="../modificaProfilo.html">Modifica profilo</a></li>
+            <li><a class="dropdown-item" href="../profilofreelance.html">Profilo</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item text-danger" href="#" id="logoutLink">Logout</a></li>
+            <li><button class="btn text-white" id="logoutButton">Logout</button></li>
+        </ul>
+    </div>
+    <div class="dropdown" id="clientDropdown" style="display: none;">
+        <button class="btn text-white dropdown-toggle" type="button" id="clientMenu" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-user-circle fa-lg"></i> <!-- Icona profilo -->
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="clientMenu">
+            <li><a class="dropdown-item" href="../dashboardCliente.html">Dashboard</a></li>
+            <li><a class="dropdown-item" href="../carrello.html">Carrello</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><button class="btn text-white" id="logoutButton">Logout</button></li>
         </ul>
     </div>
 
          <button class="btn text-white" id="btnFreelance" type="button">Sono un Freelancer</button>
 
-        <button class="btn text-white" id="btnProfilo" style="display: none;"  onclick="window.location.href='../profilofreelance.html'">Profilo</button>
+        
 
         <!-- Login Button -->
         <button class="btn text-white" id="loginBtn" type="button">Accedi</button>
 
         <!-- Logout Button (nascosto di default) -->
-        <button class="btn text-white" id="logoutButton" style="display: none;">Logout</button>
+        
 
         </header>
 
@@ -192,16 +203,29 @@ const login = (email, password) => {
     .then(data => {
         console.log('Login effettuato:', data);
         printOutput(data);
+
         // Salva il token nel localStorage
         if (data.token) {
             localStorage.setItem("authToken", data.token);
-            // Nasconde il pulsante Accedi e mostra il pulsante Logout
-            document.getElementById("logoutButton").style.display = "block";
-            document.getElementById("loginBtn").style.display = "none";
-            document.getElementById("btnProfilo").style.display = "block";
-            document.getElementById("btnFreelance").style.display = "none";
-            document.getElementById("profileDropdown").style.display = "block";
-            
+
+            // Controlla il ruolo dell'utente e aggiorna l'header
+            const userRole = data.role; // Supponiamo che il backend restituisca il ruolo come 'freelancer' o 'cliente'
+
+            if (userRole === "freelancer") {
+                // Nasconde il pulsante Accedi, mostra il pulsante Profilo e Freelancer
+                document.getElementById("loginBtn").style.display = "none";
+                document.getElementById("btnFreelance").style.display = "none";
+                document.getElementById("profileDropdown").style.display = "block"; // Mostra il dropdown per il freelancer
+            } else if (userRole === "cliente") {
+                // Nasconde il pulsante Accedi, mostra il pulsante Carrello e Logout
+                document.getElementById("loginBtn").style.display = "none";
+                document.getElementById("btnFreelance").style.display = "none";
+                document.getElementById("profileDropdown").style.display = "none"; // Nasconde il dropdown del freelancer
+
+                // Mostra il menu per il cliente con Dashboard e Carrello
+                const clientDropdown = document.getElementById("clientDropdown");
+                clientDropdown.style.display = "block"; // Mostra il dropdown del cliente
+            }
 
             // Chiude il modal di login
             const modal = document.getElementById('loginModal');
@@ -210,8 +234,12 @@ const login = (email, password) => {
                 modalInstance.hide();
             }
 
-            // Reindirizza automaticamente alla pagina freelance.html dopo il login
-            window.location.href = "../freelance.html";  // Aggiungi questo codice
+            // Reindirizza automaticamente alla pagina corretta in base al ruolo
+            if (userRole === "freelancer") {
+                window.location.href = "../freelance.html"; // Per il freelancer
+            } else if (userRole === "cliente") {
+                window.location.href = "../dashboardCliente.html"; // Per il cliente
+            }
         }
     })
     .catch(error => {
@@ -230,21 +258,20 @@ document.addEventListener("DOMContentLoaded", () => {
     if (authToken) {
         // Se l'utente è autenticato, mostra il pulsante profilo e nasconde freelance
         if (freelanceButton) freelanceButton.style.display = "none";
-        if (profileButton) profileButton.style.display = "block";
+        
         if (profileDropdown) profileDropdown.style.display = "block";
     } else {
         // Se non è autenticato, mostra freelance e nasconde profilo
         if (freelanceButton) freelanceButton.style.display = "block";
-        if (profileButton) profileButton.style.display = "none";
+        
         if (profileDropdown) profileDropdown.style.display = "none";
     }
 });
 
 
 
-// Funzione per il logout
+// Gestione del logout
 function logout() {
-    // Recupera il token dal localStorage
     const token = localStorage.getItem("authToken");
     if (!token) {
         console.error("Nessun token trovato nel localStorage");
@@ -267,14 +294,15 @@ function logout() {
     .then(data => {
         console.log('Logout effettuato:', data);
         printOutput(data);
+
         // Rimuove il token dal localStorage
         localStorage.removeItem("authToken");
+
         // Nasconde il pulsante Logout e mostra il pulsante Accedi
         document.getElementById("logoutButton").style.display = "none";
         document.getElementById("loginBtn").style.display = "block";
-        document.getElementById("btnProfilo").style.display = "none";
-        document.getElementById("btnFreelance").style.display = "block";
-        
+        document.getElementById("profileDropdown").style.display = "none";
+        document.getElementById("clientDropdown").style.display = "none";
     })
     .catch(error => {
         console.error('Errore durante il logout:', error);
