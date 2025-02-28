@@ -24,10 +24,6 @@
     font-weight: 600;
 }
 
-.review-number{
-    color: gray;
-}
-
 .stars{
     display: flex;
     gap: 0.325em;
