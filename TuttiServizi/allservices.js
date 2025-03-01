@@ -1,9 +1,19 @@
-const fetchFiltered = ()=>{
+function getQueryParam(param) {
+    const params = new URLSearchParams(window.location.search); 
+    return params.get(param);
+}
 
+
+
+const fetchFiltered = ()=>{
+    const cat = getQueryParam('cat');
+    
     const filters = getFilters();
     const budgetId = filters.budget ? filters.budget : 0;
     const minReviewScore = filters.recensione ? filters.recensione : 0;
-    const categoria = filters.categoria ? filters.categoria : 0;
+    const categoria = filters.categoria ? filters.categoria : cat;
+    console.log(categoria)
+    
     let priceMin = 0, priceMax = 0;
     let score;
     let category;
@@ -68,7 +78,7 @@ const fetchFiltered = ()=>{
             break;
     }
 
-
+console.log(category)
         let serviceArray = [];
         fetch('http://localhost:8080/utenti',{
             method: 'GET',
@@ -95,15 +105,15 @@ const fetchFiltered = ()=>{
             )
             })
 
-                    console.log(priceMin)
-                    console.log(priceMax)
+                    // console.log(priceMin)
+                    // console.log(priceMax)
                     const filteredByPrice = serviceArray.filter((data)=> parseFloat(data.prezzo)>=priceMin && parseFloat(data.prezzo)<=priceMax);
                     const filteredByScore = filteredByPrice.filter((data)=>getAverageRating(data.recensioni)>=score);
                     const filteredByCategory = filteredByScore.filter((data)=> category==null || data.categoria == category);
 
-                    console.log(filteredByPrice)
-                    console.log(filteredByScore)
-                    console.log(filteredByCategory)
+                    // console.log(filteredByPrice)
+                    // console.log(filteredByScore)
+                    // console.log(filteredByCategory)
                     
                     const cards = filteredByCategory.map(service=>{
 
@@ -250,10 +260,14 @@ const getCategoryImg = (category)=>{
 
 
 
-fetchAllServices();
+document.addEventListener("DOMContentLoaded", fetchFiltered);
 
 
 
 document.querySelector(".btn-filter").addEventListener("click", (e)=>{
     e.preventDefault();
     fetchFiltered()})
+
+document.querySelector(".btn-reset").addEventListener("click",(e)=>{
+    e.preventDefault()
+    window.location.href = "allservices.html"})

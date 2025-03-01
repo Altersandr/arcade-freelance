@@ -199,6 +199,8 @@ function getQueryParam(param) {
 }
 
 
+let pageService;
+
 const getService = ()=>{
 
 
@@ -209,13 +211,14 @@ const getService = ()=>{
     fetch(url)
     .then(response => response.json())
     .then(service => {
+      pageService = service;
 
       fetch(`http://localhost:8080/utenti/${utenteId}`)
       .then(response => response.json())
       .then(utente => {
 
-        console.log(utente)
-        console.log(service)
+        // console.log(utente)
+        // console.log(service)
         
         const serviceTitle = document.querySelector(".service-title");
         const personPicture = document.querySelectorAll(".about-img"); // 2 ELEMENTS
@@ -240,7 +243,7 @@ const getService = ()=>{
         serviceDescription.textContent = service.descrizione;
         priceNumber.textContent = service.prezzo;
 
-        console.log(utente);
+        // console.log(utente);
         // console.log(serviceId)
         getReviews(serviceId);
         getReviewAuthors(serviceId);
@@ -319,7 +322,6 @@ const fetchSimilar = (category, serviceId)=>{
           }
           ).join("")
           })
-          // console.log(document.querySelector(".others-suggestions"))
       const otherContainer = document.querySelector(".others-suggestions");
       const suggestions = otherContainer.querySelector(".row");
       suggestions.innerHTML = cards;
@@ -329,55 +331,6 @@ const fetchSimilar = (category, serviceId)=>{
 
 }
 
-
-
-
-
-// const getSimilar = (category)=>{
-//         const xhr = new XMLHttpRequest();
-        
-//         xhr.open("GET", "localhost/" + category, true); // change to our api
-//         xhr.onload = function(){
-//             const parsedData = JSON.parse(xhr.response).data;
-        
-//             const cards = parsedData.map(service=>{
-//                 const voto = service.voto;
-//                 return `
-//                 <div class="col-lg-4 mb-4">
-//                   <div class="card">
-//                     <img src="${service.img}" alt="" class="card-img-top">
-//                     <div class="card-body">
-//                         <div class="freelancer-name-container">
-//                             <i class="fa-regular fa-user fa-lg" style="color: #3D52D5;"></i>
-//                             <h5 class="card-title">${service.person_name} </h5>
-//                         </div>
-//                         <div class="description-container">
-//                             <p class="card-text">${service.description}</p>
-//                         </div>
-//                         <div class="rating-container">
-//                             <div class="stars">
-//                                 <i class="fa-solid fa-star"></i>
-//                                 <p class="number-rating">${votoAverageDellaPersona}</p> // DA MODIFICARE
-//                                 <p class="review-number">(${quantitaRecensioni})</p> // DA MODIFICARE
-        
-//                             </div>
-//                         </div>
-        
-        
-//                      <a href="http://127.0.0.1:5500/pages/service.html?id=${service.id}" class="btn btn-outline-success btn-sm">Dettagli</a>
-//                     </div>
-//                    </div>
-//                   </div>
-        
-//                 `
-//             }
-//             ).join("")
-        
-//             document.querySelector(".row").innerHTML = cards;
-//         };
-//         xhr.send();
-        
-// }
         
 
 const getAverageRating = (array)=>{
@@ -387,6 +340,146 @@ const getAverageRating = (array)=>{
 }
 
 
+const fetchAuthUser = async ()=>{
+  const token = localStorage.getItem("authToken");
 
-// console.log(document.querySelector(".box1").firstElementChild.src)
+  const res = fetch("http://localhost:8080/api/profile",
+      {   method: "POST",
+          headers: {
+              'Content-Type': 'application/json'
+            },
+          body: JSON.stringify(token)
+          
+      }
+  )
+  const authUser = (await res).json();
+
+  // console.log(await authUser)
+  return await authUser;
+}
+
+const fetchUserDetails = async ()=>{
+  const authUser = await fetchAuthUser();
+
+  // console.log(authUser)
+  const res =  fetch("http://localhost:8080/utenti/getlogged",
+      {   method: "POST",
+          headers: {
+              'Content-Type': 'application/json'
+            },
+          body: JSON.stringify(authUser.email)
+          
+      }
+  )
+  const userDetails = (await res).json()
+  return await userDetails;
+}
+
+// const userd = fetchUserDetails();
+
+const utenteId = getQueryParam('u_id');
+const serviceId = getQueryParam('s_id');
+
+fetch(`http://localhost:8080/utenti/${utenteId}`,
+  {   method: "GET",
+      headers: {
+          'Content-Type': 'application/json'
+        }
+      
+  }
+).then(res=>res.json())
+.then(user=>user.servizi.forEach(serv=>serv.ordini.forEach(ord=> 
+  fetch("http://localhost:8080/utenti/getlogged",
+    {   method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+          },
+        body: JSON.stringify(ord.email_utente)
+        
+    }).then(res=>res.json())
+    .then(cliente=>{
+      console.log(ord)
+      console.log(cliente)
+      if(ord.email_utente == localStorage.getItem("authEmail") && ord.stato == "accettato" && serv.id == serviceId){
+        document.querySelector(".comment-text-area").classList.toggle("hidden");
+        
+
+      }
+    })
+)))
+
+
+
+const stars = document.querySelectorAll('.star');
+const ratingText = document.getElementById('rating-text');
+
+
+let currentRating = 0;
+
+function updateStars(selectedIndex) {
+    stars.forEach((star, index) => {
+        if (index < selectedIndex) {
+            star.classList.add('selected');
+        } else {
+            star.classList.remove('selected');
+        }
+    });
+
+}
+
+
+stars.forEach(star => {
+    star.addEventListener('click', function() {
+        const index = parseInt(star.getAttribute('data-index'));
+        currentRating = index; // Update the rating to the clicked star
+        updateStars(currentRating);
+    });
+});
+
+
+stars.forEach(star => {
+    star.addEventListener('mouseover', function() {
+        const index = parseInt(star.getAttribute('data-index'));
+        stars.forEach((s, i) => {
+            if (i < index) {
+                s.classList.add('selected');
+            } else {
+                s.classList.remove('selected');
+            }
+        });
+    });
+
+    star.addEventListener('mouseout', function() {
+
+        updateStars(currentRating);
+    });
+});
+
+
+let loggedUtente = fetchUserDetails();
+const addReview = async ()=>{
+  const review = {
+    commento: document.querySelector("#textAreaExample").value,
+    voto: document.querySelectorAll(".selected").length,
+    servizio: pageService,
+    utente: await loggedUtente,
+    titolo: pageService.nome
+    
+  }
+
+  fetch("http://localhost:8080/recensioni",{
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(review)
+  }).then(res=>res.json())
+  .then(review=>
+    location.reload()
+  )
+
+ 
+}
+
+document.querySelector(".send-review").addEventListener("click", addReview);
 

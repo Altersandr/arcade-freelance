@@ -207,6 +207,7 @@ const login = (email, password) => {
         // Salva il token nel localStorage
         if (data.token) {
             localStorage.setItem("authToken", data.token);
+            localStorage.setItem("authEmail", data.email)
 
             // Controlla il ruolo dell'utente e aggiorna l'header
             const userRole = data.role; // Supponiamo che il backend restituisca il ruolo come 'freelancer' o 'cliente'

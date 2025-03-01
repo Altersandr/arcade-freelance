@@ -244,3 +244,42 @@ ul{
     background-color: #3C3744 !important; /* Colore di sfondo al passaggio del mouse */
     border-color: #ced4da !important;
   }
+.rating{
+    display: flex;
+    gap: .5em;
+}
+
+ul{
+    padding: 0 !important;
+}
+
+.btn-danger{
+    border-radius: 20px !important;
+}
+
+.hidden{
+    display: none !important; 
+}
+
+.star-rating {
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.star {
+    color: #d3d3d3;
+}
+
+.star.selected {
+    color: #ffc107;
+}
+
+.star:hover {
+    color: #ffcc00;
+}
+
+.mt-5{
+    margin-top: 0 !important;
+}
+
+
