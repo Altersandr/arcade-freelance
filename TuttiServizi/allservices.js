@@ -159,7 +159,7 @@ console.log(category)
 
 // CHANGES THE ACTIVE FIELD OF THE FILTER
 const changeActive = ()=>{
-    document.querySelectorAll(".dropdown-item").forEach((element)=>element.addEventListener("click", (e)=>{
+    document.querySelectorAll(".filter-parameter").forEach((element)=>element.addEventListener("click", (e)=>{
         e.preventDefault();
         const actives = element.parentElement.parentElement.querySelectorAll(".active");
         actives ? actives.forEach((elem)=>elem.classList.remove("active")): null;

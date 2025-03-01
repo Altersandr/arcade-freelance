@@ -1,20 +1,39 @@
- // Simulazione dati recensioni fatte
- const reviews = [
-    { freelancer: "Luca Bianchi", date: "2024-01-10", rating: 5, text: "Ottimo servizio, sicuramente tornerò!" },
-    { freelancer: "Giulia Verdi", date: "2024-02-15", rating: 4, text: "Lavoro buono, ma con qualche ritardo." },
-    { freelancer: "Marco Neri", date: "2024-02-20", rating: 5, text: "Servizio impeccabile!" }
-];
+const fetchProfile = ()=>{
+    const token = localStorage.getItem("authToken");
+    // console.log(token)
 
-function loadReviews() {
-    const reviewsList = document.getElementById("reviews-list");
-    reviews.forEach(review => {
-        const li = document.createElement("li");
-        li.className = "list-group-item";
-        li.innerHTML = `<strong>${review.freelancer}</strong> - ${review.date} <br>
-                        <span class="text-warning">${'★'.repeat(review.rating)}${'☆'.repeat(5 - review.rating)}</span><br>
-                        <small>${review.text}</small>`;
-        reviewsList.appendChild(li);
-    });
+    fetch("http://localhost:8080/api/profile",
+        {   method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+              },
+            body: JSON.stringify(token)
+            
+        }
+    )
+    .then(response=> response.json())
+    .then(authProfile=>{
+        fetch("http://localhost:8080/utenti/getlogged",
+            {   method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                  },
+                body: JSON.stringify(authProfile.email)
+                
+            }
+        ).then(response=> response.json())
+        .then(profile=>{
+            updateProfileDom(profile)
+        })
+
+    })
 }
 
-document.addEventListener("DOMContentLoaded", loadReviews);
+const updateProfileDom = (profile)=>{
+    document.querySelector(".personal-email").textContent = profile.email;
+    document.querySelector(".personal-name").textContent = profile.nome;
+    document.querySelector(".personal-surname").textContent = profile.cognome;
+    document.querySelector(".modifica-profilo").setAttribute("href", `modificaprofiloCliente.html?id=${profile.id}`)
+}
+
+fetchProfile()

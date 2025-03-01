@@ -30,8 +30,8 @@ th {
     font-weight: bold;
     margin-top: 15px;
 }
-.checkout-btn {
-    background: #3D52D5;
+.checkout-btn{
+    background: #3D52D5 ;
     color: white;
     border: none;
     padding: 10px 15px;
@@ -42,8 +42,18 @@ th {
 .checkout-btn:hover {
     background: #090C9B;
 }
+
+
 h2 {
     background: #090C9B;
     color: white;
     border-radius: 20px;
+}
+
+.clear-btn{
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
 }

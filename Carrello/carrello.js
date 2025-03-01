@@ -88,13 +88,13 @@ const addOrdine = async (service)=>{
 
 }
 
-// const d = new Date();
-// let text = d.toLocaleDateString();
+const removeOrdine = ()=>{
+    localStorage.removeItem("service")
+    location.reload()
+}
 
-// console.log(text)
 
+document.querySelector(".clear-btn").addEventListener("click", removeOrdine)
 
-// const authUser = fetchAuthUser();
-// const userDetails = fetchUserProfile();
 
 getCartItem();

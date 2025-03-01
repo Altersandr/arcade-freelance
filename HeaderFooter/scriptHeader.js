@@ -33,7 +33,7 @@ document.write(`
             <li><a class="dropdown-item" href="../imieiServizi.html">I miei servizi</a></li>
             <li><a class="dropdown-item" href="../profilofreelance.html">Profilo</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><button class="btn text-white" id="logoutButton">Logout</button></li>
+            <li><button class="btn text-white logout-button" id="logoutButtonFreelancer">Logout</button></li>
         </ul>
     </div>
     <div class="dropdown" id="clientDropdown" style="display: none;">
@@ -41,10 +41,11 @@ document.write(`
             <i class="fas fa-user-circle fa-lg"></i> <!-- Icona profilo -->
         </button>
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="clientMenu">
-            <li><a class="dropdown-item" href="../dashboardCliente.html">Dashboard</a></li>
-            <li><a class="dropdown-item" href="../carrello.html">Carrello</a></li>
+            <li><a class="dropdown-item" href="../DashBoardCliente/dashboardCliente.html">Dashboard</a></li>
+            <li><a class="dropdown-item" href="../profiloCliente/cliente.html">Profilo</a></li>
+            <li><a class="dropdown-item" href="../Carrello/carrello.html">Carrello</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><button class="btn text-white" id="logoutButton">Logout</button></li>
+            <li><button class="btn text-white logout-button" id="logoutButtonCliente">Logout</button></li>
         </ul>
     </div>
 
@@ -53,7 +54,7 @@ document.write(`
         
 
         <!-- Login Button -->
-        <button class="btn text-white" id="loginBtn" type="button">Accedi</button>
+        <button class="btn text-white" id="loginBtn" type="button" >Accedi</button>
 
         <!-- Logout Button (nascosto di default) -->
         
@@ -91,16 +92,15 @@ document.write(`
                         </div>
                         <div class="mb-3">
                             <label for="freelancer-phone" class="form-label">Numero di Telefono</label>
-                            <input type="tel" class="form-control" id="freelancer-phone" required>
+                            <input type="tel" class="form-control" id="freelancer-phone">
                         </div>
                         <div class="mb-3">
                             <label for="freelancer-iva" class="form-label">Partita IVA</label>
-                            <input type="text" class="form-control" id="freelancer-iva" required>
+                            <input type="text" class="form-control" id="freelancer-iva">
                         </div>
                         <div class="mb-3">
                             <label for="tipoAttivita" class="form-label">Tipo di Attività</label>
                             <select id="tipoAttivita" class="form-select" required>
-                                <option value="Consulente">Consulente</option>
                                 <option value="Sviluppatore">Sviluppatore</option>
                                 <option value="Designer">Designer</option>
                                 <option value="Copywriter">Copywriter</option>
@@ -110,7 +110,7 @@ document.write(`
                         </div>
                         <button type="submit" class="btn btn-primary w-100">Registrati come Freelancer</button>
                     </form>
-                    <p class="mt-3 text-center">Oppure, se sei già registrato, <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-dismiss="modal">Accedi</a></p>
+                    <p class="mt-3 text-center">Oppure, se sei già registrato, <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-dismiss="modal" id="openAccediModal">Accedi</a></p>
                 </div>
             </div>
         </div>
@@ -179,7 +179,6 @@ document.write(`
     </div>
 </div>
 `);
-
 //gestione login
 function printOutput(data) {
     console.log(JSON.stringify(data, null, 2));
@@ -194,236 +193,175 @@ const login = (email, password) => {
         },
         body: JSON.stringify({ email, password })
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Login fallito');
-        }
-        return response.json();
-    })
+    .then(response => response.json())
     .then(data => {
-        console.log('Login effettuato:', data);
-        printOutput(data);
-
-        // Salva il token nel localStorage
-        if (data.token) {
-            localStorage.setItem("authToken", data.token);
-            localStorage.setItem("authEmail", data.email)
-
-            // Controlla il ruolo dell'utente e aggiorna l'header
-            const userRole = data.role; // Supponiamo che il backend restituisca il ruolo come 'freelancer' o 'cliente'
-
-            if (userRole === "freelancer") {
-                // Nasconde il pulsante Accedi, mostra il pulsante Profilo e Freelancer
-                document.getElementById("loginBtn").style.display = "none";
-                document.getElementById("btnFreelance").style.display = "none";
-                document.getElementById("profileDropdown").style.display = "block"; // Mostra il dropdown per il freelancer
-            } else if (userRole === "cliente") {
-                // Nasconde il pulsante Accedi, mostra il pulsante Carrello e Logout
-                document.getElementById("loginBtn").style.display = "none";
-                document.getElementById("btnFreelance").style.display = "none";
-                document.getElementById("profileDropdown").style.display = "none"; // Nasconde il dropdown del freelancer
-
-                // Mostra il menu per il cliente con Dashboard e Carrello
-                const clientDropdown = document.getElementById("clientDropdown");
-                clientDropdown.style.display = "block"; // Mostra il dropdown del cliente
-            }
-
-            // Chiude il modal di login
-            const modal = document.getElementById('loginModal');
-            const modalInstance = bootstrap.Modal.getInstance(modal);
-            if (modalInstance) {
-                modalInstance.hide();
-            }
-
-            // Reindirizza automaticamente alla pagina corretta in base al ruolo
-            if (userRole === "freelancer") {
-                window.location.href = "../freelance.html"; // Per il freelancer
-            } else if (userRole === "cliente") {
-                window.location.href = "../dashboardCliente.html"; // Per il cliente
-            }
+        if (!data.token || !data.ruolo) {
+            throw new Error('Login fallito, ruolo o token non trovati');
         }
+        
+        // Salva token e ruolo nel localStorage
+        localStorage.setItem("authToken", data.token);
+        localStorage.setItem("ruolo", data.ruolo);
+        
+        // Aggiorna l'header con il ruolo
+        aggiornaHeader(data.ruolo);  // Chiamato subito dopo aver memorizzato il ruolo
+        
+        // Chiudi il modal di login
+        const modal = bootstrap.Modal.getInstance(document.getElementById('loginModal'));
+        if (modal) modal.hide();
+
+        // Reindirizza in base al ruolo
+        window.location.href = data.ruolo === "freelance" ? "../freelance.html" : "../DashBoardCliente/dashboardCliente.html";
     })
     .catch(error => {
         console.error('Errore nel login:', error);
-        printOutput({ error: error.message });
+        alert('Errore nel login: ' + error.message);
     });
 };
 
 
-document.addEventListener("DOMContentLoaded", () => {
-    const authToken = localStorage.getItem("authToken");
-    const freelanceButton = document.getElementById("btnFreelance");
-    const profileButton = document.getElementById("btnProfilo");
-    const profileDropdown = document.getElementById("profileDropdown");
 
-    if (authToken) {
-        // Se l'utente è autenticato, mostra il pulsante profilo e nasconde freelance
-        if (freelanceButton) freelanceButton.style.display = "none";
-        
-        if (profileDropdown) profileDropdown.style.display = "block";
-    } else {
-        // Se non è autenticato, mostra freelance e nasconde profilo
-        if (freelanceButton) freelanceButton.style.display = "block";
-        
-        if (profileDropdown) profileDropdown.style.display = "none";
+// Aggiornamento header
+/*function aggiornaHeader(ruolo) {
+    document.getElementById("loginBtn").style.display = "none";
+    document.getElementById("btnFreelance").style.display = "none";
+    document.getElementById("profileDropdown").style.display = "none";
+    document.getElementById("clientDropdown").style.display = "none";
+    
+    if (ruolo === "freelance") {
+        document.getElementById("profileDropdown").style.display = "block";
+    } else if (ruolo === "cliente") {
+        document.getElementById("clientDropdown").style.display = "block";
+    }
+}*/
+
+// Controllo autenticazione all'avvio
+document.addEventListener("DOMContentLoaded", () => {
+    const token = localStorage.getItem("authToken");
+    const ruolo = localStorage.getItem("ruolo");
+    if (token && ruolo) {
+        aggiornaHeader(ruolo);
     }
 });
 
-
-
-// Gestione del logout
+// Logout
 function logout() {
-    const token = localStorage.getItem("authToken");
-    if (!token) {
-        console.error("Nessun token trovato nel localStorage");
-        return;
-    }
-
     fetch('http://localhost:8080/api/logout', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + token
+            'Authorization': 'Bearer ' + localStorage.getItem("authToken")
         }
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Logout fallito');
-        }
-        return response.json();
-    })
-    .then(data => {
-        console.log('Logout effettuato:', data);
-        printOutput(data);
-
-        // Rimuove il token dal localStorage
+    .finally(() => {
         localStorage.removeItem("authToken");
-
-        // Nasconde il pulsante Logout e mostra il pulsante Accedi
-        document.getElementById("logoutButton").style.display = "none";
-        document.getElementById("loginBtn").style.display = "block";
-        document.getElementById("profileDropdown").style.display = "none";
-        document.getElementById("clientDropdown").style.display = "none";
-    })
-    .catch(error => {
-        console.error('Errore durante il logout:', error);
-        printOutput({ error: error.message });
+        localStorage.removeItem("ruolo");
+        window.location.href = "../Homepage/homepage.html";
     });
 }
 
-// Aggiungi l'ascoltatore dell'evento di clic sul pulsante di logout
-document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById('logoutButton')?.addEventListener('click', logout);
-});
+document.getElementById('logoutButtonCliente')?.addEventListener('click', logout);
+document.getElementById('logoutButtonFreelancer')?.addEventListener('click', logout);
 
-
-document.getElementById('logoutButton').addEventListener('click', function() {
-    // Puoi aggiungere qui altre azioni da eseguire al logout, come la rimozione del token di autenticazione, se necessario
-    localStorage.removeItem("authToken");
-    window.location.reload(); // Ricarica la pagina dopo il logout
-});
-
-
-
-// Gestione del submit del form di login
 document.getElementById('loginForm')?.addEventListener('submit', function(event) {
     event.preventDefault();
-    const email = document.getElementById('loginUsername').value;
-    const password = document.getElementById('loginPassword').value;
-    login(email, password);
+    login(document.getElementById('loginUsername').value, document.getElementById('loginPassword').value);
 });
 
-// Aggiungi evento per aprire il modal quando si clicca su "Accedi"
-document.getElementById("loginBtn").addEventListener("click", function() {
-    const modal = new bootstrap.Modal(document.getElementById('loginModal'));
-    modal.show();
+// Eventi apertura modali
+
+document.getElementById("loginBtn")?.addEventListener("click", function() {
+    new bootstrap.Modal(document.getElementById('loginModal')).show();
 });
 
-// Aggiungi evento per aprire il modal quando si clicca su "sono un freelancer"
-document.getElementById("btnFreelance").addEventListener("click", function() {
-    const freelancerModal = new bootstrap.Modal(document.getElementById('freelancerModal'));
-    freelancerModal.show();
+document.getElementById("btnFreelance")?.addEventListener("click", function() {
+    new bootstrap.Modal(document.getElementById('freelancerModal')).show();
 });
 
-// Aggiungi evento per il logout
-document.getElementById('logoutButton').addEventListener('click', function() {
-    logout();
-});
+const aggiornaHeader = () => {
+    console.log("Eseguo aggiornaHeader..."); //  DEBUG
+    const authToken = localStorage.getItem("authToken");
+    const ruolo = localStorage.getItem("ruolo");
+    
+    console.log("Token:", authToken, "Ruolo:", ruolo); //  DEBUG
 
-// Funzione per controllare lo stato di login all'avvio della pagina
-document.addEventListener("DOMContentLoaded", function () {
-    const token = localStorage.getItem("authToken");
-    if (token) {
-        // Se l'utente è loggato, nasconde il pulsante Accedi e mostra il pulsante Logout
-        document.getElementById("loginBtn").style.display = "none";
-        document.getElementById("logoutButton").style.display = "block";
-    } else {
-        // Se l'utente non è loggato, mostra il pulsante Accedi
-        document.getElementById("loginBtn").style.display = "block";
-        document.getElementById("logoutButton").style.display = "none";
-    }
-});
+    // Seleziona gli elementi dell'header
+    const loginBtn = document.getElementById("loginBtn");
+    const freelanceButton = document.getElementById("btnFreelance");
+    const profileDropdown = document.getElementById("profileDropdown");
+    const clientDropdown = document.getElementById("clientDropdown");
 
-//gestione form registrazione
-document.addEventListener("DOMContentLoaded", function () {
-    // Aggiungi l'evento submit al form di registrazione
-    document.getElementById('registerForm')?.addEventListener('submit', function(event) {
-        event.preventDefault(); // Previene il comportamento di invio predefinito del form
+    if (authToken && ruolo) {
+        console.log("Utente autenticato, aggiornamento header..."); //  DEBUG
 
-        // Raccogli i dati del modulo
-        const newUser = {
-            nome: document.getElementById('register-firstname').value,
-            cognome: document.getElementById('register-lastname').value,
-            email: document.getElementById('register-email').value,
-            password: document.getElementById('register-password').value
-        };
+        if (loginBtn) loginBtn.style.display = "none";
+        if (freelanceButton) freelanceButton.style.display = "none";
 
-        // Funzione per inviare la registrazione al backend
-        addUser(newUser);
-    });
-});
-
-// Funzione per la registrazione dell'utente
-function addUser(newUser) {
-    fetch('http://localhost:8080/utenti/addUser/cliente', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json', // Imposta il content-type
-        },
-        body: JSON.stringify(newUser) // Invio dei dati come JSON
-    })
-    .then(response => {
-        if (!response.ok) {
-            return response.json().then(err => { throw new Error(err.message || "Errore durante la registrazione"); });
+        if (ruolo === "freelance") {
+            if (profileDropdown) profileDropdown.style.display = "block";
+            if (clientDropdown) clientDropdown.style.display = "none";
+        } else if (ruolo === "cliente") {
+            if (profileDropdown) profileDropdown.style.display = "none";
+            if (clientDropdown) clientDropdown.style.display = "block";
         }
-        return response.json();
-    })
-    .then(data => {
-        // Successo nella registrazione
-        console.log('Utente registrato con successo:', data);
-        alert('Registrazione avvenuta con successo!');
+    } else {
+        console.log("Nessun utente autenticato, ripristino header..."); //  DEBUG
 
-        // Pulisce il form e chiude il modal
-        clearForm();
-        closeModal();
-    })
-    .catch(error => {
-        // Gestione degli errori
-        console.error('Errore nella registrazione:', error);
-        alert('Registrazione fallita: ' + error.message);
-    });
-}
-
-// Funzione per svuotare i campi del modulo di registrazione
-function clearForm() {
-    document.getElementById('registerForm').reset(); // Reset del modulo
-}
-
-// Funzione per chiudere il modal di registrazione
-function closeModal() {
-    const modal = document.getElementById('registerModal');
-    const modalInstance = bootstrap.Modal.getInstance(modal);
-    if (modalInstance) {
-        modalInstance.hide(); // Chiude il modal
+        if (loginBtn) loginBtn.style.display = "block";
+        if (freelanceButton) freelanceButton.style.display = "block";
+        if (profileDropdown) profileDropdown.style.display = "none";
+        if (clientDropdown) clientDropdown.style.display = "none";
     }
+};
+
+
+const handleClientRegistration = (newuser)=>{
+    fetch("http://localhost:8080/utenti/addUser",{
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newuser)
+        
+    }
+    )
+    .then(res=>res.json())
+    .then(user=>{
+        window.alert("Registrazione effettuata con successo");
+        document.querySelector("#openAccediModal").click();
+
+    })
+
 }
+
+// Esegui l'aggiornamento dell'header ogni volta che la pagina si carica
+document.querySelector("#registerForm").addEventListener("submit", (e)=>{
+    e.preventDefault();
+    const nome = document.querySelector("#register-firstname").value;
+    const cognome = document.querySelector("#register-lastname").value;
+    const email = document.querySelector("#register-email").value;
+    const password = document.querySelector("#register-password").value;
+    handleClientRegistration({
+        nome: nome,
+        cognome: cognome,
+        email: email,
+        password: password,
+        ruolo: "cliente"
+    })
+})
+
+document.querySelector("#freelancerModal").addEventListener("submit", (e)=>{
+    e.preventDefault();
+    const nome = document.querySelector("#freelancer-firstname").value;
+    const cognome = document.querySelector("#freelancer-lastname").value;
+    const email = document.querySelector("#freelancer-email").value;
+    const password = document.querySelector("#freelancer-password").value;
+    handleClientRegistration({
+        nome: nome,
+        cognome: cognome,
+        email: email,
+        password: password,
+        ruolo: "freelance"
+    })
+})
+document.addEventListener("DOMContentLoaded", aggiornaHeader);
