@@ -257,7 +257,7 @@ function logout() {
     .finally(() => {
         localStorage.removeItem("authToken");
         localStorage.removeItem("ruolo");
-        localStorage.remove("authEmail");
+        localStorage.removeItem("authEmail");
         window.location.href = "../Homepage/homepage.html";
     });
 }
