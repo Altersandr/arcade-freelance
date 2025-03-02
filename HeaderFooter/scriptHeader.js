@@ -202,6 +202,7 @@ const login = (email, password) => {
         // Salva token e ruolo nel localStorage
         localStorage.setItem("authToken", data.token);
         localStorage.setItem("ruolo", data.ruolo);
+        localStorage.setItem("authEmail", email);
         
         // Aggiorna l'header con il ruolo
         aggiornaHeader(data.ruolo);  // Chiamato subito dopo aver memorizzato il ruolo
@@ -256,6 +257,7 @@ function logout() {
     .finally(() => {
         localStorage.removeItem("authToken");
         localStorage.removeItem("ruolo");
+        localStorage.remove("authEmail");
         window.location.href = "../Homepage/homepage.html";
     });
 }

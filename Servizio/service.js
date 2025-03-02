@@ -43,8 +43,8 @@ const createReviewElement = (review)=>{
     const voto = review ? review.voto: 5;
     return `
     <div class="d-flex align-items-start border-bottom pb-4 mb-4">
-                            <img src="${review.img ? review.img : "http://www.placehold.co/100" }" alt=""
-                              class="rounded-circle avatar-lg">
+                            <img src="https://cdn3.iconfinder.com/data/icons/avatar-user/64/Artboard_27-1024.png" alt=""
+                              class="rounded-circle avatar-lg review-avatar">
                             <div class="ms-3">
                               <h4 class="mb-1">
                                 ${review ? review.name: "Oleksandr Tsurkan"}
@@ -124,19 +124,19 @@ const getReviews = (serviceId)=>{
         else if(rec.voto == 4)fourStar++;
         else if(rec.voto == 5)fiveStar++;
 
-        firstPercentageValue.textContent = (fiveStar/recensione.length)*100 +"%";
+        firstPercentageValue.textContent = ((fiveStar/recensione.length)*100).toFixed(1) +"%";
         fiveStarPercentage.style.width = `${firstPercentageValue.textContent}`;
 
-        secondPercentageValue.textContent = (fourStar/recensione.length)*100 +"%";
+        secondPercentageValue.textContent = ((fourStar/recensione.length)*100).toFixed(1) +"%";
         fourStarPercentage.style.width = `${secondPercentageValue.textContent}`;
 
-        thirdPercentageValue.textContent = (threeStar/recensione.length)*100 +"%";
+        thirdPercentageValue.textContent = ((threeStar/recensione.length)*100).toFixed(1) +"%";
         threeStarPercentage.style.width = `${thirdPercentageValue.textContent}`;
 
-        fourthPercentageValue.textContent = (twoStar/recensione.length)*100 +"%";
+        fourthPercentageValue.textContent = ((twoStar/recensione.length)*100).toFixed(1) +"%";
         twoStarPercentage.style.width = `${fourthPercentageValue.textContent}`;
         
-        fifthPercentageValue.textContent = (oneStar/recensione.length)*100 +"%";
+        fifthPercentageValue.textContent = ((oneStar/recensione.length)*100).toFixed(1) +"%";
         oneStarPercentage.style.width = `${fifthPercentageValue.textContent}`;
 
         
@@ -336,7 +336,7 @@ const fetchSimilar = (category, serviceId)=>{
 const getAverageRating = (array)=>{
   let average = 0;
   array.forEach((e)=>average+=parseInt(e.voto))
-  return array.length==0 ? 0 : average/array.length;
+  return array.length==0 ? 0 : (average/array.length).toFixed(1);
 }
 
 
@@ -480,6 +480,8 @@ const addReview = async ()=>{
 
  
 }
+
+document.querySelector(".delete-review-text").addEventListener("click", ()=> document.getElementById("textAreaExample").value = "")
 
 document.querySelector(".send-review").addEventListener("click", addReview);
 

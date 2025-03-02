@@ -248,7 +248,7 @@ const fetchAllServices = ()=>{
 const getAverageRating = (array)=>{
     let average = 0;
     array.forEach((e)=>average+=parseInt(e.voto))
-    return array.length==0 ? 0 : average/array.length;
+    return array.length==0 ? 0 : (average/array.length).toFixed(1);
 }
 
 const getCategoryImg = (category)=>{
