@@ -1,4 +1,3 @@
-//funzione modifica email e pass database
 document.addEventListener('DOMContentLoaded', function () {
     const profileForm = document.getElementById('profileForm');
 

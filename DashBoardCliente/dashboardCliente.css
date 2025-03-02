@@ -57,3 +57,8 @@ th {
 #total-orders:hover {
     text-decoration: underline;
 }
+
+.mt-4{
+    margin-bottom: 2.5rem !important;
+    align-self: center;
+}

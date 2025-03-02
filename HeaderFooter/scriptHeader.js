@@ -33,7 +33,7 @@ document.write(`
             <li><a class="dropdown-item" href="../imieiServizi.html">I miei servizi</a></li>
             <li><a class="dropdown-item" href="../profilofreelance.html">Profilo</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><button class="btn text-white" id="logoutButton">Logout</button></li>
+            <li><button class="btn text-white logout-button" id="logoutButtonFreelancer">Logout</button></li>
         </ul>
     </div>
     <div class="dropdown" id="clientDropdown" style="display: none;">
@@ -45,7 +45,7 @@ document.write(`
             <li><a class="dropdown-item" href="../profiloCliente/cliente.html">Profilo</a></li>
             <li><a class="dropdown-item" href="../Carrello/carrello.html">Carrello</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><button class="btn text-white" id="logoutButton">Logout</button></li>
+            <li><button class="btn text-white logout-button" id="logoutButtonCliente">Logout</button></li>
         </ul>
     </div>
 
@@ -54,7 +54,7 @@ document.write(`
         
 
         <!-- Login Button -->
-        <button class="btn text-white" id="loginBtn" type="button">Accedi</button>
+        <button class="btn text-white" id="loginBtn" type="button" >Accedi</button>
 
         <!-- Logout Button (nascosto di default) -->
         
@@ -92,16 +92,15 @@ document.write(`
                         </div>
                         <div class="mb-3">
                             <label for="freelancer-phone" class="form-label">Numero di Telefono</label>
-                            <input type="tel" class="form-control" id="freelancer-phone" required>
+                            <input type="tel" class="form-control" id="freelancer-phone">
                         </div>
                         <div class="mb-3">
                             <label for="freelancer-iva" class="form-label">Partita IVA</label>
-                            <input type="text" class="form-control" id="freelancer-iva" required>
+                            <input type="text" class="form-control" id="freelancer-iva">
                         </div>
                         <div class="mb-3">
                             <label for="tipoAttivita" class="form-label">Tipo di Attività</label>
                             <select id="tipoAttivita" class="form-select" required>
-                                <option value="Consulente">Consulente</option>
                                 <option value="Sviluppatore">Sviluppatore</option>
                                 <option value="Designer">Designer</option>
                                 <option value="Copywriter">Copywriter</option>
@@ -111,7 +110,7 @@ document.write(`
                         </div>
                         <button type="submit" class="btn btn-primary w-100">Registrati come Freelancer</button>
                     </form>
-                    <p class="mt-3 text-center">Oppure, se sei già registrato, <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-dismiss="modal">Accedi</a></p>
+                    <p class="mt-3 text-center">Oppure, se sei già registrato, <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-dismiss="modal" id="openAccediModal">Accedi</a></p>
                 </div>
             </div>
         </div>
@@ -203,6 +202,7 @@ const login = (email, password) => {
         // Salva token e ruolo nel localStorage
         localStorage.setItem("authToken", data.token);
         localStorage.setItem("ruolo", data.ruolo);
+        localStorage.setItem("authEmail", email);
         
         // Aggiorna l'header con il ruolo
         aggiornaHeader(data.ruolo);  // Chiamato subito dopo aver memorizzato il ruolo
@@ -257,11 +257,13 @@ function logout() {
     .finally(() => {
         localStorage.removeItem("authToken");
         localStorage.removeItem("ruolo");
-        window.location.reload();
+        localStorage.removeItem("authEmail");
+        window.location.href = "../Homepage/homepage.html";
     });
 }
 
-document.getElementById('logoutButton')?.addEventListener('click', logout);
+document.getElementById('logoutButtonCliente')?.addEventListener('click', logout);
+document.getElementById('logoutButtonFreelancer')?.addEventListener('click', logout);
 
 document.getElementById('loginForm')?.addEventListener('submit', function(event) {
     event.preventDefault();
@@ -314,74 +316,54 @@ const aggiornaHeader = () => {
     }
 };
 
-// Esegui l'aggiornamento dell'header ogni volta che la pagina si carica
-document.addEventListener("DOMContentLoaded", aggiornaHeader);
 
-
-
-
-
-
-/*//gestione form registrazione
-document.addEventListener("DOMContentLoaded", function () {
-    // Aggiungi l'evento submit al form di registrazione
-    document.getElementById('registerForm')?.addEventListener('submit', function(event) {
-        event.preventDefault(); // Previene il comportamento di invio predefinito del form
-
-        // Raccogli i dati del modulo
-        const newUser = {
-            nome: document.getElementById('register-firstname').value,
-            cognome: document.getElementById('register-lastname').value,
-            email: document.getElementById('register-email').value,
-            password: document.getElementById('register-password').value
-        };
-
-        // Funzione per inviare la registrazione al backend
-        addUser(newUser);
-    });
-});
-
-// Funzione per la registrazione dell'utente
-function addUser(newUser) {
-    fetch('http://localhost:8080/utenti/addUser/cliente', {
-        method: 'POST',
+const handleClientRegistration = (newuser)=>{
+    fetch("http://localhost:8080/utenti/addUser",{
+        method: "POST",
         headers: {
-            'Content-Type': 'application/json', // Imposta il content-type
+            'Content-Type': 'application/json'
         },
-        body: JSON.stringify(newUser) // Invio dei dati come JSON
-    })
-    .then(response => {
-        if (!response.ok) {
-            return response.json().then(err => { throw new Error(err.message || "Errore durante la registrazione"); });
-        }
-        return response.json();
-    })
-    .then(data => {
-        // Successo nella registrazione
-        console.log('Utente registrato con successo:', data);
-        alert('Registrazione avvenuta con successo!');
-
-        // Pulisce il form e chiude il modal
-        clearForm();
-        closeModal();
-    })
-    .catch(error => {
-        // Gestione degli errori
-        console.error('Errore nella registrazione:', error);
-        alert('Registrazione fallita: ' + error.message);
-    });
-}
-
-// Funzione per svuotare i campi del modulo di registrazione
-function clearForm() {
-    document.getElementById('registerForm').reset(); // Reset del modulo
-}
-
-// Funzione per chiudere il modal di registrazione
-function closeModal() {
-    const modal = document.getElementById('registerModal');
-    const modalInstance = bootstrap.Modal.getInstance(modal);
-    if (modalInstance) {
-        modalInstance.hide(); // Chiude il modal
+        body: JSON.stringify(newuser)
+        
     }
-}*/
+    )
+    .then(res=>res.json())
+    .then(user=>{
+        window.alert("Registrazione effettuata con successo");
+        document.querySelector("#openAccediModal").click();
+
+    })
+
+}
+
+// Esegui l'aggiornamento dell'header ogni volta che la pagina si carica
+document.querySelector("#registerForm").addEventListener("submit", (e)=>{
+    e.preventDefault();
+    const nome = document.querySelector("#register-firstname").value;
+    const cognome = document.querySelector("#register-lastname").value;
+    const email = document.querySelector("#register-email").value;
+    const password = document.querySelector("#register-password").value;
+    handleClientRegistration({
+        nome: nome,
+        cognome: cognome,
+        email: email,
+        password: password,
+        ruolo: "cliente"
+    })
+})
+
+document.querySelector("#freelancerModal").addEventListener("submit", (e)=>{
+    e.preventDefault();
+    const nome = document.querySelector("#freelancer-firstname").value;
+    const cognome = document.querySelector("#freelancer-lastname").value;
+    const email = document.querySelector("#freelancer-email").value;
+    const password = document.querySelector("#freelancer-password").value;
+    handleClientRegistration({
+        nome: nome,
+        cognome: cognome,
+        email: email,
+        password: password,
+        ruolo: "freelance"
+    })
+})
+document.addEventListener("DOMContentLoaded", aggiornaHeader);

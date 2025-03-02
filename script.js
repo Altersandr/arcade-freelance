@@ -61,7 +61,7 @@ const getRecensioni = (servizi)=>{
             }
         })
     })
-    return averageScore >0?averageScore/quant :0;
+    return averageScore >0?(averageScore/quant).toFixed(1) :0;
 }
 fetchProfile()
 

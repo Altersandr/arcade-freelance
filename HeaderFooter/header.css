@@ -24,3 +24,7 @@ header .navbar-brand img {
     width: auto;  
      
 }
+
+#logoutButtonCliente, #logoutButtonFreelancer{
+    margin-left: .75em !important;
+}
