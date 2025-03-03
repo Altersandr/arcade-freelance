@@ -73,3 +73,15 @@
     border-color: #0c27d6 !important;
     background-color: #0c27d6 !important;
 }
+
+
+.text-white{
+    background-color:#3C3744 !important;
+    border: 1px solid #ced4da !important;
+    
+}
+
+.text-white:hover {
+    background-color: #3C3744 !important; /* Colore di sfondo al passaggio del mouse */
+    border-color: #ced4da !important;
+  }

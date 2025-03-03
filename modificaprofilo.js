@@ -1,3 +1,44 @@
+
+function getQueryParam(param) {
+    const params = new URLSearchParams(window.location.search); 
+    return params.get(param);
+}
+
+const id = getQueryParam("id");
+
+var profile = "";
+const fetchProfileData = ()=>{
+    const token = localStorage.getItem("authToken");
+
+    return fetch("http://localhost:8080/api/profile",
+        {   method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+              },
+            body: JSON.stringify(token)
+            
+        }
+    )
+    .then(response=> response.json())
+    .then(authProfile=>{
+        fetch("http://localhost:8080/utenti/getlogged",
+            {   method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                  },
+                body: JSON.stringify(authProfile.email)
+                
+            }
+        ).then(response=> response.json())
+        .then(prof=>{
+           profile = prof;
+            
+        })
+
+    })
+}
+
+
 //funzione modifica email e pass database
 document.addEventListener('DOMContentLoaded', function () {
     const profileForm = document.getElementById('profileForm');
@@ -8,9 +49,12 @@ document.addEventListener('DOMContentLoaded', function () {
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
         const confirmPassword = document.getElementById('confirmPassword').value;
+        const lastname = document.getElementById("lastname").value;
+        const firstname = document.getElementById("firstname").value;
 
-        console.log('Email:', email);
-        console.log('Password:', password);
+        
+        // console.log('Email:', email);
+        // console.log('Password:', password);
 
         // Controlla se le password corrispondono
         if (password !== confirmPassword) {
@@ -21,7 +65,9 @@ document.addEventListener('DOMContentLoaded', function () {
         // Oggetto con i dati da aggiornare
         const updateData = {
             email: email,
-            password: password  // Puoi anche aggiungere altri campi come il nome utente, se necessario
+            password: password,  // Puoi anche aggiungere altri campi come il nome utente, se necessario
+            nome: firstname,
+            cognome: lastname
         };
 
         // Recupera il token dal localStorage
@@ -49,6 +95,7 @@ document.addEventListener('DOMContentLoaded', function () {
             return response.json();
         })
         .then(data => {
+          
             console.log('Risposta del server:', data);  //per vedere i dati ricevuti
             if (data.message) {
                 alert(data.message);  // Mostra il messaggio di successo o errore ricevuto dal server
@@ -56,11 +103,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 alert('Errore durante l’aggiornamento del profilo.');
             }
         })
+        
     });
 });
 //fine funzione
 
-
+fetchProfileData();
 
 document.addEventListener('DOMContentLoaded', function() {
     const fillFormBtn = document.getElementById('fillFormBtn');
@@ -73,11 +121,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const servicesForm = document.getElementById('servicesForm');
 
     fillFormBtn.addEventListener('click', function() {
+
         const savedData = {
-            email: 'claudiaalves@email.com',
-            password: 'password123',
-            username: 'Claudia Alves',
-            vatNumber: 'IT12345678901',
+            email: profile.email,
+            password: profile.password,
+            firstname: profile.nome,
+            lastname: profile.cognome,
             taxCode: 'ALVCLD85M01H501Z',
             iban: 'IT60X0542811101000000123456'
         };
@@ -85,8 +134,8 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('email').value = savedData.email;
         document.getElementById('password').value = savedData.password;
         document.getElementById('confirmPassword').value = savedData.password;
-        document.getElementById('username').value = savedData.username;
-        document.getElementById('vatNumber').value = savedData.vatNumber;
+        document.getElementById('firstname').value = savedData.firstname;
+        document.getElementById('lastname').value = savedData.lastname;
         document.getElementById('taxCode').value = savedData.taxCode;
         document.getElementById('iban').value = savedData.iban;
     });
@@ -99,33 +148,7 @@ document.addEventListener('DOMContentLoaded', function() {
         this.classList.toggle('fa-lock-open');
     });
 
-    /*profileForm.addEventListener('submit', function(event) {
-        event.preventDefault();
-
-        if (passwordField.value !== confirmPasswordField.value) {
-            alert('Errore: Le password non corrispondono.');
-            return;
-        }
-
-        const formData = new FormData(profileForm);
-        fetch('/save-profile', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alert('Modifiche salvate con successo!');
-                window.history.back();
-            } else {
-                alert('Errore nel salvataggio delle modifiche.');
-            }
-        })
-        .catch(error => {
-            console.error('Errore:', error);
-            alert('Errore nel salvataggio delle modifiche.');
-        });
-    });*/
+   
 
     portfolioForm.addEventListener('submit', function(event) {
         const allowedExtensions = ['image/jpeg', 'image/png', 'image/gif'];
@@ -165,10 +188,10 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('portfolioDescription').value = '';
     });
 
-    servicesForm.addEventListener('submit', function(event) {
-        event.preventDefault();
-        alert('Modifiche ai servizi salvate!');
-    });
+    // servicesForm.addEventListener('submit', function(event) {
+    //     event.preventDefault();
+    //     alert('Modifiche ai servizi salvate!');
+    // });
 });
 
 function addService() {
@@ -241,3 +264,46 @@ function removeItem(button) {
     const li = button.closest('li');
     li.remove();
 }
+
+function logout() {
+    // Recupera il token dal localStorage
+    const token = localStorage.getItem("authToken");
+    if (!token) {
+        console.error("Nessun token trovato nel localStorage");
+        return;
+    }
+
+    fetch('http://localhost:8080/api/logout', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Logout fallito');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Logout effettuato:', data);
+        printOutput(data);
+        // Rimuove il token dal localStorage
+        localStorage.removeItem("authToken");
+        // Nasconde il pulsante Logout e mostra il pulsante Accedi
+        document.getElementById("logoutButton").style.display = "none";
+        document.getElementById("loginBtn").style.display = "block";
+        document.getElementById("btnProfilo").style.display = "none";
+        document.getElementById("btnFreelance").style.display = "block";
+    })
+    .catch(error => {
+        console.error('Errore durante il logout:', error);
+        printOutput({ error: error.message });
+    });
+}
+
+// Aggiungi l'ascoltatore dell'evento di clic sul pulsante di logout
+// document.addEventListener("DOMContentLoaded", () => {
+// document.getElementById('logoutButton')?.addEventListener('click', logout);
+// });

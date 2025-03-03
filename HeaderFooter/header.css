@@ -1,6 +1,6 @@
 header {
     background-color: #ced4da ;
-    height: 100px;
+    height: 100px ;
 }
 header .btn{
     background-color:#3C3744;
@@ -9,8 +9,8 @@ header .btn{
 }
 
 .btn:hover {
-    background-color: #3C3744; /* Colore di sfondo al passaggio del mouse */
-    border-color: #ced4da;
+    background-color: #3C3744 ; /* Colore di sfondo al passaggio del mouse */
+    border-color: #ced4da ;
   }
 
   header .navbar-brand {
@@ -23,4 +23,8 @@ header .navbar-brand img {
     height: 50%;  
     width: auto;  
      
+}
+
+#logoutButtonCliente, #logoutButtonFreelancer{
+    margin-left: .75em !important;
 }
