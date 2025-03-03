@@ -247,19 +247,43 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Logout
 function logout() {
+    const authToken = localStorage.getItem("authToken");
+
+    // Verifica se il token esiste
+    if (!authToken) {
+        console.error("Token non trovato. Impossibile effettuare il logout.");
+        return;
+    }
+
     fetch('http://localhost:8080/api/logout', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + localStorage.getItem("authToken")
+            'Authorization': 'Bearer ' + authToken
         }
     })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Errore nella richiesta di logout');
+        }
+        return response.json();
+    })
+    .then(data => {
+        // Aggiungi eventuale logica di gestione della risposta
+        console.log('Logout avvenuto con successo:', data);
+    })
+    .catch(error => {
+        // Gestione errori
+        console.error('Errore durante il logout:', error);
+    })
     .finally(() => {
+        // Rimuovi i dati dal localStorage e ricarica la pagina solo se la richiesta è andata a buon fine
         localStorage.removeItem("authToken");
         localStorage.removeItem("ruolo");
         window.location.reload();
     });
 }
+
 
 document.getElementById('logoutButton')?.addEventListener('click', logout);
 
